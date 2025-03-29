@@ -27,7 +27,7 @@ jobs:
       run: |
         version=$(curl -sL https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/version.txt)
         curl -sL "https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-${version}.gz" | \
-          gunzip -c > /usr/local/bin/mihomo && chmod +x /usr/local/bin/mihomo
+          gunzip -c > /usr/bin/mihomo && chmod +x /usr/bin/mihomo
 
 
     - name: Fetch Rules
