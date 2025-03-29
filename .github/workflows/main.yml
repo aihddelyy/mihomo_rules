@@ -100,4 +100,4 @@ jobs:
     - name: Commit and Push Changes
       run: |
         git add .
-        git diff-index --quiet HEAD -- || (git commit -m "Updated rules -> domain and ip rules" && git push)
+        git diff-index --quiet HEAD -- || (git commit -m "Updated $(date -d 'TZ="Asia/Shanghai"' +%Y-%m-%d" "%H:%M:%S)" && git push)
