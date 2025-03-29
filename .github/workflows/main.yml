@@ -100,5 +100,11 @@ jobs:
     - name: Commit and Push Changes
       run: |
         git add .
-        git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
+        status=$(git status --porcelain)
+        if [ -n "$status" ]; then
+          echo "有文件被修改、新增或删除"
+          git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
+         else
+          echo "没有文件变动，无需提交"
+        fi
         git push origin HEAD:main -f
