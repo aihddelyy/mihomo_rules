@@ -71,10 +71,10 @@ jobs:
         grep '^IP-CIDR' rules/PrivateTracker.list | sed 's/,no-resolve//' > rules/IP/PrivateTracker-ip.list
         grep '^IP-CIDR' rules/AmazonIP.list | sed 's/,no-resolve//' > rules/IP/Amazon-ip.list
 
-    - name: Convert Amazon IP Rules to YAML
+    - name: Convert IP Rules to YAML
       run: |
         chmod +x ./ip-yaml.sh
-        ./ip.yaml.sh
+        ./ip-yaml.sh
 
 
 
