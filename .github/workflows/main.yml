@@ -35,7 +35,7 @@ jobs:
 
     - name: Fetch Rules
       run: |
-        mkdir -p rules/Domain rules/IP  # 确保目录存在
+        mkdir -p rules/Domain rules/IP  rules/mrs # 确保目录存在
 
         # 下载 规则文件
         curl -sL "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/Direct.list" -o rules/Direct.list
@@ -71,17 +71,6 @@ jobs:
         grep '^IP-CIDR' rules/PrivateTracker.list | sed 's/,no-resolve//' > rules/IP/PrivateTracker-ip.list
         grep '^IP-CIDR' rules/AmazonIP.list | sed 's/,no-resolve//' > rules/IP/Amazon-ip.list
 
-    - name: Convert domain rules to YAML
-      run: |
-        # 将 domain 规则转换为 YAML 格式
-        chmod +x ./domain-yaml.sh
-        ./domain-yaml.sh
-
-    - name: Convert IP rules to YAML
-      run: |
-        # 将 IP 规则转换为 YAML 格式
-        chmod +x ./ip-yaml.sh
-        ./ip-yaml.sh
   
     - name: Convert rules to MRS
       run: |
