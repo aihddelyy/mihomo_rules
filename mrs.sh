@@ -17,7 +17,7 @@ find . -name "*.yaml" | while read -r file; do
 
     output_file="$filename.mrs"
 
-    /usr/bin/mihomo convert-ruleset "$param" yaml "$file" "$output_file"
+    /usr/bin/mihomo convert-ruleset "$param" text "$file" "$output_file"
 
     if [[ $? -eq 0 ]]; then
         echo "文件 $file 转换成功为 $output_file"
