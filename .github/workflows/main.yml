@@ -2,9 +2,13 @@ name: Sync and Compile Rules
 
 on:
   schedule:
-    - cron: '0 18 * * *'  # 每天北京时间02:00执行
+    - cron: '0 16 * * *'  # 每天北京时间00:00执行
   workflow_dispatch:
-
+  push:
+    paths:
+      - 'Direct.list'
+      - 'ProxyLite.list'
+      - '.github/workflows/main.yml'
 permissions:
   contents: write
 
