@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # 定义目录路径
-input_dir="/rules/ip"
-output_dir="/rules/ip"
+input_dir="rules/IP"
+output_dir="rules/IP"
 
 # 遍历 rules/ip 目录下的所有 .list 文件
 for input_file in "$input_dir"/*.list; do
