@@ -23,7 +23,7 @@ for input_file in "$input_dir"/*.list; do
                 domain="*.$domain"
             fi
             # 写入到 YAML 文件
-            echo "  - $domain" >> "$output_file"
+            echo "  - '$domain'" >> "$output_file"
         fi
     done < "$input_file"
     

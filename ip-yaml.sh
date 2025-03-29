@@ -18,7 +18,7 @@ for input_file in "$input_dir"/*.list; do
   # 读取并处理 .list 文件中的每一行
   while IFS=, read -r type ip; do
     if [[ -n "$ip" && ! "$ip" =~ ^# ]]; then
-      echo "  - $ip" >> "$output_file"
+      echo "  - '$ip'" >> "$output_file"
     fi
   done < "$input_file"
   
