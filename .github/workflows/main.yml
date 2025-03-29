@@ -95,7 +95,7 @@ jobs:
     - name: Convert IP rules to MRS
       run: |
         # 使用 mihomo 转换为 MRS 格式
-        cd rules/ip
+        cd rules/IP
         for yaml_file in *.yaml; do
           mrs_flle=$(basename "$yaml_file" .mrs)
           mihomo convert-ruleset ipcidr yaml "$yaml_file" "${mrs_flle}"
