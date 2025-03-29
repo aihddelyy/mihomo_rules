@@ -36,7 +36,7 @@ jobs:
 
     - name: Fetch Rules
       run: |
-        rm -rf rules/*.* # 删除旧文件
+        rm -rf rules/* # 删除旧文件
         mkdir -p rules/Domain rules/IP  rules/mrs rules/yaml # 确保目录存在        
         # 下载 规则文件
         curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/Direct.list" -o rules/Direct.list
