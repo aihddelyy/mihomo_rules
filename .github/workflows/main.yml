@@ -87,9 +87,9 @@ jobs:
         # 使用 mihomo 转换为 MRS 格式
         cd rules/Domain
         for yaml_file in *.yaml; do
-            base_name="${yaml_file%.yaml}"
-            mihomo convert-ruleset domain yaml "$yaml_file" "${base_name}.mrs"
-            echo "Converted $yaml_file to ${base_name}.mrs"
+          mrs_flle=$(basename "$yaml_file" .mrs)
+          mihomo convert-ruleset domain yaml "$yaml_file" "${base_name}"
+          echo "Converted $yaml_file to ${mrs_flle}"
         done
 
     - name: Convert IP rules to MRS
@@ -97,9 +97,9 @@ jobs:
         # 使用 mihomo 转换为 MRS 格式
         cd rules/ip
         for yaml_file in *.yaml; do
-            base_name="${yaml_file%.yaml}"
-            mihomo convert-ruleset domain yaml "$yaml_file" "${base_name}.mrs"
-            echo "Converted $yaml_file to ${base_name}.mrs"
+          mrs_flle=$(basename "$yaml_file" .mrs)
+          mihomo convert-ruleset ipcidr yaml "$yaml_file" "${mrs_flle}"
+          echo "Converted $yaml_file to ${mrs_flle}"
 
     - name: Clean up temporary files
       run: |
