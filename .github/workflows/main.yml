@@ -70,6 +70,13 @@ jobs:
 
     - name: Convert IP Rules to YAML
       run: |
+          chmod +x ./domain-yaml.sh
+          ./domain-yaml.sh
+
+
+
+    - name: Convert IP Rules to YAML
+      run: |
         chmod +x ./ip-yaml.sh
         ./ip-yaml.sh
 
@@ -83,8 +90,7 @@ jobs:
 
     - name: Clean up temporary files
       run: |
-        # 删除临时文件，但保留 NetEaseMusic-domain.yaml 和 NetEaseMusic-ip.yaml
-        #rm -f rules/NetEaseMusic.list rules/Domain/NetEaseMusic-domain.list rules/IP/NetEaseMusic-ip.list
+        # 删除临时文件
 
     - name: Commit and Push Changes
       run: |
