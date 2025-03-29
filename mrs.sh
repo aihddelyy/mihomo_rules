@@ -1,5 +1,5 @@
 #!/bin/bash
-cd rules/work
+cd rules/yaml
 find . -name "*.yaml" | while read -r file; do    
     filename=$(basename "$file" .yaml)
 

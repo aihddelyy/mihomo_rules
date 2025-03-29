@@ -163,57 +163,57 @@ Direct_first: &Direct_first {type: select, proxies: [全球直连, 节点选择,
 Include_all: &Include_all {type: select, proxies: [节点选择, 自动选择, 手动切换, 全球直连, IPV6节点, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
 # 策略组
 proxy-groups:
-  - {name: 节点选择, type: select, proxies: [自动选择, 手动切换, IPV6节点, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/check.png"}
-  - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/sync.png"}
-  - {name: 手动切换, type: select, include-all: true, filter: "^((?!(直连)).)*$", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/select.png"}
-  - {name: IPV6节点, type: url-test, include-all: true, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/ipv6.png", filter: "(?i)v6|ipv6"}
-  - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/youtube.png"}
-  - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/google.png"}
-  - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/github.png"}
-  - {name: Apple, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/apple.png"}  
-  - {name: Microsoft, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/microsoft.png"}
-  - {name: OneDrive, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/onedrive.png"}
-  - {name: AI, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/ai.png"}
-  - {name: TikTok, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/tiktok.png"}
-  - {name: Telegram, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/telegram.png"}
-  - {name: Discord, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/discord.png"}
-  - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/meta.png"}
-  - {name: Spotify, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/spotify.png"}
-  - {name: NETFLIX, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/netflix.png"}
-  - {name: HBO, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/hbo.png"}
-  - {name: Disney, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/disney-plus.png"}
-  - {name: Prime, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/amazon-prime.png"}
-  - {name: AppleTV, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/apple-tv.png"}
-  - {name: Hulu, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/hulu.png"}
-  - {name: 哔哩哔哩, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/bilibili.png"}
-  - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/bilibiliit.png"}
-  - {name: 巴哈姆特, type: select, proxies: [台湾节点, 台湾自动], icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/bahamut.png"}
-  - {name: 国内媒体, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/multimedia.png"}
-  - {name: 国外媒体, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/multimedia2.png"}
-  - {name: Speedtest, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/speedtest.png"}
-  - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/paypal.png"}
-  - {name: STEAM, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/steam.png"}
-  - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/game.png"}
-  - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/direct.png"}
-  - {name: 漏网之鱼, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/fish.png"}
-  - {name: 香港自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(香港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/hong-kong.png"}
-  - {name: 台湾自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/taiwan.png"}
-  - {name: 新加坡自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/singapore.png"}
-  - {name: 日本自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/japan.png"}
-  - {name: 韩国自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/south-korea.png"}
-  - {name: 美国自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/usa.png"}
-  - {name: 英国自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(英|GB|UK|England|British)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/united-kingdom.png"}
-  - {name: 欧洲自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/european-union.png"}
-  - {name: 香港节点, type: select, include-all: true, filter: "(?i)(香港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/hong-kong.png"}
-  - {name: 台湾节点, type: select, include-all: true, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/taiwan.png"}
-  - {name: 新加坡节点, type: select, include-all: true, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/singapore.png"}
-  - {name: 日本节点, type: select, include-all: true, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/japan.png"}
-  - {name: 韩国节点, type: select, include-all: true, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/south-korea.png"}
-  - {name: 美国节点, type: select, include-all: true, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/usa.png"}
-  - {name: 英国节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(英|GB|UK|England|British)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/united-kingdom.png"}
-  - {name: 欧洲节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/european-union.png"}
-  - {name: 其他国家, type: select, include-all: true, filter: "^((?!(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西|波|卢|瑞)).)*$", icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/country.png"}
-  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Telegram, Discord, Meta, Spotify, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, 国外媒体, Speedtest, PayPal, STEAM, 游戏平台, 全球直连, 漏网之鱼, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/icon/earth.png"}
+  - {name: 节点选择, type: select, proxies: [自动选择, 手动切换, IPV6节点, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/check.png"}
+  - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/sync.png"}
+  - {name: 手动切换, type: select, include-all: true, filter: "^((?!(直连)).)*$", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/select.png"}
+  - {name: IPV6节点, type: url-test, include-all: true, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/ipv6.png", filter: "(?i)v6|ipv6"}
+  - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/youtube.png"}
+  - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/google.png"}
+  - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/github.png"}
+  - {name: Apple, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/apple.png"}  
+  - {name: Microsoft, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/microsoft.png"}
+  - {name: OneDrive, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/onedrive.png"}
+  - {name: AI, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/ai.png"}
+  - {name: TikTok, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/tiktok.png"}
+  - {name: Telegram, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/telegram.png"}
+  - {name: Discord, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/discord.png"}
+  - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/meta.png"}
+  - {name: Spotify, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/spotify.png"}
+  - {name: NETFLIX, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/netflix.png"}
+  - {name: HBO, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hbo.png"}
+  - {name: Disney, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/disney-plus.png"}
+  - {name: Prime, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/amazon-prime.png"}
+  - {name: AppleTV, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/apple-tv.png"}
+  - {name: Hulu, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hulu.png"}
+  - {name: 哔哩哔哩, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bilibili.png"}
+  - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bilibiliit.png"}
+  - {name: 巴哈姆特, type: select, proxies: [台湾节点, 台湾自动], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bahamut.png"}
+  - {name: 国内媒体, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/multimedia.png"}
+  - {name: 国外媒体, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/multimedia2.png"}
+  - {name: Speedtest, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/speedtest.png"}
+  - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/paypal.png"}
+  - {name: STEAM, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/steam.png"}
+  - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/game.png"}
+  - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/direct.png"}
+  - {name: 漏网之鱼, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/fish.png"}
+  - {name: 香港自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(香港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hong-kong.png"}
+  - {name: 台湾自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/taiwan.png"}
+  - {name: 新加坡自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/singapore.png"}
+  - {name: 日本自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/japan.png"}
+  - {name: 韩国自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/south-korea.png"}
+  - {name: 美国自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/usa.png"}
+  - {name: 英国自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(英|GB|UK|England|British)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/united-kingdom.png"}
+  - {name: 欧洲自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/european-union.png"}
+  - {name: 香港节点, type: select, include-all: true, filter: "(?i)(香港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hong-kong.png"}
+  - {name: 台湾节点, type: select, include-all: true, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/taiwan.png"}
+  - {name: 新加坡节点, type: select, include-all: true, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/singapore.png"}
+  - {name: 日本节点, type: select, include-all: true, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/japan.png"}
+  - {name: 韩国节点, type: select, include-all: true, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/south-korea.png"}
+  - {name: 美国节点, type: select, include-all: true, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/usa.png"}
+  - {name: 英国节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(英|GB|UK|England|British)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/united-kingdom.png"}
+  - {name: 欧洲节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/european-union.png"}
+  - {name: 其他国家, type: select, include-all: true, filter: "^((?!(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西|波|卢|瑞)).)*$", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/country.png"}
+  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Telegram, Discord, Meta, Spotify, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, 国外媒体, Speedtest, PayPal, STEAM, 游戏平台, 全球直连, 漏网之鱼, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/earth.png"}
 rules:
   # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,REJECT-DROP,no-resolve
@@ -328,7 +328,7 @@ rule-providers:
   disney_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/disney.mrs" }
   prime_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/primevideo.mrs" }
   hulu_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/hulu.mrs" }
-  AppleTV_domain: { <<: *class, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/AppleTV-domain.mrs" }
+  AppleTV_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/AppleTV-domain.mrs" }
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
   onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs" }
   ai_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs" }
