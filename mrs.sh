@@ -1,13 +1,13 @@
 #!/bin/bash
 cd rules
-find . -name "*.yaml" | while read -r file; do
+find . -name "*.list" | while read -r file; do
     first_line=$(head -n 1 "$file")
     if [[ "$first_line" == *"payload"* ]]; then
         sed -i '1d' "$file"
     fi
     sed -i "s/'//g; s/-//g; s/[[:space:]]//g" "$file"
 
-    filename=$(basename "$file" .yaml)
+    filename=$(basename "$file" .list)
 
     if [[ "$filename" == *ip* ]]; then
         param="ipcidr"
