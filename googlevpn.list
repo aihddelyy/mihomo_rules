@@ -1,0 +1,9 @@
+# NAME: Google VPN
+# AUTHOR: Lanlan13-14
+# REPO: https://github.com/Lanlan13-14/rule
+# UPDATED: 2025-01-11 16:48:51
+# DOMAIN-SUFFIX: 3
+# TOTAL: 3
+DOMAIN-SUFFIX,cloud.cupronickel.goog
+DOMAIN-SUFFIX,googleapis.com
+DOMAIN-SUFFIX,gstatic.com
