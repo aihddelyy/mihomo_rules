@@ -100,5 +100,5 @@ jobs:
     - name: Commit and Push Changes
       run: |
         git add .
-        git commit -m "Updated $(date -d 'TZ="Asia/Shanghai"' +%Y-%m-%d" "%H:%M:%S)"
+        git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
         git push origin HEAD:main -f
