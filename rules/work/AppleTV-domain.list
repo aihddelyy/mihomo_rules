@@ -1,7 +1,7 @@
-DOMAIN,hlsamt.itunes.apple.com
-DOMAIN,hls.itunes.apple.com
-DOMAIN,npedge.itunes.apple.com
-DOMAIN,playedge.itunes.apple.com
-DOMAIN,tv.applemusic.com
-DOMAIN,utsapi.itunes.apple.com
-DOMAINSUFFIX,tv.apple.com
+hlsamt.itunes.apple.com
+hls.itunes.apple.com
+npedge.itunes.apple.com
+playedge.itunes.apple.com
+tv.applemusic.com
+utsapi.itunes.apple.com
+*.tv.apple.com
