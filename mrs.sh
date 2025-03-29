@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p rules/work
-mv rules/Domain/*.list /rules/work/
-mv rules/IP/*.list /rules/work/
+mv rules/Domain/*.list rules/work/
+mv rules/IP/*.list rules/work/
 cd rules/work
 find . -name "*.list" | while read -r file; do
     first_line=$(head -n 1 "$file")
