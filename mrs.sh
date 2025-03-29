@@ -26,4 +26,4 @@ find . -name "*.list" | while read -r file; do
         echo "文件 $file 转换失败"
     fi
 done
-mv *.mrs /rules/mrs/
+mv *.mrs ../mrs/
