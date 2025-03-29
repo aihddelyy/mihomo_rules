@@ -91,7 +91,7 @@ jobs:
     - name: Clean up temporary files
       run: |
         # 删除临时文件
-        rm -rf rules/work/*.*
+        #rm -rf rules/work/*.*
 
     - name: Commit and Push Changes
       run: |
