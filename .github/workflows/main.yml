@@ -52,15 +52,15 @@ jobs:
     - name: Separate domain and ip rules
       run: |
         # 提取域名规则并保存到 *-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/Direct.list > rules/Domain/Direct-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/blackmatrix7_direct.list >> rules/Domain/Direct-domain.list        
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/ProxyLite.list > rules/Domain/ProxyLite-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/AppleTV.list > rules/Domain/AppleTV-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/Steam_CDN.list > rules/Domain/Steam_CDN-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/UBI.list > rules/Domain/UBI-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/NetEaseMusic.list > rules/Domain/NetEaseMusic-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/IPTVMainland_Domain.list > rules/Domain/IPTVMainland-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)(?!.*DOMAIN-KEYWORD)' rules/PrivateTracker.list > rules/Domain/PrivateTracker-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Direct.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Direct-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/blackmatrix7_direct.list | grep -v '^DOMAIN-KEYWORD' >> rules/Domain/Direct-domain.list        
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/ProxyLite.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/ProxyLite-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/AppleTV.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/AppleTV-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Steam_CDN.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Steam_CDN-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/UBI.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/UBI-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/NetEaseMusic.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/NetEaseMusic-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/IPTVMainland_Domain.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/IPTVMainland-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/PrivateTracker.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/PrivateTracker-domain.list
         
         # 提取 IP 规则并保存到 *-ip.list (去掉 no-resolve)
         grep '^IP-CIDR' rules/Direct.list | sed 's/,no-resolve//' > rules/IP/Direct-ip.list
