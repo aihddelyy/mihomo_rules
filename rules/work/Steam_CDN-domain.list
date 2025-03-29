@@ -1,2 +1,2 @@
-DOMAINSUFFIX,cm.steampowered.com
-DOMAINSUFFIX,steamserver.net
+*.cm.steampowered.com
+*.steamserver.net

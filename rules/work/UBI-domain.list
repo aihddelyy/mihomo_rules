@@ -1,5 +1,5 @@
-DOMAINSUFFIX,ubi.com
-DOMAINSUFFIX,ubisoftorbitsavegames.s3.amazonaws.com
-DOMAINSUFFIX,ubisoftuplaysavegames.s3.amazonaws.com
-DOMAINSUFFIX,ubisoft.com
-DOMAINSUFFIX,uplay.com
+*.ubi.com
+*.ubisoftorbitsavegames.s3.amazonaws.com
+*.ubisoftuplaysavegames.s3.amazonaws.com
+*.ubisoft.com
+*.uplay.com
