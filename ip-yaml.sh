@@ -2,7 +2,7 @@
 
 # 定义目录路径
 input_dir="rules/IP"
-output_dir="rules/IP"
+output_dir="rules/work"
 
 # 遍历 rules/ip 目录下的所有 .list 文件
 for input_file in "$input_dir"/*.list; do
@@ -10,7 +10,7 @@ for input_file in "$input_dir"/*.list; do
   base_name=$(basename "$input_file" .list)
   
   # 定义输出文件名
-  output_file="$output_dir/$base_name.yaml"
+  output_file="$output_dir/$base_name.list"
   
   # 写入 YAML 文件的头部
   echo "payload:" > "$output_file"

@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir -p rules/work
 mv rules/Domain/*.list rules/work/
 mv rules/IP/*.list rules/work/
 cd rules/work

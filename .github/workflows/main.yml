@@ -35,7 +35,7 @@ jobs:
 
     - name: Fetch Rules
       run: |
-        mkdir -p rules/Domain rules/IP  rules/mrs # 确保目录存在
+        mkdir -p rules/Domain rules/IP  rules/mrs rules/work # 确保目录存在
 
         # 下载 规则文件
         curl -sL "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/Direct.list" -o rules/Direct.list
@@ -71,7 +71,13 @@ jobs:
         grep '^IP-CIDR' rules/PrivateTracker.list | sed 's/,no-resolve//' > rules/IP/PrivateTracker-ip.list
         grep '^IP-CIDR' rules/AmazonIP.list | sed 's/,no-resolve//' > rules/IP/Amazon-ip.list
 
-  
+    - name: Convert Amazon IP Rules to YAML
+      run: |
+        chmod +x ./ip-yaml.sh
+        ./ip.yaml.sh
+
+
+
     - name: Convert rules to MRS
       run: |
         # 使用 mihomo 转换为 MRS 格式
