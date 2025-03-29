@@ -27,7 +27,7 @@ for input_file in "$input_dir"/*.list; do
         fi
     done < "$input_file"
     
-    echo "Processed $input_file -> $output_file"
+    echo "转换完成 $input_file -> $output_file"
 done
 
-echo "All files processed."
+echo "所有文件转换完成！"
