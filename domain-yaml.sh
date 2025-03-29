@@ -10,7 +10,7 @@ for input_file in "$input_dir"/*.list; do
     base_name=$(basename "$input_file" .list)
     
     # 定义输出文件路径
-    output_file="$output_dir/$base_name.list"
+    output_file="$output_dir/$base_name.yaml"
     
     # 初始化 YAML 文件
     echo "payload:" > "$output_file"

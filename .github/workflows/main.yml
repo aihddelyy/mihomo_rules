@@ -35,9 +35,9 @@ jobs:
         mkdir -p rules/Domain rules/IP  rules/mrs rules/work # 确保目录存在
 
         # 下载 规则文件
-        curl -sL "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/Direct.list" -o rules/Direct.list
+        curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/Direct.list" -o rules/Direct.list
         curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list" -o rules/blackmatrix7_direct.list
-        curl -sL "https://raw.githubusercontent.com/aihdde/Rules/refs/heads/main/ProxyLite.list" -o rules/ProxyLite.list
+        curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/ProxyLite.list" -o rules/ProxyLite.list
         curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleTV/AppleTV.list" -o rules/AppleTV.list
         curl -sL "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list" -o rules/Steam_CDN.list
         curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list" -o rules/UBI.list
@@ -70,8 +70,8 @@ jobs:
 
     - name: Convert IP Rules to YAML
       run: |
-          chmod +x ./domain-yaml.sh
-          ./domain-yaml.sh
+        chmod +x ./domain-yaml.sh
+        ./domain-yaml.sh
 
 
 
