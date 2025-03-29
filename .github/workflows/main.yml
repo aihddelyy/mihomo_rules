@@ -31,7 +31,7 @@ jobs:
             | cut -d '"' -f 4 \
             | xargs wget -q -O mihomo-linux-amd64-alpha.deb
           sudo apt install --fix-missing ./mihomo-linux-amd64-alpha.deb
-        shell: bash
+      shell: bash
 
     - name: Fetch Rules
       run: |
