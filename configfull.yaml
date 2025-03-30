@@ -224,6 +224,7 @@ rules:
   # 禁用QUIC
   - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
   - DST-PORT,123,全球直连
+  - DOMAIN-SUFFIX,ghproxy.aihdde.eu.org,全球直连
   - RULE-SET,Ad_domain,隐私拦截
   - RULE-SET,Ad_ip,隐私拦截,no-resolve
   - RULE-SET,Private_domain,全球直连
