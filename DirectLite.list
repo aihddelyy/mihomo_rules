@@ -28,8 +28,9 @@ DOMAIN-SUFFIX,noedgeai.com
 DOMAIN-SUFFIX,gh-proxy.com
 IP-CIDR,180.163.146.102/32,no-resolve
 IP-CIDR,10.10.10.0/24
-DOMAIN-SUFFIX,ghfast.top
 DOMAIN-SUFFIX,ghproxy.aihdde.eu.org
+DOMAIN-SUFFIX,ghfast.top
+
 
 # iptv
 DOMAIN-SUFFIX,drive.mxmy.net
