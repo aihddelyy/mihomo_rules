@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'Direct.list'
+      - 'DirectLite.list'
       - 'ProxyLite.list'
       - '.github/workflows/main.yml'
 permissions:
