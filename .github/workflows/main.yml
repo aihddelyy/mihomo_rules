@@ -50,6 +50,7 @@ jobs:
         curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list" -o rules/PrivateTracker.list
         curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AmazonIP/AmazonIP.list" -o rules/AmazonIP.list
         curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list" -o rules/Ad.list
+        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/WeChat/WeChat.list" -o rules/WeChat.list
         
     - name: Separate domain and ip rules
       run: |
@@ -64,6 +65,7 @@ jobs:
         grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/IPTVMainland_Domain.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/IPTVMainland-domain.list
         grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/PrivateTracker.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/PrivateTracker-domain.list
         grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Ad.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Ad-domain.list
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/WeChat.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/WeChat-domain.list
         
         # 提取 IP 规则并保存到 *-ip.list (去掉 no-resolve)
         grep '^IP-CIDR' rules/DirectLite.list | sed 's/,no-resolve//' > rules/IP/DirectLite-ip.list

@@ -135,7 +135,7 @@ dns:
     - 5ddd.com
     - time1.cloud.tencent.com
     - ghproxy.aihdde.eu.org
-    - "rule-set:Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain"
+    - "rule-set:Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain"
   default-nameserver:
     - tls://1.12.12.12
     - tls://223.5.5.5
@@ -146,7 +146,7 @@ dns:
     - tls://dot.pub
     - tls://dns.alidns.com
   nameserver-policy:
-    "rule-set:Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain":
+    "rule-set:Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain":
       - tls://dot.pub
       - tls://dns.alidns.com
     "rule-set:geolocation-!cn":
@@ -235,6 +235,7 @@ rules:
   - RULE-SET,IPTVMainland_domain,全球直连
   - RULE-SET,Bank_cn_domain,全球直连
   - RULE-SET,Xiaomi_domain,全球直连
+  - RULE-SET,WeChat_domain,全球直连
   - RULE-SET,NetEaseMusic_domain,全球直连
   - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
@@ -296,6 +297,7 @@ rules:
   - RULE-SET,Ai_ip,AI,no-resolve
   - RULE-SET,DirectLite_ip,全球直连,no-resolve
   - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
+  - RULE-SET,WeChat_asn,全球直连,no-resolve
   - RULE-SET,PrivateTracker_ip,全球直连,no-resolve
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
   - RULE-SET,CN_ip,全球直连
@@ -359,6 +361,7 @@ rule-providers:
   Media_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-media-cn.mrs" }
   Bank_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs" }
   Xiaomi_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs" }
+  WeChat_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/WeChat-domain.mrs" }
   NetEaseMusic_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/NetEaseMusic-domain.mrs" }  
   IPTVMainland_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/IPTVMainland-domain.mrs" }
   PrivateTracker_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-domain.mrs" } 
@@ -382,3 +385,4 @@ rule-providers:
   
   Google_asn_cn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
   Discord_asn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS49544.mrs" }
+  WeChat_asn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS132203.mrs" }
