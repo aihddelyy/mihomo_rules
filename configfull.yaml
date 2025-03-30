@@ -302,7 +302,7 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers:
-  Ad_domain: { <<: *domain,url:https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-domain.mrs }
+  Ad_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-domain.mrs" }
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
   direct_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Direct-domain.mrs" }
   ProxyLite_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-domain.mrs" }
@@ -362,7 +362,7 @@ rule-providers:
   gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
 
-  Ad_ip: { <<: *domain,url:https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs }
+  Ad_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs" }
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs" }
