@@ -135,6 +135,7 @@ dns:
     - '+.pool.ntp.org'
     - 5ddd.com
     - time1.cloud.tencent.com
+    - ghproxy.aihdde.eu.org
     - "rule-set:Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain"
   default-nameserver:
     - tls://1.12.12.12
