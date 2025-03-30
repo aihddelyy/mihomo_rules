@@ -67,7 +67,7 @@ jobs:
         
         # 提取 IP 规则并保存到 *-ip.list (去掉 no-resolve)
         grep '^IP-CIDR' rules/DirectLite.list | sed 's/,no-resolve//' > rules/IP/DirectLite-ip.list
-        grep '^IP-CIDR' rules/blackmatrix7_direct.list | sed 's/,no-resolve//' >> rules/IP/Direct-ip.list
+        grep '^IP-CIDR' rules/blackmatrix7_direct.list | sed 's/,no-resolve//' >> rules/IP/DirectLite-ip.list
         grep '^IP-CIDR' rules/ProxyLite.list | sed 's/,no-resolve//' > rules/IP/ProxyLite-ip.list    
         grep '^IP-CIDR' rules/Steam_CDN.list | sed 's/,no-resolve//' > rules/IP/Steam_CDN-ip.list        
         grep '^IP-CIDR' rules/NetEaseMusic.list | sed 's/,no-resolve//' > rules/IP/NetEaseMusic-ip.list        
