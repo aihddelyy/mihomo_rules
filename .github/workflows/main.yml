@@ -55,7 +55,7 @@ jobs:
       run: |
         # 提取域名规则并保存到 *-domain.list
         grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/DirectLite.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/DirectLite-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/blackmatrix7_direct.list | grep -v '^DOMAIN-KEYWORD' >> rules/Domain/Direct-domain.list        
+        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/blackmatrix7_direct.list | grep -v '^DOMAIN-KEYWORD' >> rules/Domain/DirectLite-domain.list        
         grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/ProxyLite.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/ProxyLite-domain.list
         grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/AppleTV.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/AppleTV-domain.list
         grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Steam_CDN.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Steam_CDN-domain.list
