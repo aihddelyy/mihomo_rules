@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 jobs:
-  netease_music_rules:
+  convert_rules:
     runs-on: ubuntu-latest
 
     steps:
