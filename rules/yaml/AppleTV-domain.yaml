@@ -5,4 +5,4 @@ payload:
   - 'play-edge.itunes.apple.com'
   - 'tv.applemusic.com'
   - 'uts-api.itunes.apple.com'
-  - '*.tv.apple.com'
+  - '+.tv.apple.com'
