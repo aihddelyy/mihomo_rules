@@ -241,7 +241,6 @@ rules:
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,PrivateTracker_domain,全球直连  
   - RULE-SET,Cloudflare_domain,节点选择
-  - RULE-SET,ProxyLite_domain,节点选择
   - RULE-SET,AppleTV_domain,AppleTV
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Openai_domain,AI
@@ -282,6 +281,7 @@ rules:
   - RULE-SET,UBI_domain,游戏平台
   - RULE-SET,Snoy_domain,游戏平台
   - RULE-SET,Nintendo_domain,游戏平台
+  - RULE-SET,ProxyLite_domain,节点选择
   - RULE-SET,GFW_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
   - RULE-SET,CN_domain,全球直连
