@@ -227,6 +227,7 @@ rules:
   - RULE-SET,Ad_domain,隐私拦截
   - RULE-SET,Ad_ip,隐私拦截,no-resolve
   - RULE-SET,Private_domain,全球直连
+  - RULE-SET,Private_ip,全球直连,no-resolve
   - RULE-SET,DirectLite_domain,全球直连
   - RULE-SET,Ai_cn_domain,全球直连
   - RULE-SET,Apple_cn_domain,全球直连
@@ -382,6 +383,7 @@ rule-providers:
   NetEaseMusic_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/NetEaseMusic-ip.mrs" }
   PrivateTracker_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-ip.mrs" }
   Steam_CDN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
+  Private_ip: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs" }
   
   Google_asn_cn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
   Discord_asn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS49544.mrs" }
