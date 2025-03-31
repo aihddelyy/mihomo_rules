@@ -2,7 +2,7 @@ name: Sync and Compile Rules
 
 on:
   schedule:
-   - cron: 0 2 * * *  # 每天北京时间10:00执行
+    - cron: '0 2 * * *'  # 每天北京时间10:00执行
   workflow_dispatch:
   push:
     paths:
@@ -17,99 +17,99 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Set up Git user
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Set up Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Install mihomo
-      run: |
-        version=$(curl -sL https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/version.txt)
-        curl -sL "https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-${version}.gz" | \
-          gunzip -c > /usr/local/bin/mihomo && chmod +x /usr/local/bin/mihomo
+      - name: Install mihomo
+        run: |
+          version=$(curl -sL https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/version.txt)
+          curl -sL "https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-${version}.gz" | \
+            gunzip -c > /usr/local/bin/mihomo && chmod +x /usr/local/bin/mihomo
 
 
-    - name: Fetch Rules
-      run: |
-        rm -rf rules/* # 删除旧文件
-        mkdir -p rules/Domain rules/IP  rules/mrs rules/yaml # 确保目录存在        
-        # 下载 规则文件
-        curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/DirectLite.list" -o rules/DirectLite.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list" -o rules/blackmatrix7_direct.list
-        curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/ProxyLite.list" -o rules/ProxyLite.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleTV/AppleTV.list" -o rules/AppleTV.list
-        curl -sL "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list" -o rules/Steam_CDN.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list" -o rules/UBI.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.list" -o rules/NetEaseMusic.list
-        curl -sL "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/IPTVMainland_Domain.list" -o rules/IPTVMainland_Domain.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list" -o rules/PrivateTracker.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AmazonIP/AmazonIP.list" -o rules/AmazonIP.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list" -o rules/Ad.list
-        curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/WeChat/WeChat.list" -o rules/WeChat.list
+      - name: Fetch Rules
+        run: |
+          rm -rf rules/* # 删除旧文件
+          mkdir -p rules/Domain rules/IP  rules/mrs rules/yaml # 确保目录存在        
+          # 下载 规则文件
+          curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/DirectLite.list" -o rules/DirectLite.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list" -o rules/blackmatrix7_direct.list
+          curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/ProxyLite.list" -o rules/ProxyLite.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleTV/AppleTV.list" -o rules/AppleTV.list
+          curl -sL "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list" -o rules/Steam_CDN.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list" -o rules/UBI.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.list" -o rules/NetEaseMusic.list
+          curl -sL "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/IPTVMainland_Domain.list" -o rules/IPTVMainland_Domain.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list" -o rules/PrivateTracker.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AmazonIP/AmazonIP.list" -o rules/AmazonIP.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list" -o rules/Ad.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/WeChat/WeChat.list" -o rules/WeChat.list
         
-    - name: Separate domain and ip rules
-      run: |
-        # 提取域名规则并保存到 *-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/DirectLite.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/DirectLite-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/blackmatrix7_direct.list | grep -v '^DOMAIN-KEYWORD' >> rules/Domain/DirectLite-domain.list        
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/ProxyLite.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/ProxyLite-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/AppleTV.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/AppleTV-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Steam_CDN.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Steam_CDN-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/UBI.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/UBI-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/NetEaseMusic.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/NetEaseMusic-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/IPTVMainland_Domain.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/IPTVMainland-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/PrivateTracker.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/PrivateTracker-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Ad.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Ad-domain.list
-        grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/WeChat.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/WeChat-domain.list
+      - name: Separate domain and ip rules
+        run: |
+          # 提取域名规则并保存到 *-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/DirectLite.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/DirectLite-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/blackmatrix7_direct.list | grep -v '^DOMAIN-KEYWORD' >> rules/Domain/DirectLite-domain.list        
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/ProxyLite.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/ProxyLite-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/AppleTV.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/AppleTV-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Steam_CDN.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Steam_CDN-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/UBI.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/UBI-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/NetEaseMusic.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/NetEaseMusic-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/IPTVMainland_Domain.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/IPTVMainland-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/PrivateTracker.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/PrivateTracker-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Ad.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Ad-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/WeChat.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/WeChat-domain.list
         
-        # 提取 IP 规则并保存到 *-ip.list (去掉 no-resolve)
-        grep '^IP-CIDR' rules/DirectLite.list | sed 's/,no-resolve//' > rules/IP/DirectLite-ip.list
-        grep '^IP-CIDR' rules/blackmatrix7_direct.list | sed 's/,no-resolve//' >> rules/IP/DirectLite-ip.list
-        grep '^IP-CIDR' rules/ProxyLite.list | sed 's/,no-resolve//' > rules/IP/ProxyLite-ip.list    
-        grep '^IP-CIDR' rules/Steam_CDN.list | sed 's/,no-resolve//' > rules/IP/Steam_CDN-ip.list        
-        grep '^IP-CIDR' rules/NetEaseMusic.list | sed 's/,no-resolve//' > rules/IP/NetEaseMusic-ip.list        
-        grep '^IP-CIDR' rules/PrivateTracker.list | sed 's/,no-resolve//' > rules/IP/PrivateTracker-ip.list
-        grep '^IP-CIDR' rules/AmazonIP.list | sed 's/,no-resolve//' > rules/IP/Amazon-ip.list
-        grep '^IP-CIDR' rules/Ad.list | sed 's/,no-resolve//' > rules/IP/Ad-ip.list
+          # 提取 IP 规则并保存到 *-ip.list (去掉 no-resolve)
+          grep '^IP-CIDR' rules/DirectLite.list | sed 's/,no-resolve//' > rules/IP/DirectLite-ip.list
+          grep '^IP-CIDR' rules/blackmatrix7_direct.list | sed 's/,no-resolve//' >> rules/IP/DirectLite-ip.list
+          grep '^IP-CIDR' rules/ProxyLite.list | sed 's/,no-resolve//' > rules/IP/ProxyLite-ip.list    
+          grep '^IP-CIDR' rules/Steam_CDN.list | sed 's/,no-resolve//' > rules/IP/Steam_CDN-ip.list        
+          grep '^IP-CIDR' rules/NetEaseMusic.list | sed 's/,no-resolve//' > rules/IP/NetEaseMusic-ip.list        
+          grep '^IP-CIDR' rules/PrivateTracker.list | sed 's/,no-resolve//' > rules/IP/PrivateTracker-ip.list
+          grep '^IP-CIDR' rules/AmazonIP.list | sed 's/,no-resolve//' > rules/IP/Amazon-ip.list
+          grep '^IP-CIDR' rules/Ad.list | sed 's/,no-resolve//' > rules/IP/Ad-ip.list
 
-    - name: Convert IP Rules to YAML
-      run: |
-        chmod +x ./domain-yaml.sh
-        ./domain-yaml.sh
-
-
-
-    - name: Convert IP Rules to YAML
-      run: |
-        chmod +x ./ip-yaml.sh
-        ./ip-yaml.sh
+      - name: Convert IP Rules to YAML
+        run: |
+          chmod +x ./domain-yaml.sh
+          ./domain-yaml.sh
 
 
 
-    - name: Convert rules to MRS
-      run: |
-        # 使用 mihomo 转换为 MRS 格式
-        chmod +x ./mrs.sh
-        ./mrs.sh
+      - name: Convert IP Rules to YAML
+        run: |
+          chmod +x ./ip-yaml.sh
+          ./ip-yaml.sh
 
-    - name: Clean up temporary files
-      run: |
-        # 删除临时文件
-        rm -f rules/*.list
 
-    - name: Commit and Push Changes
-      run: |
-        git add .
-        status=$(git status --porcelain)
-        if [ -n "$status" ]; then
-          echo "有文件被修改、新增或删除"
-          git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
-         else
-          echo "没有文件变动，无需提交"
-        fi
-        git push origin HEAD:main -f
+
+      - name: Convert rules to MRS
+        run: |
+          # 使用 mihomo 转换为 MRS 格式
+          chmod +x ./mrs.sh
+          ./mrs.sh
+
+      - name: Clean up temporary files
+        run: |
+          # 删除临时文件
+          rm -f rules/*.list
+
+      - name: Commit and Push Changes
+        run: |
+          git add .
+          status=$(git status --porcelain)
+          if [ -n "$status" ]; then
+            echo "有文件被修改、新增或删除"
+            git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
+          else
+            echo "没有文件变动，无需提交"
+          fi
+          git push origin HEAD:main -f
