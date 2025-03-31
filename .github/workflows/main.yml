@@ -2,7 +2,7 @@ name: Sync and Compile Rules
 
 on:
   schedule:
-    - cron: '10 2 * * *'  # 每天北京时间10:00执行
+    - cron: 0 4 * * *
   workflow_dispatch:
   push:
     paths:
@@ -113,10 +113,3 @@ jobs:
             echo "没有文件变动，无需提交"
           fi
           git push origin HEAD:main -f
-
-      - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2
-        with:
-          retain_days: 0
-          keep_minimum_runs: 10
-          token: ${{ secrets.GITHUB_TOKEN }}
