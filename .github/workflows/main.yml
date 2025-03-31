@@ -20,7 +20,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Set up Git user
         run: |
@@ -113,3 +113,10 @@ jobs:
             echo "没有文件变动，无需提交"
           fi
           git push origin HEAD:main -f
+
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          retain_days: 0
+          keep_minimum_runs: 7
+          token: ${{ secrets.GH_TOKEN }}
