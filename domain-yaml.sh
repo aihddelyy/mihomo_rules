@@ -18,9 +18,9 @@ for input_file in "$input_dir"/*.list; do
     # 读取 .list 文件并处理每一行
     while IFS=, read -r type domain; do
         if [[ -n "$domain" && ! "$domain" =~ ^# ]]; then
-            # 如果是 DOMAIN-SUFFIX 规则，前面加上 *.
+            # 如果是 DOMAIN-SUFFIX 规则，前面加上 +.
             if [[ "$type" == "DOMAIN-SUFFIX" ]]; then
-                domain="*.$domain"
+                domain="+.$domain"
             fi
             # 写入到 YAML 文件
             echo "  - '$domain'" >> "$output_file"
