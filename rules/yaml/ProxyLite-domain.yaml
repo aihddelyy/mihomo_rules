@@ -18,7 +18,6 @@ payload:
   - '*.docker.com'
   - '*.docker.io'
   - '*.speedtest.im'
-  - '*.dns.google'
   - '*.1dot1dot1dot1.cloudflare-dns.com'
   - '*.dot.sb'
   - '*.dns.umbrella.com'
