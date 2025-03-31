@@ -35,6 +35,11 @@ DOMAIN-SUFFIX,www.moviesdvdr.co
 DOMAIN-SUFFIX,www.oxtorrent.co
 DOMAIN-SUFFIX,www.oxtorrent2.com
 DOMAIN-SUFFIX,www.torrentfunk.com
+DOMAIN-SUFFIX,eztvx.to
+DOMAIN-SUFFIX,www.mb3admin.com
+DOMAIN-SUFFIX,newstudio.tv
+DOMAIN-SUFFIX,www.torrentdownloads.pro
+DOMAIN-SUFFIX,showrss.info
 
 # docker rules 
 DOMAIN-SUFFIX,compose-spec.io
