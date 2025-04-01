@@ -290,6 +290,7 @@ rules:
   - RULE-SET,ProxyLite_domain,节点选择
   - RULE-SET,GFW_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
+  - RULE-SET,CN_domain,全球直连
   - RULE-SET,Google_ip,Google,no-resolve
   - RULE-SET,Google_asn_cn,Google,no-resolve
   - RULE-SET,Netflix_ip,NETFLIX,no-resolve
