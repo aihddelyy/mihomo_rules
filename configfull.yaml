@@ -251,7 +251,7 @@ rules:
   - RULE-SET,Bilibili_domain,哔哩哔哩
   - RULE-SET,Biliintl_domain,哔哩东南亚
   - RULE-SET,Bahamut_domain,巴哈姆特
-  - RULE-SET,Media_cn_domain,国内媒体  
+  - RULE-SET,Media_cn_domain,国内媒体
   - RULE-SET,Gthub_domain,GitHub
   - RULE-SET,Youtube_domain,YouTube
   - RULE-SET,Google_domain,Google
