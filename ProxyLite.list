@@ -40,6 +40,8 @@ DOMAIN-SUFFIX,www.mb3admin.com
 DOMAIN-SUFFIX,newstudio.tv
 DOMAIN-SUFFIX,www.torrentdownloads.pro
 DOMAIN-SUFFIX,showrss.info
+DOMAIN-SUFFIX,www.torrentdownload.info
+DOMAIN-SUFFIX,darkreader.org
 
 # docker rules 
 DOMAIN-SUFFIX,compose-spec.io
@@ -60,6 +62,10 @@ DOMAIN-SUFFIX,doh.dns.sb
 DOMAIN-SUFFIX,doh.opendns.com
 DOMAIN-SUFFIX,dns.quad9.net
 DOMAIN-SUFFIX,hk-hkg.doh.sb
+IP-CIDR,1.1.1.1/32
+IP-CIDR,1.0.0.1/32
+IP-CIDR,8.8.8.8/32
+IP-CIDR,8.8.4.4/32
 IP-CIDR,185.222.222.222/32,no-resolve
 IP-CIDR,208.67.222.222/32,no-resolve
 IP-CIDR,208.67.220.220/32,no-resolve
