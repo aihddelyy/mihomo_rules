@@ -4,6 +4,7 @@
 DOMAIN-SUFFIX,qichiyu.com
 
 # 域名关键字匹配
+DOMAIN-KEYWORD,1e100
 DOMAIN-SUFFIX,iyf.tv
 DOMAIN-SUFFIX,modsfire.com
 DOMAIN-SUFFIX,ify.ac
