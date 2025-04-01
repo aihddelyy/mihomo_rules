@@ -286,8 +286,7 @@ rules:
   - RULE-SET,ProxyLite_domain,节点选择
   - RULE-SET,GFW_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
-  - RULE-SET,CN_domain,全球直连
-  - RULE-SET,ProxyLite_ip,节点选择,no-resolve
+  - RULE-SET,CN_domain,全球直连  
   - RULE-SET,Google_ip,Google,no-resolve
   - RULE-SET,Google_asn_cn,Google,no-resolve
   - RULE-SET,Netflix_ip,NETFLIX,no-resolve
@@ -297,6 +296,7 @@ rules:
   - RULE-SET,Twitter_ip,节点选择,no-resolve
   - RULE-SET,Discord_asn,Discord,no-resolve
   - RULE-SET,Ai_ip,AI,no-resolve
+  - RULE-SET,ProxyLite_ip,节点选择,no-resolve
   - RULE-SET,DirectLite_ip,全球直连,no-resolve
   - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
   - RULE-SET,WeChat_asn,全球直连,no-resolve
