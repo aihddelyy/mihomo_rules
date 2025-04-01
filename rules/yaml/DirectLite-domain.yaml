@@ -1,4 +1,5 @@
 payload:
+  - '+.time.windows.com'
   - '+.lanzov.com'
   - '+.msftcomecttest.com'
   - '+.dns.msftncsi.com'
