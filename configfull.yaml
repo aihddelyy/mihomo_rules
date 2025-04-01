@@ -303,6 +303,7 @@ rules:
   - RULE-SET,ProxyLite_ip,节点选择,no-resolve
   - RULE-SET,DirectLite_ip,全球直连,no-resolve
   - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
+  - RULE-SET,IPTVMainland_ip,全球直连,no-resolve
   - RULE-SET,WeChat_asn,全球直连,no-resolve
   - RULE-SET,PrivateTracker_ip,全球直连,no-resolve
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
@@ -390,6 +391,7 @@ rule-providers:
   ProxyLite_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-ip.mrs" }
   DirectLite_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-ip.mrs" }
   NetEaseMusic_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/NetEaseMusic-ip.mrs" }
+  IPTVMainland_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/IPTVMainland-ip.mrs" }
   PrivateTracker_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-ip.mrs" }
   Steam_CDN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
   Private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs" }
