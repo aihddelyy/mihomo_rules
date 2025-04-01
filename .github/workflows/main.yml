@@ -11,6 +11,7 @@ on:
       - '.github/workflows/main.yml'
 permissions:
   contents: write
+  action: write
 
 jobs:
   convert_rules:
@@ -20,7 +21,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Git user
         run: |
@@ -120,4 +121,4 @@ jobs:
         with:
           retain_days: 0
           keep_minimum_runs: 7
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
