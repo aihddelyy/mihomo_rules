@@ -1,5 +1,5 @@
 # 这是一个 Clash 的配置文件，包含了多个功能模块的配置
-# 更新于 2025-03-30 20:24:00
+# 更新于 2025-04-01 15:43:00
 # 机场订阅，名称不能重复
 proxy-providers:
   Airport_01:
@@ -242,7 +242,7 @@ rules:
   - RULE-SET,NetEaseMusic_domain,全球直连
   - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
-  - RULE-SET,PrivateTracker_domain,全球直连  
+  - RULE-SET,PrivateTracker_domain,全球直连
   - RULE-SET,Cloudflare_domain,节点选择
   - RULE-SET,AppleTV_domain,AppleTV
   - RULE-SET,Apple_domain,Apple
@@ -269,7 +269,7 @@ rules:
   - RULE-SET,Disney_domain,Disney
   - RULE-SET,Prime_domain,Prime
   - RULE-SET,Hulu_domain,Hulu
-  - RULE-SET,Discord_domain,Discord  
+  - RULE-SET,Discord_domain,Discord
   - RULE-SET,Fcebook_domain,Meta
   - RULE-SET,Whatsapp_domain,Meta
   - RULE-SET,Instagram_domain,Meta
@@ -290,7 +290,6 @@ rules:
   - RULE-SET,ProxyLite_domain,节点选择
   - RULE-SET,GFW_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
-  - RULE-SET,CN_domain,全球直连  
   - RULE-SET,Google_ip,Google,no-resolve
   - RULE-SET,Google_asn_cn,Google,no-resolve
   - RULE-SET,Netflix_ip,NETFLIX,no-resolve
