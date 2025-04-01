@@ -31,6 +31,8 @@ IP-CIDR,10.10.10.0/24
 DOMAIN,ghproxy.aihdde.eu.org
 DOMAIN-SUFFIX,ghfast.top
 
+# softethervpn
+DOMAIN-SUFFIX,dev.servers.nat-traversal.softether-network.net
 
 # iptv
 DOMAIN-SUFFIX,drive.mxmy.net
