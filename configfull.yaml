@@ -275,8 +275,8 @@ rules:
   - RULE-SET,Threads_domain,Meta
   - RULE-SET,Meta_domain,Meta
   - RULE-SET,Media!cn_domain,国外社交媒体
-  - RULE-SET,Twitch_domain,Global TV
-  - RULE-SET,Porn_domain,Global TV
+  - RULE-SET,Twitch_domain,Global-TV
+  - RULE-SET,Porn_domain,Global-TV
   - RULE-SET,TVB_domain,Global-TV
   - RULE-SET,Paypal_domain,PayPal
   - RULE-SET,Steam_domain,STEAM
