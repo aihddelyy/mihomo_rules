@@ -299,6 +299,8 @@ rules:
   - RULE-SET,Media!cn_domain,社交媒体
   - RULE-SET,Amazon_domain,国外电商
   - RULE-SET,Amazon_ip,国外电商,no-resolve
+  - RULE-SET,Shopee_domain,国外电商
+  - RULE-SET,Ebay_domain,国外电商
   - RULE-SET,Twitch_domain,Global-TV
   - RULE-SET,Porn_domain,Global-TV
   - RULE-SET,TVB_domain,Global-TV
@@ -361,6 +363,8 @@ rule-providers:
   Paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
   Onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs" }
   Amazon_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/amazon.mrs" }
+  Shopee_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/shopee.mrs" }
+  Ebay_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ebay.mrs" }
   Ai_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs" }
   Openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs" }
   Ai!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
