@@ -176,7 +176,7 @@ proxy-groups:
   - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/youtube.png"}
   - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/google.png"}
   - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/github.png"}
-  - {name: Apple, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/apple.png"}  
+  - {name: Apple, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/apple.png"}
   - {name: Microsoft, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/microsoft.png"}
   - {name: OneDrive, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/onedrive.png"}
   - {name: AI, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/ai.png"}
@@ -185,7 +185,7 @@ proxy-groups:
   - {name: X, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/twitter.png"}
   - {name: Discord, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/discord.png"}
   - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/meta.png"}
-  - {name: 社交媒体, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/social-media.png"}  
+  - {name: 社交媒体, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/social-media.png"}
   - {name: NETFLIX, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/netflix.png"}
   - {name: HBO, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hbo.png"}
   - {name: Disney, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/disney-plus.png"}
@@ -197,7 +197,7 @@ proxy-groups:
   - {name: 哔哩哔哩, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bilibili.png"}
   - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bilibiliit.png"}
   - {name: 巴哈姆特, type: select, proxies: [节点选择, 台湾自动, 台湾节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bahamut.png"}
-  - {name: 国内媒体, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/newspaper.png"}  
+  - {name: 国内媒体, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/newspaper.png"}
   - {name: Speedtest, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/speedtest.png"}
   - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/paypal.png"}
   - {name: STEAM, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/steam.png"}
@@ -234,7 +234,7 @@ rules:
   - RULE-SET,Ad_domain,隐私拦截
   - RULE-SET,Adblockmihomo,隐私拦截
   - RULE-SET,Ad_ip,隐私拦截,no-resolve
-  - RULE-SET,Private_domain,全球直连  
+  - RULE-SET,Private_domain,全球直连
   - RULE-SET,Private_ip,全球直连,no-resolve
   - RULE-SET,DirectLite_domain,全球直连
   - RULE-SET,DirectLite_ip,全球直连,no-resolve
@@ -272,7 +272,7 @@ rules:
   - RULE-SET,Fcm_domain,Google
   - RULE-SET,Google_domain,Google
   - RULE-SET,Google_ip,Google,no-resolve
-  - RULE-SET,Google_asn_cn,Google,no-resolve  
+  - RULE-SET,Google_asn_cn,Google,no-resolve
   - RULE-SET,Onedrive_domain,OneDrive
   - RULE-SET,Microsoft_domain,Microsoft
   - RULE-SET,Tktok_domain,TikTok
@@ -298,7 +298,7 @@ rules:
   - RULE-SET,X_ip,X,no-resolve
   - RULE-SET,Media!cn_domain,社交媒体
   - RULE-SET,Amazon_domain,国外电商
-  - RULE-SET,Amazon_ip,国外电商,no-resolve  
+  - RULE-SET,Amazon_ip,国外电商,no-resolve
   - RULE-SET,Twitch_domain,Global-TV
   - RULE-SET,Porn_domain,Global-TV
   - RULE-SET,TVB_domain,Global-TV
@@ -314,7 +314,7 @@ rules:
   - RULE-SET,ProxyLite_ip,节点选择,no-resolve
   - RULE-SET,GFW_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
-  - RULE-SET,CN_domain,全球直连 
+  - RULE-SET,CN_domain,全球直连
   - RULE-SET,CN_ip,全球直连
   - MATCH,漏网之鱼
 
@@ -332,7 +332,7 @@ rule-providers:
   Youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
   Google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs" }
   Fcm_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs" }
-  Google_play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-play.mrs" }  
+  Google_play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-play.mrs" }
   Gthub_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs" }
   Gitbook_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gitbook.mrs" }
   Cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cloudflare.mrs" }
@@ -363,7 +363,7 @@ rule-providers:
   Amazon_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/amazon.mrs" }
   Ai_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs" }
   Openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs" }
-  Ai!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" } 
+  Ai!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
   Steam_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
   Steam_CDN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
   Steam_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
@@ -385,12 +385,11 @@ rule-providers:
   Bank_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs" }
   Xiaomi_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs" }
   WeChat_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/WeChat-domain.mrs" }
-  NetEaseMusic_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/NetEaseMusic-domain.mrs" }  
+  NetEaseMusic_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/NetEaseMusic-domain.mrs" }
   IPTVMainland_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/IPTVMainland-domain.mrs" }
-  PrivateTracker_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-domain.mrs" } 
+  PrivateTracker_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-domain.mrs" }
   GFW_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
-  X_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitter.mrs" }
 
   Ad_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
   CN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
