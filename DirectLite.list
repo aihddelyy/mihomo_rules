@@ -29,7 +29,6 @@ DOMAIN-SUFFIX,gh-proxy.com
 IP-CIDR,180.163.146.102/32,no-resolve
 IP-CIDR,10.10.10.0/24
 DOMAIN,ghproxy.aihdde.eu.org
-DOMAIN-SUFFIX,ghfast.top
 
 # softethervpn
 DOMAIN-SUFFIX,dev.servers.nat-traversal.softether-network.net
