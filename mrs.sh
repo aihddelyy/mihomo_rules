@@ -19,4 +19,7 @@ find . -name "*.yaml" | while read -r file; do
         echo "文件 $file 转换失败"
     fi
 done
+
+echo "所有文件转换完成！"
+
 mv *.mrs ../mrs/
