@@ -110,14 +110,24 @@ jobs:
         run: |
           git add .
           status=$(git status --porcelain)
-          if [ -n "$status" ]; then
-            echo "有文件被修改、新增或删除"            
-            git status --short | grep '\.mrs$' | awk '{print $2 " 已经更新"}'
+          if [ -n "$status" ]; then               
+            files=$(git status --short | grep '\.mrs$' | awk '{print $2}' | xargs -I {} basename {})
+            formatted_message=$(echo $files | sed 's/ /, /g')
+            echo "✨文件${formatted_message}已经更新"
+            echo "MESSAGE=✨文件${formatted_message}已经更新" >> $GITHUB_ENV
             git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
           else
             echo "没有文件变动，无需提交"
+            echo "🏅本次同步没有文件更新。" >> $GITHUB_ENV
           fi
           git push origin HEAD:main -f
+
+      - name: Send message to Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: ${{ env.MESSAGE }}
 
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
