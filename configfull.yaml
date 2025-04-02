@@ -264,11 +264,11 @@ rules:
   - RULE-SET,Gthub_domain,GitHub
   - RULE-SET,Gitbook_domain,GitHub
   - RULE-SET,Youtube_domain,YouTube
+  - RULE-SET,Google_play_domain,Google
+  - RULE-SET,Fcm_domain,Google
   - RULE-SET,Google_domain,Google
   - RULE-SET,Google_ip,Google,no-resolve
-  - RULE-SET,Google_asn_cn,Google,no-resolve
-  - RULE-SET,Fcm_domain,Google
-  - RULE-SET,Google_play_domain,Google
+  - RULE-SET,Google_asn_cn,Google,no-resolve  
   - RULE-SET,Onedrive_domain,OneDrive
   - RULE-SET,Microsoft_domain,Microsoft
   - RULE-SET,Tktok_domain,TikTok
