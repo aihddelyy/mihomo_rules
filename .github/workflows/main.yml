@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   convert_rules:
+    name: Sync and Compile Rules
     runs-on: ubuntu-latest
 
     steps:
