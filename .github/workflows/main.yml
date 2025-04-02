@@ -2,7 +2,7 @@ name: Sync and Compile Rules
 
 on:
   schedule:
-    - cron: 0 16 * * *
+    - cron: 0 17 * * *
   workflow_dispatch:
   push:
     paths:
@@ -48,7 +48,7 @@ jobs:
           curl -sL "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/main/rule/Steam_CDN.list" -o rules/Steam_CDN.list
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list" -o rules/UBI.list
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.list" -o rules/NetEaseMusic.list
-          curl -sL "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/IPTVMainland_Domain.list" -o rules/IPTVMainland_Domain.list
+          curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/IPTVMainland/IPTVMainland.list" -o rules/IPTVMainland.list
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list" -o rules/PrivateTracker.list
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AmazonIP/AmazonIP.list" -o rules/AmazonIP.list
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list" -o rules/Ad.list
@@ -65,7 +65,7 @@ jobs:
           grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Steam_CDN.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Steam_CDN-domain.list
           grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/UBI.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/UBI-domain.list
           grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/NetEaseMusic.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/NetEaseMusic-domain.list
-          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/IPTVMainland_Domain.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/IPTVMainland-domain.list
+          grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/IPTVMainland.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/IPTVMainland-domain.list
           grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/PrivateTracker.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/PrivateTracker-domain.list
           grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/Ad.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/Ad-domain.list
           grep -E '^(DOMAIN-SUFFIX|DOMAIN)' rules/WeChat.list | grep -v '^DOMAIN-KEYWORD' > rules/Domain/WeChat-domain.list
@@ -75,7 +75,8 @@ jobs:
           grep '^IP-CIDR' rules/blackmatrix7_direct.list | sed 's/,no-resolve//' >> rules/IP/DirectLite-ip.list
           grep '^IP-CIDR' rules/ProxyLite.list | sed 's/,no-resolve//' > rules/IP/ProxyLite-ip.list    
           grep '^IP-CIDR' rules/Steam_CDN.list | sed 's/,no-resolve//' > rules/IP/Steam_CDN-ip.list        
-          grep '^IP-CIDR' rules/NetEaseMusic.list | sed 's/,no-resolve//' > rules/IP/NetEaseMusic-ip.list        
+          grep '^IP-CIDR' rules/NetEaseMusic.list | sed 's/,no-resolve//' > rules/IP/NetEaseMusic-ip.list
+          grep '^IP-CIDR' rules/IPTVMainland.list | sed 's/,no-resolve//' > rules/IP/IPTVMainland-ip.list
           grep '^IP-CIDR' rules/PrivateTracker.list | sed 's/,no-resolve//' > rules/IP/PrivateTracker-ip.list
           grep '^IP-CIDR' rules/AmazonIP.list | sed 's/,no-resolve//' > rules/IP/Amazon-ip.list
           grep '^IP-CIDR' rules/Ad.list | sed 's/,no-resolve//' > rules/IP/Ad-ip.list
