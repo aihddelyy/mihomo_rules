@@ -198,11 +198,11 @@ proxy-groups:
   - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bilibiliit.png"}
   - {name: 巴哈姆特, type: select, proxies: [节点选择, 台湾自动, 台湾节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bahamut.png"}
   - {name: 国内媒体, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/newspaper.png"}
-  - {name: Speedtest, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/speedtest.png"}
-  - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/paypal.png"}
   - {name: STEAM, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/steam.png"}
   - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/game.png"}
   - {name: 国外电商, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/shopping.png"}
+  - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/paypal.png"}
+  - {name: Speedtest, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/speedtest.png"}
   - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/direct.png"}
   - {name: 隐私拦截, type: select, proxies: [REJECT, 全球直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/prohibition.png"}
   - {name: 漏网之鱼, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/fish.png"}
@@ -223,7 +223,7 @@ proxy-groups:
   - {name: 英国节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(英|GB|UK|England|British)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/united-kingdom.png"}
   - {name: 欧洲节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/european-union.png"}
   - {name: 其他国家, type: select, include-all: true, filter: "^((?!(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西|波|卢|瑞)).)*$", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/country.png"}
-  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Telegram, X, Discord, Meta, 社交媒体, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, Spotify, Global-TV, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, Speedtest, PayPal, STEAM, 游戏平台, 国外电商, 全球直连, 隐私拦截, 漏网之鱼, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Telegram, X, Discord, Meta, 社交媒体, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, Spotify, Global-TV, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, STEAM, 游戏平台, 国外电商, PayPal, Speedtest, 全球直连, 隐私拦截, 漏网之鱼, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/earth.png"}
 
 rules:
   # 防止 Telegram 加载转圈
@@ -301,10 +301,10 @@ rules:
   - RULE-SET,Amazon_ip,国外电商,no-resolve
   - RULE-SET,Shopee_domain,国外电商
   - RULE-SET,Ebay_domain,国外电商
+  - RULE-SET,Paypal_domain,PayPal
   - RULE-SET,Twitch_domain,Global-TV
   - RULE-SET,Porn_domain,Global-TV
-  - RULE-SET,TVB_domain,Global-TV
-  - RULE-SET,Paypal_domain,PayPal
+  - RULE-SET,TVB_domain,Global-TV  
   - RULE-SET,Steam_domain,STEAM
   - RULE-SET,Epic_domain,游戏平台
   - RULE-SET,EA_domain,游戏平台
