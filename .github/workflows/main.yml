@@ -113,6 +113,7 @@ jobs:
           if [ -n "$status" ]; then
             echo "有文件被修改、新增或删除"
             git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
+            git status --short | grep '\.mrs$' | awk '{print $2 " 已经更新"}'
           else
             echo "没有文件变动，无需提交"
           fi
