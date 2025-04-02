@@ -1,6 +1,5 @@
 name: telegram message
 on:
-  push:
   workflow_dispatch:
 jobs:
 
