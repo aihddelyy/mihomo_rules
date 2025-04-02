@@ -190,7 +190,7 @@ proxy-groups:
   - {name: Hulu, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hulu.png"}
   - {name: 哔哩哔哩, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bilibili.png"}
   - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bilibiliit.png"}
-  - {name: 巴哈姆特, type: select, proxies: [台湾节点, 台湾自动], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bahamut.png"}
+  - {name: 巴哈姆特, type: select, proxies: [节点选择, 台湾自动, 台湾节点, 手动切换, 全球直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/bahamut.png"}
   - {name: 国内媒体, <<: *Direct_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/newspaper.png"}
   - {name: 国外社交媒体, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/social-media.png"}
   - {name: Global-TV, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/global-tv.png"}
@@ -199,7 +199,7 @@ proxy-groups:
   - {name: STEAM, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/steam.png"}
   - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/game.png"}
   - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/direct.png"}
-  - {name: 隐私拦截, type: select, proxies: [REJECT, DIRECT, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/prohibition.png"}
+  - {name: 隐私拦截, type: select, proxies: [REJECT, 全球直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/prohibition.png"}
   - {name: 漏网之鱼, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/fish.png"}
   - {name: 香港自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(香港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hong-kong.png"}
   - {name: 台湾自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/taiwan.png"}
