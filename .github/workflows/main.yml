@@ -53,6 +53,7 @@ jobs:
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AmazonIP/AmazonIP.list" -o rules/AmazonIP.list
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list" -o rules/Ad.list
           curl -sL "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/WeChat/WeChat.list" -o rules/WeChat.list
+          # 已经是yaml格式,无需处理
           curl -sL "https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomo.yaml" -o rules/yaml/adblockmihomo.yaml
         
       - name: Separate domain and ip rules
