@@ -116,13 +116,14 @@ jobs:
             formatted_name=$(echo $files | sed 's/ /, /g')
             echo "文件${formatted_name}已经更新"
             teleram_message="我亲爱的✨主人✨：本次同步顺利完成，文件：${formatted_name}已经更新✌️💯💐！($(TZ='Asia/Shanghai' date +"%Y年%m月%d日%H点%M分"))"
-            echo "${teleram_message}"
-            echo "MESSAGE=${teleram_message}" >> $GITHUB_ENV
+            echo "${teleram_message}"            
             git commit -m "Updated $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
           else
+            teleram_message="我亲爱的✨主人✨：本次同步没有文件更新。($(TZ='Asia/Shanghai' date +"%Y年%m月%d日%H点%M分"))"
             echo "没有文件变动，无需提交"
-            echo "MESSAGE=我亲爱的✨主人✨：本次同步没有文件更新。($(TZ='Asia/Shanghai' date +"%Y年%m月%d日%H点%M分"))" >> $GITHUB_ENV
+            echo "${teleram_message}"
           fi
+          echo "MESSAGE=${teleram_message}" >> $GITHUB_ENV
           git push origin HEAD:main -f
 
       - name: Send message to Telegram
