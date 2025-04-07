@@ -205,7 +205,7 @@ proxy-groups:
   - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/paypal.png"}
   - {name: Speedtest, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/speedtest.png"}
   - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/direct.png"}
-  - {name: 隐私拦截, type: select, proxies: [REJECT, 全球直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/prohibition.png"}
+  - {name: 广告拦截, type: select, proxies: [REJECT, 全球直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/prohibition.png"}
   - {name: 漏网之鱼, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/fish.png"}
   - {name: 香港自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(香港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hong-kong.png"}
   - {name: 台湾自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/taiwan.png"}
@@ -224,7 +224,7 @@ proxy-groups:
   - {name: 英国节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(英|GB|UK|England|British)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/united-kingdom.png"}
   - {name: 欧洲节点, type: select, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/european-union.png"}
   - {name: 其他国家, type: select, include-all: true, filter: "^((?!(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西|波|卢|瑞)).)*$", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/country.png"}
-  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Telegram, X, Discord, Meta, 社交媒体, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, Spotify, Global-TV, Porn, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, STEAM, 游戏平台, 国外电商, PayPal, Speedtest, 全球直连, 隐私拦截, 漏网之鱼, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Telegram, X, Discord, Meta, 社交媒体, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, Spotify, Global-TV, Porn, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, STEAM, 游戏平台, 国外电商, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/earth.png"}
 
 rules:
   # 防止 Telegram 加载转圈
@@ -232,9 +232,9 @@ rules:
   # 禁用QUIC
   - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
   - DST-PORT,123,全球直连
-  - RULE-SET,Ad_domain,隐私拦截
-  - RULE-SET,Adblockmihomo,隐私拦截
-  - RULE-SET,Ad_ip,隐私拦截,no-resolve
+  - RULE-SET,Ad_domain,广告拦截
+  - RULE-SET,Adblockmihomo,广告拦截
+  - RULE-SET,Ad_ip,广告拦截,no-resolve
   - RULE-SET,Private_domain,全球直连
   - RULE-SET,Private_ip,全球直连,no-resolve
   - RULE-SET,DirectLite_domain,全球直连
