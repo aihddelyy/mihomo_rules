@@ -172,7 +172,7 @@ proxy-groups:
   - {name: 节点选择, type: select, proxies: [自动选择, 手动切换, IPV6节点, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/check.png"}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/sync.png"}
   - {name: 手动切换, type: select, include-all: true, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/select.png"}
-  - {name: IPV6节点, type: url-test, include-all: true, filter: "(?i)v6|ipv6", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/ipv6.png"}
+  - {name: IPV6节点, type: url-test, include-all: true, filter: "(?i)v6|ipv6", hidden: true, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/ipv6.png"}
   - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/youtube.png"}
   - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/google.png"}
   - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/github.png"}
