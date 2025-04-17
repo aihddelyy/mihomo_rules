@@ -1,10 +1,11 @@
 payload:
+  - '+.time.windows.com'
   - '+.lanzov.com'
   - '+.msftcomecttest.com'
   - '+.dns.msftncsi.com'
   - '+.ipv6.msftconnecttest.com'
   - '+.istoreos.com'
-  - '+.aihdde.com'
+  - '+.vpn.aihdde.com'
   - '+.openwrt.ai'
   - '+.dl.openwrt.ai'
   - '+.istore.istoreos.com'
