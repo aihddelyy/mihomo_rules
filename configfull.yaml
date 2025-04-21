@@ -170,6 +170,9 @@ Include_all: &Include_all {type: select, proxies: [节点选择, 自动选择, �
 # 策略组
 proxy-groups:
   - {name: 节点选择, type: select, proxies: [自动选择, 手动切换, IPV6节点, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/check.png"}
+  - {name: 🔗 代理, type: select, hidden: true, proxies: [节点选择]}
+  - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
+  - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/sync.png"}
   - {name: 手动切换, type: select, include-all: true, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/select.png"}
   - {name: IPV6节点, type: url-test, include-all: true, filter: "(?i)v6|ipv6", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/ipv6.png"}
@@ -204,8 +207,8 @@ proxy-groups:
   - {name: 国外电商, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/shopping.png"}
   - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/paypal.png"}
   - {name: Speedtest, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/speedtest.png"}
-  - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/direct.png"}
-  - {name: 广告拦截, type: select, proxies: [REJECT, 全球直连, 节点选择], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/prohibition.png"}
+  - {name: 全球直连, type: select, proxies: [🟢 直连, 🔗 代理], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/direct.png"}
+  - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/prohibition.png"}
   - {name: 漏网之鱼, <<: *Include_all, icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/fish.png"}
   - {name: 香港自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(香港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/hong-kong.png"}
   - {name: 台湾自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/icon/taiwan.png"}
@@ -228,9 +231,9 @@ proxy-groups:
 
 rules:
   # 防止 Telegram 加载转圈
-  - IP-CIDR,95.161.76.100/31,REJECT-DROP,no-resolve
+  - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
   # 禁用QUIC
-  - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
   - DST-PORT,123,全球直连
   - RULE-SET,Ad_domain,广告拦截
   - RULE-SET,Adblockmihomo,广告拦截
