@@ -58,7 +58,7 @@ jobs:
           curl -sL "https://raw.githubusercontent.com/217heidai/adblockfilters/refs/heads/main/rules/adblockmihomo.yaml" -o rules/yaml/adblockmihomo.yaml
           # 非classic规则list文件
           curl -sL "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/fakeip-fitter.list" -o rules/fakeip-fitter.list
-          echo "payload:" > rules/Domain/fakeip-fitter.yaml
+          echo "payload:" > rules/yaml/fakeip-fitter.yaml
           sort -u rules/fakeip-fitter.list | awk '{print "  - \047" $0 "\047"}' >> rules/yaml/fakeip-fitter.yaml
         
       - name: Separate domain and ip rules

@@ -109,36 +109,7 @@ dns:
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - '+.lan'
-    - '+.local'
-    - 'time.*.com'
-    - 'time.*.gov'
-    - 'time.*.edu.cn'
-    - 'time.*.apple.com'
-    - 'time-ios.apple.com'
-    - 'time1.*.com'
-    - 'time2.*.com'
-    - 'time3.*.com'
-    - 'time4.*.com'
-    - 'time5.*.com'
-    - 'time6.*.com'
-    - 'time7.*.com'
-    - 'ntp.*.com'
-    - 'ntp1.*.com'
-    - 'ntp2.*.com'
-    - 'ntp3.*.com'
-    - 'ntp4.*.com'
-    - 'ntp5.*.com'
-    - 'ntp6.*.com'
-    - 'ntp7.*.com'
-    - '*.neverquit.us.kg'
-    - '*.time.edu.cn'
-    - '*.ntp.org.cn'
-    - '+.pool.ntp.org'
-    - '5ddd.com'
-    - 'time1.cloud.tencent.com'
-    - 'ghproxy.aihdde.eu.org'
-    - 'rule-set:Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain'
+    - 'rule-set:Fakeip_fitter_domain,Game_cn_domain,Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain'
   default-nameserver:
     - tls://1.12.12.12
     - tls://223.5.5.5
@@ -254,6 +225,7 @@ rules:
   - RULE-SET,WeChat_asn,全球直连,no-resolve
   - RULE-SET,NetEaseMusic_domain,全球直连
   - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
+  - RULE-SET,Game_cn_domain,全球直连
   - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
@@ -398,6 +370,8 @@ rule-providers:
   GFW_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
   CN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs" }
+  Game_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-games%40cn.mrs" }
+  Fakeip_fitter_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/fakeip-fitter.mrs" }
 
   Ad_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
   CN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
