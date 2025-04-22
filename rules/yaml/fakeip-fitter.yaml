@@ -1,3 +1,4 @@
+payload:
   - '*.*.cloudapp.azure.com'
   - '*.*.xboxlive.com'
   - '*.126.net'
