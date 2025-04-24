@@ -18,12 +18,8 @@ proxy-providers:
 global-ua: clash.meta
     
 # 全局配置
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
-tproxy-port: 7894
-ipv6: false
+mixed-port: 7890
+ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
@@ -100,7 +96,7 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
-  prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
+  prefer-h3: true # 是否开启 DoH 支持 HTTP/3，将并发尝试
   respect-rules: true
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
