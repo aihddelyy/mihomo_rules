@@ -229,7 +229,7 @@ rules:
   - RULE-SET,Google_asn_cn,Google,no-resolve
   - RULE-SET,Onedrive_domain,Microsoft
   - RULE-SET,Microsoft_domain,Microsoft
-  - RULE-SET,Tktok_domain,TikTok
+  - RULE-SET,TiTtok_domain,TikTok
   - RULE-SET,Speedtest_domain,Speedtest
   - RULE-SET,Telegram_domain,Telegram
   - RULE-SET,Telegram_ip,Telegram,no-resolve
@@ -271,7 +271,7 @@ rule-providers:
   Microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs" }
   Apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs" }
   Apple_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple%40cn.mrs" }
-  Tktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs" }
+  TikTok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs" }
   Telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs" }
   Netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs" }
   Hbo_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/hbo.mrs" }
