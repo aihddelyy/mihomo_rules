@@ -229,7 +229,7 @@ rules:
   - RULE-SET,Google_asn_cn,Google,no-resolve
   - RULE-SET,Onedrive_domain,Microsoft
   - RULE-SET,Microsoft_domain,Microsoft
-  - RULE-SET,TiTtok_domain,TikTok
+  - RULE-SET,TikTok_domain,TikTok
   - RULE-SET,Speedtest_domain,Speedtest
   - RULE-SET,Telegram_domain,Telegram
   - RULE-SET,Telegram_ip,Telegram,no-resolve
