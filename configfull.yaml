@@ -115,13 +115,6 @@ dns:
   nameserver:
     - tls://dot.pub
     - tls://dns.alidns.com
-  nameserver-policy:
-    'rule-set:Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain':
-      - tls://dot.pub
-      - tls://dns.alidns.com
-    'rule-set:geolocation-!cn':
-      - tls://one.one.one.one
-      - tls://dns.google
 
    
 proxies:
