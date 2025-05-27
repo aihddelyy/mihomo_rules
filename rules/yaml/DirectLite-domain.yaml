@@ -24,6 +24,7 @@ payload:
   - '+.noedgeai.com'
   - '+.gh-proxy.com'
   - 'ghproxy.aihdde.eu.org'
+  - 'icon.aihdde.eu.org'
   - '+.dev.servers.nat-traversal.softether-network.net'
   - '+.mxmy.net'
   - '+.360.com'
