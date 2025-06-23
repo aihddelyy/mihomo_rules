@@ -223,7 +223,7 @@ rules:
   - RULE-SET,NetEaseMusic_domain,全球直连
   - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
   - RULE-SET,Game_cn_domain,全球直连
-  - RULE-SET,Steam_cn_domain,全球直连
+#  - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
   - RULE-SET,PrivateTracker_domain,全球直连
@@ -342,7 +342,7 @@ rule-providers:
   Openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs" }
   Ai!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
   Steam_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
-  Steam_CDN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
+ # Steam_CDN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
   Steam_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
   Alibaba_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/alibaba.mrs" }
   Aliyun_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/aliyun.mrs"  }
