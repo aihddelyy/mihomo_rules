@@ -105,7 +105,7 @@ dns:
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - 'rule-set:Fakeip_fitter_domain,Game_cn_domain,Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Steam_cn_domain,Steam_CDN_domain,PrivateTracker_domain,Media_cn_domain,CN_domain'
+    - 'rule-set:Fakeip_fitter_domain,Game_cn_domain,Private_domain,DirectLite_domain,Ai_cn_domain,Apple_cn_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Steam_cn_domain,PrivateTracker_domain,Media_cn_domain,CN_domain'
   default-nameserver:
     - tls://1.12.12.12
     - tls://223.5.5.5
@@ -223,8 +223,8 @@ rules:
   - RULE-SET,NetEaseMusic_domain,全球直连
   - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
   - RULE-SET,Game_cn_domain,全球直连
-#  - RULE-SET,Steam_cn_domain,全球直连
-  - RULE-SET,Steam_CDN_domain,全球直连
+  - RULE-SET,Steam_cn_domain,全球直连
+#  - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
   - RULE-SET,PrivateTracker_domain,全球直连
   - RULE-SET,PrivateTracker_ip,全球直连,no-resolve
