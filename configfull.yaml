@@ -112,9 +112,12 @@ dns:
   proxy-server-nameserver:
     - tls://dot.pub
     - tls://dns.alidns.com
-  nameserver:
+  direct-nameserver:
     - tls://dot.pub
     - tls://dns.alidns.com
+  nameserver:
+    - tls://one.one.one.one
+    - tls://dns.google
 
    
 proxies:
