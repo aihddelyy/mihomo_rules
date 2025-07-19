@@ -209,7 +209,7 @@ rules:
   # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
   # 禁用QUIC
-  - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
+#  - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
   - DST-PORT,123,全球直连
   - RULE-SET,Ad_domain,广告拦截
   - RULE-SET,Adblockmihomo,广告拦截
