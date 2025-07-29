@@ -118,10 +118,6 @@ dns:
   nameserver:
     - tls://one.one.one.one
     - tls://dns.google
-  nameserver-policy:
-    'rule-set:Ad_domain,Adblockmihomo': rcode://success
-
-   
 proxies:
 - name: "🟢 直连"
   type: direct
