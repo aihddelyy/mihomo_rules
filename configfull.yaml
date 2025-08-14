@@ -211,7 +211,7 @@ rules:
   # 禁用QUIC
 #  - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
   - DST-PORT,123,全球直连
-  - RULE-SET,AWAvenue_Ads,广告拦截
+#  - RULE-SET,AWAvenue_Ads,广告拦截
   - RULE-SET,Ad_domain,广告拦截
   - RULE-SET,Adblockmihomo,广告拦截
   - RULE-SET,Ad_ip,广告拦截,no-resolve
