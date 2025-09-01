@@ -210,7 +210,7 @@ rules:
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
   # 禁用QUIC
 #  - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
-  - DST-PORT,123,全球直连
+#  - DST-PORT,123,全球直连
 #  - RULE-SET,AWAvenue_Ads,广告拦截
   - RULE-SET,Ad_domain,广告拦截
   - RULE-SET,Adblockmihomo,广告拦截
