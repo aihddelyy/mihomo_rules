@@ -45,7 +45,7 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-p
 find-process-mode: strict
 global-client-fingerprint: chrome
 keep-alive-idle: 600
-keep-alive-interval: 30
+keep-alive-interval: 15
 
 # 策略组选择和fakeip缓存
 profile:
@@ -143,11 +143,6 @@ proxy-groups:
   - {name: OneDrive, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/onedrive.png"}
   - {name: AI, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/ai.png"}
   - {name: TikTok, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/tiktok.png"}
-  - {name: Telegram, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/telegram.png"}
-  - {name: X, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/twitter.png"}
-  - {name: Discord, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/discord.png"}
-  - {name: Meta, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/meta.png"}
-  - {name: 社交媒体, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/social-media.png"}
   - {name: NETFLIX, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/netflix.png"}
   - {name: HBO, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/hbo.png"}
   - {name: Disney, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/disney-plus.png"}
@@ -155,6 +150,11 @@ proxy-groups:
   - {name: AppleTV, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/apple-tv.png"}
   - {name: Hulu, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/hulu.png"}
   - {name: Spotify, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/spotify.png"}
+  - {name: Telegram, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/telegram.png"}
+  - {name: X, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/twitter.png"}
+  - {name: Discord, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/discord.png"}
+  - {name: Meta, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/meta.png"}
+  - {name: 社交媒体, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/social-media.png"}
   - {name: Global-TV, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/global-tv.png"}
   - {name: Porn, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/pornhub.png"}
   - {name: 哔哩哔哩, <<: *Direct_first, icon: "https://icon.aihdde.eu.org/bilibili.png"}
@@ -204,7 +204,7 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 # over
   - {name: 故障转移, type: fallback, include-all: true, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}  
-  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, 故障转移, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Telegram, X, Discord, Meta, 社交媒体, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, Spotify, Global-TV, Porn, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, Steam, 游戏平台, 国外电商, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡, 其他国家], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, 故障转移, IPV6节点, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, NETFLIX, HBO, Disney, Prime, AppleTV, Hulu, Spotify, Telegram, X, Discord, Meta, 社交媒体, Global-TV, Porn, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, Steam, 游戏平台, 国外电商, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡, 其他国家], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
 rules:
   # 防止 Telegram 加载转圈
