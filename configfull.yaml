@@ -228,8 +228,8 @@ rules:
   - RULE-SET,IPTVMainland_ip,全球直连,no-resolve
   - RULE-SET,Bank_cn_domain,全球直连
   - RULE-SET,Xiaomi_domain,全球直连
-  - RULE-SET,WeChat_domain,全球直连
-  - RULE-SET,WeChat_asn,全球直连,no-resolve
+#  - RULE-SET,WeChat_domain,全球直连
+#  - RULE-SET,WeChat_asn,全球直连,no-resolve
   - RULE-SET,NetEaseMusic_domain,全球直连
   - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
   - RULE-SET,Game_cn_domain,全球直连
