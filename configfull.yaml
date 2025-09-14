@@ -210,8 +210,8 @@ rules:
   # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
   # 禁用QUIC
-#  - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
-#  - DST-PORT,123,全球直连
+  - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
+  - DST-PORT,123,全球直连
 #  - RULE-SET,AWAvenue_Ads,广告拦截
   - RULE-SET,Ad_domain,广告拦截
   - RULE-SET,Adblockmihomo,广告拦截
@@ -220,19 +220,19 @@ rules:
   - RULE-SET,Private_ip,全球直连,no-resolve
   - RULE-SET,DirectLite_domain,全球直连
   - RULE-SET,DirectLite_ip,全球直连,no-resolve
-  - RULE-SET,Ai_cn_domain,全球直连
+#  - RULE-SET,Ai_cn_domain,全球直连
   - RULE-SET,Apple_cn_domain,全球直连
-  - RULE-SET,Alibaba_domain,全球直连
-  - RULE-SET,Aliyun_domain,全球直连
-  - RULE-SET,IPTVMainland_domain,全球直连
-  - RULE-SET,IPTVMainland_ip,全球直连,no-resolve
-  - RULE-SET,Bank_cn_domain,全球直连
-  - RULE-SET,Xiaomi_domain,全球直连
+#  - RULE-SET,Alibaba_domain,全球直连
+#  - RULE-SET,Aliyun_domain,全球直连
+#  - RULE-SET,IPTVMainland_domain,全球直连
+#  - RULE-SET,IPTVMainland_ip,全球直连,no-resolve
+#  - RULE-SET,Bank_cn_domain,全球直连
+#  - RULE-SET,Xiaomi_domain,全球直连
 #  - RULE-SET,WeChat_domain,全球直连
 #  - RULE-SET,WeChat_asn,全球直连,no-resolve
-  - RULE-SET,NetEaseMusic_domain,全球直连
-  - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
-  - RULE-SET,Game_cn_domain,全球直连
+#  - RULE-SET,NetEaseMusic_domain,全球直连
+#  - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
+#  - RULE-SET,Game_cn_domain,全球直连
   - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
@@ -241,6 +241,7 @@ rules:
   - RULE-SET,Cloudflare_domain,节点选择
   - RULE-SET,AppleTV_domain,AppleTV
   - RULE-SET,Apple_domain,Apple
+  - RULE-SET,Apple_ip,Apple,no-resolve
   - RULE-SET,Openai_domain,AI
   - RULE-SET,Ai!cn_domain,AI
   - RULE-SET,Ai_ip,AI,no-resolve
@@ -397,6 +398,7 @@ rule-providers:
   PrivateTracker_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-ip.mrs" }
   Steam_CDN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
   Private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs" }
+  Apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
   
   Google_asn_cn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
   Discord_asn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS49544.mrs" }
