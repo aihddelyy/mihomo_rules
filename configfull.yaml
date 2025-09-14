@@ -151,7 +151,7 @@ proxy-groups:
 #  - {name: Hulu, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/hulu.png"}
 #  - {name: Spotify, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/spotify.png"}
   - {name: Telegram, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/telegram.png"}
-  - {name: X, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/twitter.png"}
+#  - {name: X, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/twitter.png"}
 #  - {name: Discord, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/discord.png"}
 #  - {name: Meta, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/meta.png"}
   - {name: 社交媒体, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/social-media.png"}
@@ -204,7 +204,7 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 # over
   - {name: 故障转移, type: fallback, include-all: true, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}  
-  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, 故障转移, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, NETFLIX, Telegram, X, 社交媒体, Porn , Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡, 其他国家], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, proxies: [节点选择, 自动选择, 手动切换, 故障转移, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, NETFLIX, Telegram, 社交媒体, Porn , Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡, 其他国家], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
 rules:
   # 防止 Telegram 加载转圈
@@ -212,9 +212,9 @@ rules:
   # 禁用QUIC
   - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
   - DST-PORT,123,全球直连
-#  - RULE-SET,AWAvenue_Ads,广告拦截
-  - RULE-SET,Ad_domain,广告拦截
-  - RULE-SET,Adblockmihomo,广告拦截
+  - RULE-SET,AWAvenue_Ads,广告拦截
+#  - RULE-SET,Ad_domain,广告拦截
+#  - RULE-SET,Adblockmihomo,广告拦截
   - RULE-SET,Ad_ip,广告拦截,no-resolve
   - RULE-SET,Private_domain,全球直连
   - RULE-SET,Private_ip,全球直连,no-resolve
@@ -242,7 +242,7 @@ rules:
   - RULE-SET,AppleTV_domain,AppleTV
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
-  - RULE-SET,Openai_domain,AI
+#  - RULE-SET,Openai_domain,AI
   - RULE-SET,Ai!cn_domain,AI
   - RULE-SET,Ai_ip,AI,no-resolve
 #  - RULE-SET,Bilibili_domain,哔哩哔哩
@@ -278,8 +278,8 @@ rules:
 #  - RULE-SET,Instagram_domain,Meta
 #  - RULE-SET,Threads_domain,Meta
 #  - RULE-SET,Meta_domain,Meta
-  - RULE-SET,X_domain,X
-  - RULE-SET,X_ip,X,no-resolve
+#  - RULE-SET,X_domain,X
+#  - RULE-SET,X_ip,X,no-resolve
   - RULE-SET,Media!cn_domain,社交媒体
 #  - RULE-SET,Amazon_domain,国外电商
 #  - RULE-SET,Amazon_ip,国外电商,no-resolve
@@ -310,9 +310,9 @@ rule-anchor:
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 
 rule-providers:
-  Ad_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-domain.mrs" }
-  Adblockmihomo: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/adblockmihomo.mrs" }
-#  AWAvenue_Ads: { <<: *domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
+#  Ad_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-domain.mrs" }
+#  Adblockmihomo: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/adblockmihomo.mrs" }
+  AWAvenue_Ads: { <<: *domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
   Private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
   DirectLite_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-domain.mrs" }
   ProxyLite_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-domain.mrs" }
@@ -326,9 +326,9 @@ rule-providers:
   Microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs" }
   Apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs" }
   Apple_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple%40cn.mrs" }
-  Meta_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/meta.mrs" }
-  Facebook_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/facebook.mrs" }
-  X_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitter.mrs" }
+#  Meta_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/meta.mrs" }
+#  Facebook_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/facebook.mrs" }
+#  X_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitter.mrs" }
 #  Whatsapp_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/whatsapp.mrs" }
 #  Instagram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/instagram.mrs" }
 #  Threads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/threads.mrs" }
@@ -351,7 +351,7 @@ rule-providers:
 #  Shopee_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/shopee.mrs" }
 #  Ebay_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ebay.mrs" }
 #  Ai_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs" }
-  Openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs" }
+#  Openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs" }
   Ai!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
   Steam_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
   Steam_CDN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
