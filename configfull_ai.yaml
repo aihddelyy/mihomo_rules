@@ -144,7 +144,7 @@ proxy-groups:
   - {name: OneDrive, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/onedrive.png"}
   - {name: AI, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/ai.png"}
   - {name: TikTok, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/tiktok.png"}
-  - {name: NETFLIX, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/netflix.png"}
+  - {name: NETFLIX, type: select, proxies: [节点选择, 自动选择, 手动切换, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家], icon: "https://icon.aihdde.eu.org/netflix.png"}
   - {name: AppleTV, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/apple-tv.png"}
   - {name: HBO, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/hbo.png"}
   - {name: Disney, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/disney-plus.png"}
