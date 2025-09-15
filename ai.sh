@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # 优化后的脚本，适用于 OpenWrt 环境
-
+cd /etc/nikki/run
 # 下载并解压 mihomo
 wget -O mihomo.gz "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-alpha-smart-f83f0c7.gz" && gunzip mihomo.gz
 
