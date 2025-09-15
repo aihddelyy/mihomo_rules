@@ -127,10 +127,11 @@ proxies:
 Proxy_first: &Proxy_first {type: select, proxies: [节点选择, 自动选择, 手动切换, 故障转移, IPV6节点, 全球直连, 自建/家宽节点, 全球直连,香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 Direct_first: &Direct_first {type: select, proxies: [全球直连, 节点选择, 自动选择, 手动切换, IPV6节点, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 Include_all: &Include_all {type: select, proxies: [节点选择, 自动选择, 手动切换, IPV6节点, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
-Urltest_Base: &Urltest_Base {type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 1, hidden: true}
-Load-balance_base: &Load-balance_base {type: load-balance, include-all: true, strategy: consistent-hashing, hidden: true}
-Smart-type: &Smart-type {type: smart, uselightgbm: true, collectdata: true, strategy: sticky-sessions, include-all: true, hidden: true}
-
+Urltest_type: &Urltest_type {type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 1, hidden: true}
+Load-balance_type: &Load-balance_type {type: load-balance, include-all: true, strategy: consistent-hashing, hidden: true}
+Smart_type: &Smart_type {type: smart, uselightgbm: true, collectdata: true, strategy: sticky-sessions, include-all: true, hidden: true}
+Streaming_media_group: &Streaming_media_group {type: select, proxies: [节点选择, 自动选择, 手动切换, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
+# 策略组
 proxy-groups:
   - {name: 节点选择, type: select, proxies: [自动选择, 手动切换, IPV6节点, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/sync.png"}
@@ -144,19 +145,19 @@ proxy-groups:
   - {name: OneDrive, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/onedrive.png"}
   - {name: AI, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/ai.png"}
   - {name: TikTok, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/tiktok.png"}
-  - {name: NETFLIX, type: select, proxies: [节点选择, 自动选择, 手动切换, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家], icon: "https://icon.aihdde.eu.org/netflix.png"}
-  - {name: AppleTV, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/apple-tv.png"}
-  - {name: HBO, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/hbo.png"}
-  - {name: Disney, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/disney-plus.png"}
-  - {name: Prime, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/amazon-prime.png"}  
-  - {name: Hulu, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/hulu.png"}
-  - {name: Spotify, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/spotify.png"}
+  - {name: NETFLIX, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/netflix.png"}
+  - {name: AppleTV, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/apple-tv.png"}
+  - {name: HBO, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/hbo.png"}
+  - {name: Disney, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/disney-plus.png"}
+  - {name: Prime, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/amazon-prime.png"}  
+  - {name: Hulu, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/hulu.png"}
+  - {name: Spotify, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/spotify.png"}
   - {name: Telegram, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/telegram.png"}
   - {name: X, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/twitter.png"}
   - {name: Discord, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/discord.png"}
   - {name: Meta, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/meta.png"}
   - {name: 社交媒体, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/social-media.png"}
-  - {name: Global-TV, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/global-tv.png"}
+  - {name: Global-TV, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/global-tv.png"}
   - {name: Porn, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/pornhub.png"}
   - {name: 哔哩哔哩, <<: *Direct_first, icon: "https://icon.aihdde.eu.org/bilibili.png"}
   - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡节点, 手动切换, 全球直连], icon: "https://icon.aihdde.eu.org/bilibiliit.png"}
@@ -182,33 +183,33 @@ proxy-groups:
   - {name: 欧洲节点, type: select, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, tolerance: 20, interval: 300, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 其他国家, type: select, include-all: true, exclude-filter: "(?i)(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西班牙|波|卢|瑞)", icon: "https://icon.aihdde.eu.org/country.png"}
 # 地区自动、智能、均衡节点隐藏 start
-  - {name: 香港自动, <<: *Urltest_Base, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾自动, <<: *Urltest_Base, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台自动, <<: *Urltest_Base, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡自动, <<: *Urltest_Base, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本自动, <<: *Urltest_Base, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国自动, <<: *Urltest_Base, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国自动, <<: *Urltest_Base, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国自动, <<: *Urltest_Base, filter: "(?i)(英|GB|UK|England|British)", icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲自动, <<: *Urltest_Base, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 香港智能, <<: *Smart-type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾智能, <<: *Smart-type, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台智能, <<: *Smart-type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡智能, <<: *Smart-type, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本智能, <<: *Smart-type, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国智能, <<: *Smart-type, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国智能, <<: *Smart-type, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国智能, <<: *Smart-type, filter: "(?i)(英|GB|UK|England|British)", icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲智能, <<: *Smart-type, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 香港均衡, <<: *Load-balance_base, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾均衡, <<: *Load-balance_base, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台均衡, <<: *Load-balance_base, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡均衡, <<: *Load-balance_base, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本均衡, <<: *Load-balance_base, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国均衡, <<: *Load-balance_base, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国均衡, <<: *Load-balance_base, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国均衡, <<: *Load-balance_base, filter: "(?i)(英|GB|UK|England|British)", icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲均衡, <<: *Load-balance_base, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 香港自动, <<: *Urltest_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾自动, <<: *Urltest_type, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台自动, <<: *Urltest_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡自动, <<: *Urltest_type, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本自动, <<: *Urltest_type, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国自动, <<: *Urltest_type, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国自动, <<: *Urltest_type, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国自动, <<: *Urltest_type, filter: "(?i)(英|GB|UK|England|British)", icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲自动, <<: *Urltest_type, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 香港智能, <<: *Smart_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾智能, <<: *Smart_type, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台智能, <<: *Smart_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡智能, <<: *Smart_type, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本智能, <<: *Smart_type, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国智能, <<: *Smart_type, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国智能, <<: *Smart_type, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国智能, <<: *Smart_type, filter: "(?i)(英|GB|UK|England|British)", icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲智能, <<: *Smart_type, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 香港均衡, <<: *Load-balance_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾均衡, <<: *Load-balance_type, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台均衡, <<: *Load-balance_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡均衡, <<: *Load-balance_type, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本均衡, <<: *Load-balance_type, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国均衡, <<: *Load-balance_type, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国均衡, <<: *Load-balance_type, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国均衡, <<: *Load-balance_type, filter: "(?i)(英|GB|UK|England|British)", icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲均衡, <<: *Load-balance_type, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
 # over
 # 功能型代理组默认隐藏 start
   - {name: 🔗 代理, type: select, hidden: true, proxies: [节点选择]}
