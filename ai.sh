@@ -4,7 +4,7 @@
 cd /etc/nikki/run
 
 # 下载并解压mihomo
-wget -O mihomo.gz "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-alpha-smart-f83f0c7.gz" && gunzip mihomo.gz
+wget -O mihomo.gz "https://github.com/vernesong/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-alpha-smart-fae16c8.gz" && gunzip mihomo.gz
 
 # 下载模型文件
 wget -O Model.bin "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
