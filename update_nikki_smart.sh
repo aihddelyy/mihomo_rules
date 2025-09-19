@@ -48,6 +48,17 @@ log "替换旧内核..."
 mv -f "$TMP_DIR/mihomo-linux-amd64" /usr/bin/mihomo
 chmod +x /usr/bin/mihomo
 
+# 下载模型文件
+log "下载模型文件..."
+wget -qO "$TMP_DIR/Model.bin" "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
+if [ $? -ne 0 ]; then
+    log "❌ 模型文件下载失败，终止更新"
+    exit 1
+fi
+# 替换旧模型文件
+log "替换旧模型文件..."
+mv -f "$TMP_DIR/Model.bin" /etc/nikki/run/Model.bin
+
 # 重启服务
 log "重启 nikki 服务..."
 service nikki restart
