@@ -49,6 +49,7 @@
     {"tag": "🇸🇬 新加坡自动", "type": "urltest", "outbounds": []},
     {"tag": "🇺🇲 美国自动", "type": "urltest", "outbounds": []},
     {"tag": "🇭🇰 香港手动", "type": "selector", "outbounds": []},
+    {"tag": "🇹🇼 台湾手动", "type": "selector", "outbounds": []},
     {"tag": "🇭🇰🇹🇼港台手动", "type": "selector", "outbounds": []},
     {"tag": "🇯🇵 日本手动", "type": "selector", "outbounds": []},
     {"tag": "🇸🇬 新加坡手动", "type": "selector", "outbounds": []},
