@@ -33,7 +33,14 @@ geox-url:
   mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.metadb"
   geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
-  
+
+# 启用模型自动更新
+lgbm-auto-update: true
+# 模型更新周期,默认72小时
+lgbm-update-interval: 24
+# 模型升级url
+lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
+
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
@@ -196,7 +203,7 @@ proxy-groups:
   - {name: 欧洲自动, <<: *Urltest_type, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 香港智能, <<: *Smart_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾智能, <<: *Smart_type, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台智能, <<: *Smart_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 港台智能, <<: *Smart_type, policy-priority: "香港:1.3;台湾:0.9", filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 新加坡智能, <<: *Smart_type, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://icon.aihdde.eu.org/singapore.png"}
   - {name: 日本智能, <<: *Smart_type, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://icon.aihdde.eu.org/japan.png"}
   - {name: 韩国智能, <<: *Smart_type, filter: "(?i)(韩国|🇰🇷|KR|Korea)", icon: "https://icon.aihdde.eu.org/south-korea.png"}
