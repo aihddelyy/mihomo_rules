@@ -50,7 +50,7 @@ chmod +x /usr/bin/mihomo
 
 # 下载模型文件
 log "下载模型文件..."
-wget -qO "$TMP_DIR/Model.bin" "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
+wget -qO "$TMP_DIR/Model.bin" "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
 if [ $? -ne 0 ]; then
     log "❌ 模型文件下载失败，终止更新"
     exit 1
