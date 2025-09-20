@@ -50,7 +50,7 @@ keep-alive-interval: 15
 # 策略组选择和fakeip缓存
 profile:
   store-selected: true
-  store-fake-ip: true
+  store-fake-ip: false
   
 # 流量嗅探
 sniffer:
@@ -96,7 +96,7 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
-  prefer-h3: true # 是否开启 DoH 支持 HTTP/3，将并发尝试
+  prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
   respect-rules: true
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
