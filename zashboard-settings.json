@@ -9,7 +9,7 @@
   "config/truncate-proxy-name": "true",
   "config/ipv6-test": "false",
   "config/icon-size": "17",
-  "config/log-level": "debug",
+  "config/log-level": "info",
   "config/show-statistics-when-sidebar-collapsed": "true",
   "config/source-ip-label-map": "{}",
   "config/use-connecticon-card": "true",
