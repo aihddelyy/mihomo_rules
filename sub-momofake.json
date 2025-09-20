@@ -155,7 +155,7 @@
     "cache_file": {
       "enabled": true,
       "path": "/etc/momo/run/cache.db",
-      "store_fakeip": true
+      "store_fakeip": false
     },
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
