@@ -18,6 +18,7 @@ proxy-providers:
 global-ua: clash.meta
     
 # 全局配置
+mode: rule
 port: 8080
 socks-port: 1080
 mixed-port: 7890
@@ -28,6 +29,8 @@ allow-lan: true
 unified-delay: true
 tcp-concurrent: true
 log-level: info
+authentication:
+  - aihdde:aihdde
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
@@ -54,6 +57,7 @@ lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/
 external-controller: 0.0.0.0:9090
 secret: ""
 external-ui: ui
+external-ui-name: Zashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 # 非代理访问可加镜像"https://gh-proxy.com"
 
