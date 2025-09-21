@@ -6,7 +6,7 @@
 proxy-providers:
   Airport_01:
     type: http
-    interval: 1800
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -18,16 +18,21 @@ proxy-providers:
 global-ua: clash.meta
     
 # 全局配置
+port: 8080
+socks-port: 1080
 mixed-port: 7890
+redir-port: 7891
+tproxy-port: 7892
 ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
-
+log-level: info
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
 - 10.10.10.1/24
+
 geodata-mode: false
 geodata-loader: standard
 geo-auto-update: true

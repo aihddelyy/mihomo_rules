@@ -6,7 +6,7 @@
 proxy-providers:
   Airport_01:
     type: http
-    interval: 1800
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -18,16 +18,23 @@ proxy-providers:
 global-ua: clash.meta
     
 # 全局配置
+port: 8080
+socks-port: 1080
 mixed-port: 7890
+redir-port: 7891
+tproxy-port: 7892
 ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
+log-level: info
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
 - 10.10.10.1/24
+
 geodata-mode: false
+# GEO 文件加载模式（standard：标准加载器/memconservative：专为内存受限 (小内存) 设备优化的加载器 (默认值)）
 geodata-loader: standard
 geo-auto-update: true
 geo-update-interval: 24
@@ -39,7 +46,7 @@ geox-url:
   
 # 控制面板
 external-controller: 0.0.0.0:9090
-secret: ""
+secret: "123456"
 external-ui: ui
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 # 非代理访问可加镜像"https://gh-proxy.com"
