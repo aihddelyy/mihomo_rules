@@ -23,7 +23,10 @@ ipv6: true
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
-  
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+- 10.10.10.1/24
 geodata-mode: false
 geodata-loader: standard
 geo-auto-update: true
