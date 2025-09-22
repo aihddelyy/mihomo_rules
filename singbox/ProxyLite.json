@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "rules": [
+    {
+        "domain_suffix": [
+            "plink.anyfeeder.com",
+            "solidtorrents.to",
+            "therarbg.to",
+            "www.moviesdvdr.co",
+            "www.oxtorrent.co",
+            "www.oxtorrent2.com",
+            "www.torrentfunk.com",
+            "eztvx.to",
+            "www.mb3admin.com",
+            "newstudio.tv",
+            "www.torrentdownloads.pro",
+            "showrss.info",
+            "www.torrentdownload.info",
+            "darkreader.org",
+            "nipponsei.minglong.org",
+            "wd-gold.com",
+            "compose-spec.io",
+            "docker.com",
+            "docker.io",
+            "speedtest.im",
+            "1dot1dot1dot1.cloudflare-dns.com",
+            "dot.sb",
+            "dns.umbrella.com",
+            "dns.quad9.net",
+            "dns.google",
+            "dns.cloudflare.com",
+            "cloudflare-dns.com",
+            "one.one.one.one",
+            "doh.dns.sb",
+            "doh.opendns.com",
+            "dns.quad9.net",
+            "hk-hkg.doh.sb"
+      ]
+    }
+  ]
+}
