@@ -51,7 +51,7 @@ lgbm-auto-update: true
 # 模型更新周期,默认72小时
 lgbm-update-interval: 24
 # 模型升级url
-lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model-large.bin"
+lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
 
 # 控制面板
 external-controller: 0.0.0.0:9090
