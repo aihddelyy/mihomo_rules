@@ -77,7 +77,7 @@
       {"rule_set": "geosite-paypal", "outbound": "💶 PayPal"},
       {"rule_set": "geosite-steamcn", "outbound": "🟢 全球直连"},
       {"rule_set": "geosite-steam", "outbound": "🎮 Steam"},
-      {"rule_set": "geosite-speedtest", "outbound": "🍃 延迟辅助"},
+      {"rule_set": "geosite-speedtest", "outbound": "🗲 Speedtest"},
       {"rule_set": "geosite-!cn", "outbound": "🚀 默认代理"},
       {"rule_set": "geosite-cn", "outbound": "🟢 全球直连"},
       {"rule_set": "geoip-google", "outbound": "🍀 Google"},
