@@ -34,7 +34,7 @@ chmod +x /usr/bin/sing-box
 
 # 重启服务
 log "重启 nikki 服务..."
-service nikki restart
+service momo restart
 if [ $? -eq 0 ]; then
     log "✅ Momo 服务重启成功"
 else
