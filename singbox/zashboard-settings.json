@@ -15,7 +15,7 @@
   "config/use-connecticon-card": "true",
   "config/min-proxy-card-width": "145",
   "config/swipe-in-tabs": "false",
-  "config/import-settings-url": "/zashboard-settings.json",
+  "config/import-settings-url": "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/singbox/zashboard-settings.json",
   "config/proxy-preview-type": "auto",
   "config/use-smart-group-sort": "true",
   "config/table-width-mode": "auto",
