@@ -124,14 +124,14 @@ dns:
     - tls://1.12.12.12
     - tls://223.5.5.5
   proxy-server-nameserver:
-    - tls://dot.pub
-    - tls://dns.alidns.com
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   direct-nameserver:
-    - tls://dot.pub
-    - tls://dns.alidns.com
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   nameserver:
-    - tls://one.one.one.one
-    - tls://dns.google
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
 
 proxies:
 - name: "🟢 直连"
