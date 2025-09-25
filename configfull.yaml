@@ -120,6 +120,10 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - 'rule-set:Fakeip_fitter_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Game_cn_domain,Steam_cn_domain,Steam_CDN_domain,Media_cn_domain,Private_domain,DirectLite_domain,Apple_cn_domain,PrivateTracker_domain,CN_domain'
+  nameserver-policy:
+    - 'rule-set:Fakeip_fitter_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Game_cn_domain,Steam_cn_domain,Steam_CDN_domain,Media_cn_domain,Private_domain,DirectLite_domain,Apple_cn_domain,PrivateTracker_domain,CN_domain'
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   default-nameserver:
     - tls://1.12.12.12
     - tls://223.5.5.5
@@ -132,7 +136,8 @@ dns:
   nameserver:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
-
+  direct-nameserver-follow-policy: true
+  
 proxies:
 - name: "🟢 直连"
   type: direct
