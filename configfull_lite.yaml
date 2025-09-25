@@ -120,15 +120,19 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
+  nameserver-policy:
+    'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query#h3=true
   default-nameserver:
     - tls://1.12.12.12
     - tls://223.5.5.5
   proxy-server-nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query#h3=true
-  direct-nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query#h3=true
+  #direct-nameserver:
+  #  - https://doh.pub/dns-query
+  #  - https://dns.alidns.com/dns-query#h3=true
   nameserver:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
