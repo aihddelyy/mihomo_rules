@@ -214,7 +214,8 @@ proxy-groups:
 rules:
   # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
-  # 禁用QUIC
+  - AND,((DOMAIN,dns.alidns.com),(NETWORK,UDP),(DST-PORT,443)),全球直连
+# 禁用QUIC
   - AND,((NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
   - DST-PORT,123,全球直连
   - RULE-SET,AWAvenue_Ads,广告拦截
