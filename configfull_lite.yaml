@@ -119,20 +119,20 @@ dns:
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,PrivateTracker_domain,CN_domain'
+    - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
   nameserver-policy:
-    'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,PrivateTracker_domain,CN_domain':
+    'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
       - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
+      - https://dns.alidns.com/dns-query#h3=true
   default-nameserver:
     - tls://1.12.12.12
     - tls://223.5.5.5
   proxy-server-nameserver:
     - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - https://dns.alidns.com/dns-query#h3=true
   #direct-nameserver:
     #- https://doh.pub/dns-query
-    #- https://dns.alidns.com/dns-query
+    #- https://dns.alidns.com/dns-query#h3=true
   nameserver:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
@@ -227,8 +227,6 @@ rules:
   - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
-  - RULE-SET,PrivateTracker_domain,全球直连
-  - RULE-SET,PrivateTracker_ip,全球直连,no-resolve
   - RULE-SET,Cloudflare_domain,节点选择
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
@@ -292,7 +290,6 @@ rule-providers:
   Steam_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
   Speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs" }
   Porn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs" }
-  PrivateTracker_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-domain.mrs" }
   GFW_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
   CN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs" }
