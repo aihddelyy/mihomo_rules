@@ -30,6 +30,8 @@ IP-CIDR,180.163.146.102/32,no-resolve
 IP-CIDR,10.10.10.0/24
 DOMAIN,ghproxy.aihdde.eu.org
 DOMAIN,icon.aihdde.eu.org
+DOMAIN-SUFFIX,dot.pub
+DOMAIN-SUFFIX,dns.alidns.com
 
 # softethervpn
 DOMAIN-SUFFIX,dev.servers.nat-traversal.softether-network.net
