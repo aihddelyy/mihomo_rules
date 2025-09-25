@@ -25,6 +25,7 @@ payload:
   - '+.gh-proxy.com'
   - 'ghproxy.aihdde.eu.org'
   - 'icon.aihdde.eu.org'
+  - '+.doh.pub'
   - '+.dot.pub'
   - '+.dns.alidns.com'
   - '+.dev.servers.nat-traversal.softether-network.net'
