@@ -137,7 +137,7 @@ dns:
   nameserver:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
-  direct-nameserver-follow-policy: true
+  direct-nameserver-follow-policy: false
   
 proxies:
 - name: "🟢 直连"
