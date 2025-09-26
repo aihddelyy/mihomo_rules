@@ -111,7 +111,7 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: true
   # 是否开启 DoH 支持 HTTP/3，将并发尝试
-  prefer-h3: true
+  prefer-h3: false
   respect-rules: true
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
