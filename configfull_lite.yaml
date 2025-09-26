@@ -206,7 +206,7 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 # over
   - {name: 故障转移, type: fallback, interval: 300, max-failed-times: 1, include-all: true, hidden: true, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}  
-  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [节点选择, 自动选择, 手动切换, 故障转移, YouTube, Google, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, NETFLIX, Telegram, Porn, Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [节点选择, 自动选择, 手动切换, 故障转移, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, NETFLIX, Telegram, Porn, Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
 rules:
   # 防止 Telegram 加载转圈
