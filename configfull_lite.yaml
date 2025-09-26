@@ -232,6 +232,7 @@ rules:
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
   - RULE-SET,Cloudflare_domain,Cloudflare
+  - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
   - RULE-SET,Ai!cn_domain,AI
@@ -302,6 +303,7 @@ rule-providers:
   Ad_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
   CN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
   Google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs" }
+  Cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs" }
   Telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs" }
   Netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs" }
   Ai_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ai.mrs" }
