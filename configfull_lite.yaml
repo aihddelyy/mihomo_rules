@@ -153,6 +153,7 @@ proxy-groups:
   - {name: 手动切换, <<: *Select_type, include-all: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/select.png"}
   - {name: YouTube, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/youtube.png"}
   - {name: Google, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/google.png"}
+  - {name: Cloudflare, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/cloudflare.png"}
   - {name: GitHub, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/github.png"}
   - {name: Apple, <<: *Direct_first, icon: "https://icon.aihdde.eu.org/apple.png"}
   - {name: Microsoft, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/microsoft.png"}
@@ -224,7 +225,7 @@ rules:
   - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
-  - RULE-SET,Cloudflare_domain,节点选择
+  - RULE-SET,Cloudflare_domain,Cloudflare
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
   - RULE-SET,Ai!cn_domain,AI
