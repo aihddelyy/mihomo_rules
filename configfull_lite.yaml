@@ -261,7 +261,7 @@ rules:
   - RULE-SET,GFW_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
   - RULE-SET,CN_domain,全球直连
-  - RULE-SET,CN_ip,全球直连
+  - RULE-SET,CN_ip,全球直连,no-resolve
   - MATCH,漏网之鱼
 
 rule-anchor:
