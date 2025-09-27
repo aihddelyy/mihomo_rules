@@ -116,28 +116,34 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
-  prefer-h3: false # 是否开启 DoH 支持 HTTP/3，将并发尝试
+  # 是否开启 DoH 支持 HTTP/3，将并发尝试
+  prefer-h3: false
   respect-rules: true
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.0/16
+  fake-ip-range: 198.18.0.1/16
   # 模式切换 whitelist/blacklist 
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - 'rule-set:Fakeip_fitter_domain,Alibaba_domain,Aliyun_domain,IPTVMainland_domain,Bank_cn_domain,Xiaomi_domain,WeChat_domain,NetEaseMusic_domain,Game_cn_domain,Steam_cn_domain,Steam_CDN_domain,Media_cn_domain,Private_domain,DirectLite_domain,Apple_cn_domain,PrivateTracker_domain,CN_domain'
+    - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
+  nameserver-policy:
+    'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
+      - https://dns.alidns.com/dns-query#h3=true
+      - https://doh.pub/dns-query    
   default-nameserver:
-    - tls://1.12.12.12
     - tls://223.5.5.5
+    - tls://1.12.12.12    
   proxy-server-nameserver:
-    - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query#h3=true
+    - https://doh.pub/dns-query    
   direct-nameserver:
-    - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query#h3=true
+    - https://doh.pub/dns-query    
   nameserver:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
+  direct-nameserver-follow-policy: true
   
 proxies:
 - name: "🟢 直连"
