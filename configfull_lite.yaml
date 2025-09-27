@@ -79,8 +79,6 @@ sniffer:
       ports: [443, 8443]
   force-domain:
     - +.v2ex.com
-    - +.dns.google
-    - +.dns.cloudflare.com
   skip-domain:
     - 'Mijia Cloud'
     - 'dlg.io.mi.com'
@@ -137,8 +135,8 @@ dns:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query#h3=true
   nameserver:
-    - https://dns.cloudflare.com/dns-query#h3=true
-    - https://dns.google/dns-query#h3=true
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
   direct-nameserver-follow-policy: true
   
 proxies:
