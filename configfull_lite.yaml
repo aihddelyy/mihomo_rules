@@ -79,6 +79,8 @@ sniffer:
       ports: [443, 8443]
   force-domain:
     - +.v2ex.com
+    - +.dns.google
+    - +.dns.cloudflare.com
   skip-domain:
     - 'Mijia Cloud'
     - 'dlg.io.mi.com'
