@@ -127,7 +127,7 @@ dns:
       - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
       - https://dns.cloudflare.com/dns-query#h3=true
-      - https://dns.google/dns-query#h3=true
+      - https://dns.google/dns-query
   default-nameserver:
     - tls://223.5.5.5
     - tls://1.12.12.12
