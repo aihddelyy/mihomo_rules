@@ -135,8 +135,8 @@ dns:
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
   default-nameserver:
-    - tls://223.5.5.5
-    - tls://1.12.12.12
+    - 223.5.5.5
+    - 119.29.29.29
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query#h3=true
     - https://doh.pub/dns-query
