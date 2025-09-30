@@ -1,11 +1,14 @@
 #!/bin/sh
 # Zashboard IPv6 更新脚本
+# - 包含通用版、Mobile/PC 版生成，以及文件备份和覆盖更新逻辑。
 
 # 确保脚本使用 LF 换行符
 sed -i 's/\r//g' "$0" 2>/dev/null
 
 # --- 配置 ---
 CONFIG_FILE="/etc/nikki/run/ui/zashboard-settings-bak.json"
+ORIGIN_FILE="/etc/nikki/run/ui/zashboard-settings-origin.json"
+OUTPUT_FILE_GENERAL="/etc/nikki/run/ui/zashboard-settings.json"
 OUTPUT_FILE_MOBILE="/etc/nikki/run/ui/zashboard-settings-mobile.json"
 OUTPUT_FILE_PC="/etc/nikki/run/ui/zashboard-settings-pc.json"
 TEMP_DIR="/tmp/zaboard_update"
@@ -23,6 +26,11 @@ generate_id() {
 rm -rf "$TEMP_DIR"
 mkdir -p "$TEMP_DIR"
 echo "--- 准备开始执行任务 ---"
+
+# --- 1. 备份原始文件 ---
+echo "  -> 备份 $CONFIG_FILE 到 $ORIGIN_FILE"
+cp "$CONFIG_FILE" "$ORIGIN_FILE"
+
 TEMP_MAC_V4="$TEMP_DIR/mac_ipv4.map"
 TEMP_MAC_V6="$TEMP_DIR/mac_ipv6.map"
 FILE_JQ_FILTER="$TEMP_DIR/update_filter.jq" 
@@ -206,7 +214,7 @@ echo "  -> 成功构造 $NEW_ITEM_COUNT 个 IPv6 地址记录。"
 
 
 # =======================================================
-# 阶段 5/6/7: 最终列表合并、生成文件
+# 阶段 5: 最终列表合并与文件生成
 # =======================================================
 echo "5. 正在合并最终列表并生成配置文件..."
 NEW_JSON_LIST=$(
@@ -225,34 +233,51 @@ fi
 TOTAL_LIST_LENGTH=$(echo "$NEW_JSON_LIST" | jq 'length' 2>/dev/null)
 echo "  -> 最终列表总长度: $TOTAL_LIST_LENGTH"
 
-# --- 生成 Mobile 版本 ---
-MOBILE_URL_TARGET="/ui/zashboard-settings-mobile.json"
-# 1. 替换 IP 列表内容
+# --- 准备 IP 列表替换内容 ---
 ESCAPED_CONTENT=$(printf '%s' "$NEW_JSON_LIST" | awk '{ gsub(/"/, "\\\""); gsub(/\\/, "\\\\"); gsub(/\//, "\\/"); print }')
-sed "s/  \"config\/source-ip-label-list\": \".*\",/  \"config\/source-ip-label-list\": \"$ESCAPED_CONTENT\",/" "$CONFIG_FILE" > "$OUTPUT_FILE_MOBILE.tmp"
 
-# 2. 替换导入 URL 为固定值 (使用 # 分隔符)
+
+# 5.1 生成 通用版本 (zashboard-settings.json)
+echo "  -> 正在生成 通用版本 ($OUTPUT_FILE_GENERAL)..."
+# 仅替换 IP 列表内容 (使用 # 分隔符)
+sed "s#  \"config\/source-ip-label-list\": \".*\",#  \"config\/source-ip-label-list\": \"$ESCAPED_CONTENT\",#" "$CONFIG_FILE" > "$OUTPUT_FILE_GENERAL"
+echo "  ✅ 通用版本生成完毕。"
+
+
+# 5.2 生成 Mobile 版本 (zashboard-settings-mobile.json)
+MOBILE_URL_TARGET="/ui/zashboard-settings-mobile.json"
+echo "  -> 正在生成 Mobile 版本 ($OUTPUT_FILE_MOBILE)..."
+cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_MOBILE.tmp" # 从通用版本复制，已有 IP 列表
+# 替换导入 URL 为固定值 (使用 # 分隔符)
 sed -i "s#\"config\/import-settings-url\": \".*\",#\"config\/import-settings-url\": \"$MOBILE_URL_TARGET\",#" "$OUTPUT_FILE_MOBILE.tmp"
-
+# 替换 Mobile 专用配置 (使用 # 分隔符)
+sed -i 's#\"config\/use-connecticon-card\": \".*\",#\"config\/use-connecticon-card\": \"true\",#' "$OUTPUT_FILE_MOBILE.tmp"
 mv "$OUTPUT_FILE_MOBILE.tmp" "$OUTPUT_FILE_MOBILE"
-echo "  ✅ Mobile 版本生成完毕：$OUTPUT_FILE_MOBILE"
+echo "  ✅ Mobile 版本生成完毕。"
 
-# --- 生成 PC 版本 ---
+
+# 5.3 生成 PC 版本 (zashboard-settings-pc.json)
 PC_URL_TARGET="/ui/zashboard-settings-pc.json"
-# 1. 替换 IP 列表内容
-sed "s/  \"config\/source-ip-label-list\": \".*\",/  \"config\/source-ip-label-list\": \"$ESCAPED_CONTENT\",/" "$CONFIG_FILE" > "$OUTPUT_FILE_PC.tmp"
-
-# 2. 替换导入 URL 为固定值 (使用 # 分隔符)
+echo "  -> 正在生成 PC 版本 ($OUTPUT_FILE_PC)..."
+cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_PC.tmp" # 从通用版本复制，已有 IP 列表
+# 替换导入 URL 为固定值 (使用 # 分隔符)
 sed -i "s#\"config\/import-settings-url\": \".*\",#\"config\/import-settings-url\": \"$PC_URL_TARGET\",#" "$OUTPUT_FILE_PC.tmp"
-
-# 3. 替换 PC 专用配置
-sed -i 's/"config\/use-connecticon-card": "true",/"config\/use-connecticon-card": "false",/' "$OUTPUT_FILE_PC.tmp"
-
+# 替换 PC 专用配置 (使用 # 分隔符)
+sed -i 's#\"config\/use-connecticon-card\": \".*\",#\"config\/use-connecticon-card\": \"false\",#' "$OUTPUT_FILE_PC.tmp"
 mv "$OUTPUT_FILE_PC.tmp" "$OUTPUT_FILE_PC"
-echo "  ✅ PC 版本生成完毕：$OUTPUT_FILE_PC"
+echo "  ✅ PC 版本生成完毕。"
+
+# =======================================================
+# 阶段 6: 覆盖更新备份文件
+# =======================================================
+echo "6. 正在使用通用版本覆盖更新备份文件..."
+cp "$OUTPUT_FILE_GENERAL" "$CONFIG_FILE"
+echo "  -> 成功将 $OUTPUT_FILE_GENERAL 覆盖到 $CONFIG_FILE"
+
 
 # --- 清理和结束 ---
 rm -rf "$TEMP_DIR"
 
 echo "--- 任务完成 ---"
-echo "✅ 新的配置已保存到 $OUTPUT_FILE_MOBILE 和 $OUTPUT_FILE_PC"
+echo "✅ 新的配置已保存到 $OUTPUT_FILE_GENERAL, $OUTPUT_FILE_MOBILE, 和 $OUTPUT_FILE_PC"
+echo "   原始配置已备份到 $ORIGIN_FILE"
