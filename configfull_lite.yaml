@@ -234,7 +234,7 @@ rules:
   - RULE-SET,Steam_cn_domain,全球直连
   - RULE-SET,Steam_CDN_domain,全球直连
   - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
-  - RULE-SET,Cloudflare_domain,🟢 直连
+  - RULE-SET,Cloudflare_domain,Cloudflare
   - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
