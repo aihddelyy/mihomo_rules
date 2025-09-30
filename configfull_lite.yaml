@@ -122,6 +122,9 @@ dns:
   fake-ip-filter:
     - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
   nameserver-policy:
+    'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
+      - https://dns.alidns.com/dns-query#h3=true
+      - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
