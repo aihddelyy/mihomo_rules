@@ -128,9 +128,6 @@ dns:
   fake-ip-filter:
     - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
   nameserver-policy:
-    'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
-      - https://dns.alidns.com/dns-query#h3=true
-      - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
@@ -153,14 +150,14 @@ proxies:
   udp: true
  
 # 锚点
-Proxy_first: &Proxy_first {type: select, interval: 300, max-failed-times: 1, proxies: [节点选择, 自动选择, 手动切换, 故障转移, 全球直连, IPV6节点, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-Direct_first: &Direct_first {type: select, interval: 300, max-failed-times: 1, proxies: [全球直连, 节点选择, 自动选择, 手动切换, IPV6节点, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-Include_all: &Include_all {type: select, interval: 300, max-failed-times: 1, proxies: [节点选择, 自动选择, 手动切换, 故障转移, 全球直连, IPV6节点, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
-Urltest_type: &Urltest_type {type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 1, hidden: true}
-Load-balance_type: &Load-balance_type {type: load-balance, interval: 300, max-failed-times: 1, include-all: true, strategy: consistent-hashing, hidden: true}
-Smart_type: &Smart_type {type: smart, uselightgbm: true, collectdata: false, strategy: sticky-sessions, include-all: true, interval: 300, max-failed-times: 1, hidden: true}
+Proxy_first: &Proxy_first {type: select, interval: 300, max-failed-times: 3, proxies: [节点选择, 自动选择, 手动切换, 故障转移, 全球直连, IPV6节点, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+Direct_first: &Direct_first {type: select, interval: 300, max-failed-times: 3, proxies: [全球直连, 节点选择, 自动选择, 手动切换, IPV6节点, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+Include_all: &Include_all {type: select, interval: 300, max-failed-times: 3, proxies: [节点选择, 自动选择, 手动切换, 故障转移, 全球直连, IPV6节点, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
+Urltest_type: &Urltest_type {type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 3, hidden: true}
+Load-balance_type: &Load-balance_type {type: load-balance, interval: 300, max-failed-times: 3, include-all: true, strategy: consistent-hashing, hidden: true}
+Smart_type: &Smart_type {type: smart, uselightgbm: true, collectdata: false, strategy: sticky-sessions, include-all: true, interval: 300, max-failed-times: 3, hidden: true}
 Streaming_media_group: &Streaming_media_group {type: select, interval: 300, max-failed-times: 1, proxies: [节点选择, 自动选择, 手动切换, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
-Select_type: &Select_type {type: select, interval: 300, max-failed-times: 1}
+Select_type: &Select_type {type: select, interval: 300, max-failed-times: 3}
 
 # 策略组
 proxy-groups:
