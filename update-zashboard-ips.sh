@@ -1,6 +1,5 @@
 #!/bin/sh
 # Zashboard IPv6 更新脚本
-# - 包含通用版、Mobile/PC 版生成，以及文件备份和覆盖更新逻辑。
 
 # 确保脚本使用 LF 换行符
 sed -i 's/\r//g' "$0" 2>/dev/null
@@ -49,6 +48,7 @@ ip neigh show | grep -E 'REACHABLE|STALE|DELAY|PERMANENT' | grep 'lladdr' | awk 
         if ($i == "lladdr") { mac_addr = tolower($(i+1)); break }
     }
     if (mac_addr != "") {
+        # 仅捕获 2408:824e 开头的 IPv6 地址
         if (ip_addr ~ /([0-9]{1,3}\.){3}[0-9]{1,3}/) {
             print mac_addr, ip_addr >> "'"$TEMP_MAC_V4"'"
         } else if (ip_addr ~ /:/ && ip_addr ~ /^2408:824e/) { 
@@ -66,17 +66,17 @@ echo "  -> MAC -> IPv6 列表完成：$(wc -l < "$TEMP_MAC_V6") 条记录"
 # =======================================================
 echo "2. 正在构造 JQ 字典 (IPv4 -> [IPv6s])..."
 # 2.1 构造 V4V6_MAP (IPv4 -> [IPv6s])
+V6_BY_MAC=$(awk '
+    {
+        mac=$1; 
+        v6_list[mac]=(v6_list[mac]? v6_list[mac] ", " : "") "\"" $2 "\""
+    } 
+    END{
+        for (mac in v6_list) {print mac, v6_list[mac]}
+    }
+' "$TEMP_MAC_V6")
+
 V4V6_MAP=$(
-    V6_BY_MAC=$(awk '
-        {
-            mac=$1; 
-            v6_list[mac]=(v6_list[mac]? v6_list[mac] ", " : "") "\"" $2 "\""
-        } 
-        END{
-            for (mac in v6_list) {print mac, v6_list[mac]}
-        }
-    ' "$TEMP_MAC_V6")
-    
     awk '
     FNR==NR { 
         mac=$1; 
@@ -104,11 +104,11 @@ echo "  -> 字典构造完成。"
 
 
 # =======================================================
-# 阶段 3: JQ 替换/保留并计算剩余地址
+# 阶段 3: JQ 严格同步逻辑 (更新/保留/删除)
 # =======================================================
-echo "3. 正在运行 JQ 流程 (替换/保留/计算新增)..."
+echo "3. 正在运行 JQ 严格同步流程 (更新/保留/删除/计算新增)..."
 
-# JQ 核心逻辑定义到文件
+# JQ 核心逻辑定义到文件 (保持严格同步逻辑不变)
 cat << 'EOF_JQ_FILTER' > "$FILE_JQ_FILTER"
 ($ENV.V4V6_MAP_FINAL | fromjson? // {}) as $v4v6map |
 ($ENV.IPV4_LABEL_MAP_FINAL | fromjson? // {}) as $v4labelmap |
@@ -117,30 +117,38 @@ cat << 'EOF_JQ_FILTER' > "$FILE_JQ_FILTER"
 # 1. 构造 {label: [v6_list]} 的字典
 ($v4labelmap | to_entries | map({label: .value, ipv6_list: ($v4v6map[.key] | if . == null then [] else . end)}) | (reduce .[] as $item ({}; .[$item.label] += $item.ipv6_list))) as $new_ipv6_by_label |
 
-# 2. Reduce: 替换/保留逻辑
+# 2. Reduce: 严格替换/删除逻辑
 ( $original_list | 
-  reduce .[] as $item ({result: [], used_counts: {}}; 
+  reduce .[] as $item ({result: [], v6_used_counts: {}}; 
     . as $state |
-    if $item.key | contains(":") then
+    if $item.key | contains(".") then
+        # 2.1. IPv4 记录：保留
+        {result: ($state.result + [$item]), v6_used_counts: $state.v6_used_counts}
+    elif $item.key | contains(":") then
+        # 2.2. IPv6 记录：尝试替换
         ($new_ipv6_by_label[$item.label] | if . == null then [] else . end) as $new_list |
-        ($state.used_counts[$item.label] // 0) as $current_count |
+        ($state.v6_used_counts[$item.label] // 0) as $current_count |
+        
         if ($current_count < ($new_list | length)) then
+            # 找到新地址替换：替换 key 并记录使用次数
             ($item | .key = $new_list[$current_count]) as $updated_item |
-            {result: ($state.result + [$updated_item]), used_counts: ($state.used_counts + {($item.label): ($current_count + 1)})}
+            {result: ($state.result + [$updated_item]), v6_used_counts: ($state.v6_used_counts + {($item.label): ($current_count + 1)})}
         else
-            {result: ($state.result + [$item]), used_counts: $state.used_counts}
+            # 未找到新地址替换 (包括新列表为空的情况)：删除，不加入 result
+            $state
         end
     else
-        {result: ($state.result + [$item]), used_counts: $state.used_counts}
+        # 2.3. 其他未知格式记录：保留
+        {result: ($state.result + [$item]), v6_used_counts: $state.v6_used_counts}
     end
   )
 ) as $intermediate_result |
 
-# 3. 计算剩余需要新增的地址
+# 3. 计算剩余需要新增的地址 (未被上面的替换逻辑使用的新 V6 地址)
 ( [ $new_ipv6_by_label | to_entries[] | 
     .value as $new_list |
     .key as $label |
-    ($intermediate_result.used_counts[$label] // 0) as $used_count |
+    ($intermediate_result.v6_used_counts[$label] // 0) as $used_count |
     if ($used_count < ($new_list | length)) then
         ($new_list | .[$used_count:]) | 
         map({"key": ., "label": $label})
@@ -209,7 +217,6 @@ if [ -f "$FILE_REMAINING" ] && [ "$(jq 'length' "$FILE_REMAINING" 2>/dev/null)" 
     NEW_ITEM_COUNT=$(echo "$NEW_ITEMS_TO_ADD" | grep -c '^{')
 fi
 
-
 echo "  -> 成功构造 $NEW_ITEM_COUNT 个 IPv6 地址记录。"
 
 
@@ -239,16 +246,22 @@ ESCAPED_CONTENT=$(printf '%s' "$NEW_JSON_LIST" | awk '{ gsub(/"/, "\\\""); gsub(
 
 # 5.1 生成 通用版本 (zashboard-settings.json)
 echo "  -> 正在生成 通用版本 ($OUTPUT_FILE_GENERAL)..."
-# 仅替换 IP 列表内容 (使用 # 分隔符)
-sed "s#  \"config\/source-ip-label-list\": \".*\",#  \"config\/source-ip-label-list\": \"$ESCAPED_CONTENT\",#" "$CONFIG_FILE" > "$OUTPUT_FILE_GENERAL"
+# 1. 替换 IP 列表内容 (使用 # 分隔符)
+sed "s#  \"config\/source-ip-label-list\": \".*\",#  \"config\/source-ip-label-list\": \"$ESCAPED_CONTENT\",#" "$CONFIG_FILE" > "$OUTPUT_FILE_GENERAL.tmp"
+
+# 2. 替换导入 URL 为通用版自身 (使用 # 分隔符)
+GENERAL_URL_TARGET="/ui/zashboard-settings.json"
+sed -i "s#\"config\/import-settings-url\": \".*\",#\"config\/import-settings-url\": \"$GENERAL_URL_TARGET\",#" "$OUTPUT_FILE_GENERAL.tmp"
+mv "$OUTPUT_FILE_GENERAL.tmp" "$OUTPUT_FILE_GENERAL"
+
 echo "  ✅ 通用版本生成完毕。"
 
 
 # 5.2 生成 Mobile 版本 (zashboard-settings-mobile.json)
 MOBILE_URL_TARGET="/ui/zashboard-settings-mobile.json"
 echo "  -> 正在生成 Mobile 版本 ($OUTPUT_FILE_MOBILE)..."
-cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_MOBILE.tmp" # 从通用版本复制，已有 IP 列表
-# 替换导入 URL 为固定值 (使用 # 分隔符)
+cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_MOBILE.tmp" # 从通用版本复制
+# 替换导入 URL 为 Mobile 版自身 (使用 # 分隔符)
 sed -i "s#\"config\/import-settings-url\": \".*\",#\"config\/import-settings-url\": \"$MOBILE_URL_TARGET\",#" "$OUTPUT_FILE_MOBILE.tmp"
 # 替换 Mobile 专用配置 (使用 # 分隔符)
 sed -i 's#\"config\/use-connecticon-card\": \".*\",#\"config\/use-connecticon-card\": \"true\",#' "$OUTPUT_FILE_MOBILE.tmp"
@@ -259,8 +272,8 @@ echo "  ✅ Mobile 版本生成完毕。"
 # 5.3 生成 PC 版本 (zashboard-settings-pc.json)
 PC_URL_TARGET="/ui/zashboard-settings-pc.json"
 echo "  -> 正在生成 PC 版本 ($OUTPUT_FILE_PC)..."
-cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_PC.tmp" # 从通用版本复制，已有 IP 列表
-# 替换导入 URL 为固定值 (使用 # 分隔符)
+cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_PC.tmp" # 从通用版本复制
+# 替换导入 URL 为 PC 版自身 (使用 # 分隔符)
 sed -i "s#\"config\/import-settings-url\": \".*\",#\"config\/import-settings-url\": \"$PC_URL_TARGET\",#" "$OUTPUT_FILE_PC.tmp"
 # 替换 PC 专用配置 (使用 # 分隔符)
 sed -i 's#\"config\/use-connecticon-card\": \".*\",#\"config\/use-connecticon-card\": \"false\",#' "$OUTPUT_FILE_PC.tmp"
@@ -268,9 +281,9 @@ mv "$OUTPUT_FILE_PC.tmp" "$OUTPUT_FILE_PC"
 echo "  ✅ PC 版本生成完毕。"
 
 # =======================================================
-# 阶段 6: 覆盖更新配置文件
+# 阶段 6: 覆盖更新备份文件
 # =======================================================
-echo "6. 正在使用通用版本覆盖更新配置文件..."
+echo "6. 正在使用通用版本覆盖更新备份文件..."
 cp "$OUTPUT_FILE_GENERAL" "$CONFIG_FILE"
 echo "  -> 成功将 $OUTPUT_FILE_GENERAL 覆盖到 $CONFIG_FILE"
 
