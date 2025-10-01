@@ -126,6 +126,7 @@ dns:
       - https://dns.alidns.com/dns-query#h3=true
       - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
+      - https://dns.quad9.net/dns-query
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
   default-nameserver:
