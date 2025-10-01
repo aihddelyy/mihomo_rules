@@ -48,16 +48,24 @@ ip neigh show | grep -E 'REACHABLE|STALE|DELAY|PERMANENT' | grep 'lladdr' | awk 
         if ($i == "lladdr") { mac_addr = tolower($(i+1)); break }
     }
     if (mac_addr != "") {
-        # 仅捕获 2408:824e 开头的 IPv6 地址
         if (ip_addr ~ /([0-9]{1,3}\.){3}[0-9]{1,3}/) {
             print mac_addr, ip_addr >> "'"$TEMP_MAC_V4"'"
-        } else if (ip_addr ~ /:/ && ip_addr ~ /^2408:824e/) { 
+        } 
+        # 扩大 IPv6 捕获范围：匹配所有以 '24' 开头的 IPv6 地址
+        else if (ip_addr ~ /:/ && ip_addr ~ /^24/) { 
             print mac_addr, ip_addr >> "'"$TEMP_MAC_V6"'"
         }
     }
 }
 '
 echo "  -> MAC -> IPv4 列表完成：$(wc -l < "$TEMP_MAC_V4") 条记录"
+
+# 鲁棒性检查：确保 IPv6 文件存在，避免后续 AWK 报错
+if [ ! -f "$TEMP_MAC_V6" ]; then
+    touch "$TEMP_MAC_V6"
+    # 不打印警告信息以保持简洁输出
+fi
+
 echo "  -> MAC -> IPv6 列表完成：$(wc -l < "$TEMP_MAC_V6") 条记录"
 
 
@@ -183,7 +191,15 @@ echo "  -> JQ 流程完成。已处理列表长度: $(echo "$PROCESSED_LIST_JSON
 # =======================================================
 
 echo "4. 正在构造待新增的 IPv6 地址记录..."
+# 尝试从现有配置中提取一个 IPv6 记录作为模板
 ITEM_TEMPLATE_RAW=$(jq -r '.["config/source-ip-label-list"] | (fromjson? // [])[] | select(.key | contains(":")) | del(.key, .label, .id)' "$CONFIG_FILE" 2>/dev/null | head -n 1)
+
+# ****************************** 修复点 ******************************
+# 检查提取的模板是否为空或非 JSON，如果不是则使用空 JSON 对象 '{}'
+if [ -z "$ITEM_TEMPLATE_RAW" ] || ! echo "$ITEM_TEMPLATE_RAW" | jq empty 2>/dev/null; then
+    ITEM_TEMPLATE_RAW="{}"
+fi
+# ******************************************************************
 
 # 将 JQ 逻辑写入文件
 cat << EOF_ITEM_CREATOR > "$FILE_ITEM_CREATOR"
