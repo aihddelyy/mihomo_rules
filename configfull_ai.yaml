@@ -129,6 +129,7 @@ dns:
     - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
   nameserver-policy:
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
+      - https://dns.quad9.net/dns-query
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
   default-nameserver:
