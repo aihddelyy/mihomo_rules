@@ -166,7 +166,7 @@ proxy-groups:
   - {name: OneDrive, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/onedrive.png"}
   - {name: AI, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/ai.png"}
   - {name: TikTok, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/tiktok.png"}
-  - {name: NETFLIX, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/netflix.png"}
+  - {name: Netflix, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/netflix.png"}
   - {name: AppleTV, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/apple-tv.png"}
   - {name: HBO, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/hbo.png"}
   - {name: Disney, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/disney-plus.png"}
@@ -229,7 +229,7 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 # over
   - {name: 故障转移, type: fallback, interval: 300, max-failed-times: 1, include-all: true, hidden: true, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}  
-  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, IPV6节点, 故障转移, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, NETFLIX, AppleTV, HBO, Disney, Prime, Hulu, Spotify, Telegram, X, Discord, Meta, 社交媒体, Global-TV, Porn, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, Steam, 游戏平台, 国外电商, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, IPV6节点, 故障转移, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, AppleTV, HBO, Disney, Prime, Hulu, Spotify, Telegram, X, Discord, Meta, 社交媒体, Global-TV, Porn, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, Steam, 游戏平台, 国外电商, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
 rules:
 # 防止 Telegram 加载转圈
@@ -291,8 +291,8 @@ rules:
   - RULE-SET,Telegram_domain,Telegram
   - RULE-SET,Telegram_ip,Telegram,no-resolve
   - RULE-SET,Spotify_domain,Spotify
-  - RULE-SET,Netflix_domain,NETFLIX
-  - RULE-SET,Netflix_ip,NETFLIX,no-resolve
+  - RULE-SET,Netflix_domain,Netflix
+  - RULE-SET,Netflix_ip,Netflix,no-resolve
   - RULE-SET,Hbo_domain,HBO
   - RULE-SET,Disney_domain,Disney
   - RULE-SET,Prime_domain,Prime
