@@ -29,7 +29,7 @@ log "获取的版本号为 $version"
 
 # 下载 Smart 内核 若架构不同对应修改此处链接
 log "下载内核..."
-wget -qO "$TMP_DIR/mihomo-linux-amd64.gz" "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-$version.gz"
+wget -qO "$TMP_DIR/mihomo-linux-amd64.gz" "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-v3-$version.gz"
 if [ $? -ne 0 ]; then
     log "❌ 内核下载失败，终止更新"
     exit 1
