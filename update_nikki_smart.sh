@@ -70,7 +70,6 @@ log "替换旧模型文件..."
 mv -f "$TMP_DIR/Model.bin" /etc/nikki/run/Model.bin
 
 # 重启服务
-log "重启 nikki 服务..."
 if service nikki status >/dev/null 2>&1; then
     log "重启 nikki 服务..."
     service nikki restart
