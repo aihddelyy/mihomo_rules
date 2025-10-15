@@ -30,9 +30,6 @@ if [ -z "$version" ]; then
         exit 1
     fi
 fi
-    log "❌ 获取版本号失败，终止更新"
-    exit 1
-fi
 
 log "获取的版本号为 $version"
 
@@ -46,9 +43,6 @@ if [ $? -ne 0 ]; then
         log "❌ 代理下载内核失败，终止更新"
         exit 1
     fi
-fi
-    log "❌ 内核下载失败，终止更新"
-    exit 1
 fi
 
 # 解压
