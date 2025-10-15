@@ -6,6 +6,7 @@ LOG_DIR="/var/log/nikki_update"
 LOG_FILE="$LOG_DIR/update_$(date '+%Y-%m-%d_%H-%M-%S').log"
 
 GITHUB_RAW_URL="https://github.com/vernesong/mihomo/releases/download/Prerelease-Alpha"
+GITHUB_RAW_MODEL_URL="https://github.com/vernesong/mihomo/releases/download/LightGBM-Model"
 
 # 创建目录
 mkdir -p "$TMP_DIR"
@@ -60,10 +61,14 @@ chmod +x /usr/bin/mihomo
 
 # 下载模型文件
 log "下载模型文件..."
-wget -qO "$TMP_DIR/Model.bin" "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
+wget -qO "$TMP_DIR/Model.bin" "$GITHUB_RAW_MODEL_URL/Model.bin"
 if [ $? -ne 0 ]; then
-    log "❌ 模型文件下载失败，终止更新"
-    exit 1
+    log "⚠️ 直接从 GitHub 下载模型文件失败，尝试通过代理下载..."
+    wget -qO "$TMP_DIR/Model.bin" "https://gh-proxy.com/github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
+    if [ $? -ne 0 ]; then
+        log "❌ 代理下载模型文件失败，终止更新"
+        exit 1
+    fi
 fi
 # 替换旧模型文件
 log "替换旧模型文件..."
