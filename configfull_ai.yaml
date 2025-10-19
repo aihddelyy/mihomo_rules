@@ -196,7 +196,7 @@ proxy-groups:
   - {name: 美国节点, <<: *Select_type, proxies: [美国自动, 美国智能, 美国均衡], include-all: true, filter: "(?i)(美|🇺🇲|US|America|United States)", icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国节点, <<: *Select_type, proxies: [英国自动, 英国智能, 英国均衡], include-all: true, filter: "(?i)(英|GB|UK|England|British)", icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲节点, <<: *Select_type, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, filter: "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)", icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 其他国家, <<: *Select_type, include-all: true, exclude-filter: "(?i)(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西班牙|波|卢|瑞)", icon: "https://icon.aihdde.eu.org/country.png"}
+  - {name: 其他国家, <<: *Select_type, include-all: true, exclude-filter: "(?i)(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西班牙|波|卢|瑞|家宽)", icon: "https://icon.aihdde.eu.org/country.png"}
 # 地区自动、均衡节点隐藏 start
   - {name: 香港自动, <<: *Urltest_type, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾自动, <<: *Urltest_type, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
