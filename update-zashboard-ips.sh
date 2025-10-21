@@ -1,7 +1,6 @@
 #!/bin/sh
-# Zashboard IPv6 更新脚本 (最终版 23.0 - 增强 Shell 字符串处理版)
-# - 修复了第 119 行附近由于 Bash 变量中换行符和引号引起的 "unterminated quoted string" 错误。
-# - 使用临时文件和更稳定的方法捕获新增的 JSON 记录，避免 Shell 语法解析错误。
+# Zashboard IPv6 更新脚本 (最终版 24.0 - 兼容性和鲁棒性优化版)
+# - 包含所有修复：文件鲁棒性、IPv6 捕获范围、JQ 模板处理、Shell 兼容性。
 
 # 确保脚本使用 LF 换行符
 sed -i 's/\r//g' "$0" 2>/dev/null
@@ -37,7 +36,7 @@ TEMP_MAC_V6="$TEMP_DIR/mac_ipv6.map"
 FILE_JQ_FILTER="$TEMP_DIR/update_filter.jq" 
 FILE_REMAINING="$TEMP_DIR/remaining_to_add.json" 
 FILE_ITEM_CREATOR="$TEMP_DIR/item_creator.jq"
-FILE_NEW_ITEMS_RAW="$TEMP_DIR/new_items_raw.json" # <--- 新增临时文件
+FILE_NEW_ITEMS_RAW="$TEMP_DIR/new_items_raw.json"
 
 # =======================================================
 # 阶段 1: 数据提取并分类 (MAC -> IP)
@@ -210,15 +209,12 @@ cat << EOF_ITEM_CREATOR > "$FILE_ITEM_CREATOR"
 } + (\$template | fromjson? // {})
 EOF_ITEM_CREATOR
 
-NEW_ITEM_COUNT=0
+# 1. 确保临时文件存在且为空，避免后续 JQ 报错
+> "$FILE_NEW_ITEMS_RAW"
 
-# ****************************** 关键修改 ******************************
-# 将新增的 JSON 对象直接输出到文件，避免 Bash 变量捕获多行 JSON 时的引用问题
 if [ -f "$FILE_REMAINING" ] && [ "$(jq 'length' "$FILE_REMAINING" 2>/dev/null)" -gt 0 ]; then
     
-    # 清空并写入新的 JSON 对象
-    > "$FILE_NEW_ITEMS_RAW"
-    
+    # 将新增的 JSON 对象直接输出到文件
     jq -c -r '.[]' "$FILE_REMAINING" | while IFS= read -r item_json; do
         NEW_ID=$(generate_id) 
         
@@ -227,11 +223,11 @@ if [ -f "$FILE_REMAINING" ] && [ "$(jq 'length' "$FILE_REMAINING" 2>/dev/null)" 
 
         if [ -n "$NEW_ITEM" ]; then
             printf "%s\n" "$NEW_ITEM" >> "$FILE_NEW_ITEMS_RAW"
-            NEW_ITEM_COUNT=$((NEW_ITEM_COUNT + 1))
         fi
     done
 fi
-# ******************************************************************
+
+NEW_ITEM_COUNT=$(wc -l < "$FILE_NEW_ITEMS_RAW")
 
 echo "  -> 成功构造 $NEW_ITEM_COUNT 个 IPv6 地址记录。"
 
@@ -241,7 +237,6 @@ echo "  -> 成功构造 $NEW_ITEM_COUNT 个 IPv6 地址记录。"
 # =======================================================
 echo "5. 正在合并最终列表并生成配置文件..."
 
-# ****************************** 关键修改 ******************************
 # 从文件而不是 Bash 变量中读取新增的 JSON 对象列表
 NEW_JSON_LIST=$(
     jq -s -r --argjson processed "$PROCESSED_LIST_JSON" '
@@ -250,7 +245,6 @@ NEW_JSON_LIST=$(
         $base_list + $new_list | tojson
     ' "$FILE_NEW_ITEMS_RAW"
 )
-# ******************************************************************
 
 if [ -z "$NEW_JSON_LIST" ] || [ "$NEW_JSON_LIST" = "null" ]; then
     echo "🚨 严重警告: 最终列表合并失败。强制回退到 '[]'。"
