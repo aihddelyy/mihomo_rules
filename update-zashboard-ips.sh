@@ -1,5 +1,7 @@
 #!/bin/sh
-# Zashboard IPv6 更新脚本
+# Zashboard IPv6 更新脚本 (最终版 23.0 - 增强 Shell 字符串处理版)
+# - 修复了第 119 行附近由于 Bash 变量中换行符和引号引起的 "unterminated quoted string" 错误。
+# - 使用临时文件和更稳定的方法捕获新增的 JSON 记录，避免 Shell 语法解析错误。
 
 # 确保脚本使用 LF 换行符
 sed -i 's/\r//g' "$0" 2>/dev/null
@@ -35,6 +37,7 @@ TEMP_MAC_V6="$TEMP_DIR/mac_ipv6.map"
 FILE_JQ_FILTER="$TEMP_DIR/update_filter.jq" 
 FILE_REMAINING="$TEMP_DIR/remaining_to_add.json" 
 FILE_ITEM_CREATOR="$TEMP_DIR/item_creator.jq"
+FILE_NEW_ITEMS_RAW="$TEMP_DIR/new_items_raw.json" # <--- 新增临时文件
 
 # =======================================================
 # 阶段 1: 数据提取并分类 (MAC -> IP)
@@ -63,7 +66,6 @@ echo "  -> MAC -> IPv4 列表完成：$(wc -l < "$TEMP_MAC_V4") 条记录"
 # 鲁棒性检查：确保 IPv6 文件存在，避免后续 AWK 报错
 if [ ! -f "$TEMP_MAC_V6" ]; then
     touch "$TEMP_MAC_V6"
-    # 不打印警告信息以保持简洁输出
 fi
 
 echo "  -> MAC -> IPv6 列表完成：$(wc -l < "$TEMP_MAC_V6") 条记录"
@@ -194,12 +196,10 @@ echo "4. 正在构造待新增的 IPv6 地址记录..."
 # 尝试从现有配置中提取一个 IPv6 记录作为模板
 ITEM_TEMPLATE_RAW=$(jq -r '.["config/source-ip-label-list"] | (fromjson? // [])[] | select(.key | contains(":")) | del(.key, .label, .id)' "$CONFIG_FILE" 2>/dev/null | head -n 1)
 
-# ****************************** 修复点 ******************************
-# 检查提取的模板是否为空或非 JSON，如果不是则使用空 JSON 对象 '{}'
+# 确保提取的模板是否为空或非 JSON，如果不是则使用空 JSON 对象 '{}'
 if [ -z "$ITEM_TEMPLATE_RAW" ] || ! echo "$ITEM_TEMPLATE_RAW" | jq empty 2>/dev/null; then
     ITEM_TEMPLATE_RAW="{}"
 fi
-# ******************************************************************
 
 # 将 JQ 逻辑写入文件
 cat << EOF_ITEM_CREATOR > "$FILE_ITEM_CREATOR"
@@ -211,27 +211,27 @@ cat << EOF_ITEM_CREATOR > "$FILE_ITEM_CREATOR"
 EOF_ITEM_CREATOR
 
 NEW_ITEM_COUNT=0
-NEW_ITEMS_TO_ADD=""
 
+# ****************************** 关键修改 ******************************
+# 将新增的 JSON 对象直接输出到文件，避免 Bash 变量捕获多行 JSON 时的引用问题
 if [ -f "$FILE_REMAINING" ] && [ "$(jq 'length' "$FILE_REMAINING" 2>/dev/null)" -gt 0 ]; then
     
-    # 使用命令替换在父 Shell 中捕获结果
-    NEW_ITEMS_TO_ADD=$(
-        jq -c -r '.[]' "$FILE_REMAINING" | while IFS= read -r item_json; do
-            NEW_ID=$(generate_id) 
-            
-            # 使用 jq -f 和 --argjson 安全地构建新的 JSON 对象
-            NEW_ITEM=$(echo "$item_json" | jq -f "$FILE_ITEM_CREATOR" --arg id "$NEW_ID" --argjson template "$ITEM_TEMPLATE_RAW")
+    # 清空并写入新的 JSON 对象
+    > "$FILE_NEW_ITEMS_RAW"
+    
+    jq -c -r '.[]' "$FILE_REMAINING" | while IFS= read -r item_json; do
+        NEW_ID=$(generate_id) 
+        
+        # 使用 jq -f 和 --argjson 安全地构建新的 JSON 对象
+        NEW_ITEM=$(echo "$item_json" | jq -f "$FILE_ITEM_CREATOR" --arg id "$NEW_ID" --argjson template "$ITEM_TEMPLATE_RAW")
 
-            if [ -n "$NEW_ITEM" ]; then
-                echo "$NEW_ITEM" # 每次循环只输出一个 JSON 对象
-            fi
-        done
-    )
-
-    # 统计实际捕获到的行数作为计数
-    NEW_ITEM_COUNT=$(echo "$NEW_ITEMS_TO_ADD" | grep -c '^{')
+        if [ -n "$NEW_ITEM" ]; then
+            printf "%s\n" "$NEW_ITEM" >> "$FILE_NEW_ITEMS_RAW"
+            NEW_ITEM_COUNT=$((NEW_ITEM_COUNT + 1))
+        fi
+    done
 fi
+# ******************************************************************
 
 echo "  -> 成功构造 $NEW_ITEM_COUNT 个 IPv6 地址记录。"
 
@@ -240,13 +240,17 @@ echo "  -> 成功构造 $NEW_ITEM_COUNT 个 IPv6 地址记录。"
 # 阶段 5: 最终列表合并与文件生成
 # =======================================================
 echo "5. 正在合并最终列表并生成配置文件..."
+
+# ****************************** 关键修改 ******************************
+# 从文件而不是 Bash 变量中读取新增的 JSON 对象列表
 NEW_JSON_LIST=$(
-    echo "$NEW_ITEMS_TO_ADD" | jq -s -r --argjson processed "$PROCESSED_LIST_JSON" '
+    jq -s -r --argjson processed "$PROCESSED_LIST_JSON" '
         ($processed | if . == null then [] else . end) as $base_list |
         (if . == null then [] else . end) as $new_list |
         $base_list + $new_list | tojson
-    '
+    ' "$FILE_NEW_ITEMS_RAW"
 )
+# ******************************************************************
 
 if [ -z "$NEW_JSON_LIST" ] || [ "$NEW_JSON_LIST" = "null" ]; then
     echo "🚨 严重警告: 最终列表合并失败。强制回退到 '[]'。"
