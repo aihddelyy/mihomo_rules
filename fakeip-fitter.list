@@ -116,6 +116,7 @@ ps.res.netease.com
 *.*.cloudapp.azure.com
 +.services.googleapis.cn
 +.xn--ngstr-lra8j.com
++.aihdde.com
 +.push.apple.com
 5ddd.com
 *.pool.ntp.org
