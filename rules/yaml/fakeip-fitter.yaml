@@ -27,6 +27,7 @@ payload:
   - '*.time.edu.cn'
   - '*.xiami.com'
   - '*.y.qq.com'
+  - '+.aihdde.com'
   - '+.battlenet.com.cn'
   - '+.cdn.nintendo.net'
   - '+.cmbchina.com'
