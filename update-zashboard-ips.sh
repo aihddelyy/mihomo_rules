@@ -1,6 +1,8 @@
 #!/bin/sh
-# Zashboard IPv6 更新脚本 (最终版 24.0 - 兼容性和鲁棒性优化版)
-# - 包含所有修复：文件鲁棒性、IPv6 捕获范围、JQ 模板处理、Shell 兼容性。
+# Zashboard IPv6 更新脚本 (最终版 25.0 - EUI64 保留优化版)
+# - 修复了 Shell 兼容性问题。
+# - 实现了特殊地址（如 eui64 格式或非 '24' 开头地址）的保留逻辑：
+#   对于旧的 IPv6 记录，如果它未能被新的 '24' 地址替换，则不删除它，而是直接保留。
 
 # 确保脚本使用 LF 换行符
 sed -i 's/\r//g' "$0" 2>/dev/null
@@ -117,7 +119,7 @@ echo "  -> 字典构造完成。"
 # =======================================================
 echo "3. 正在运行 JQ 严格同步流程 (更新/保留/删除/计算新增)..."
 
-# JQ 核心逻辑定义到文件 (保持严格同步逻辑不变)
+# JQ 核心逻辑定义到文件 (已修改 2.2 逻辑)
 cat << 'EOF_JQ_FILTER' > "$FILE_JQ_FILTER"
 ($ENV.V4V6_MAP_FINAL | fromjson? // {}) as $v4v6map |
 ($ENV.IPV4_LABEL_MAP_FINAL | fromjson? // {}) as $v4labelmap |
@@ -143,8 +145,14 @@ cat << 'EOF_JQ_FILTER' > "$FILE_JQ_FILTER"
             ($item | .key = $new_list[$current_count]) as $updated_item |
             {result: ($state.result + [$updated_item]), v6_used_counts: ($state.v6_used_counts + {($item.label): ($current_count + 1)})}
         else
-            # 未找到新地址替换 (包括新列表为空的情况)：删除，不加入 result
-            $state
+            # 未找到新地址替换 (新列表用尽或为空)，执行保留/删除判断
+            if ($item.key | startswith("24")) then
+                # 如果旧地址是 '24' 开头的公网地址，但没有新的地址替换它，则删除
+                $state
+            else
+                # 如果旧地址不是 '24' 开头 (如 EUI-64, FE80 链路本地等)，且没有新地址替换它，则保留
+                {result: ($state.result + [$item]), v6_used_counts: $state.v6_used_counts}
+            end
         end
     else
         # 2.3. 其他未知格式记录：保留
@@ -209,7 +217,7 @@ cat << EOF_ITEM_CREATOR > "$FILE_ITEM_CREATOR"
 } + (\$template | fromjson? // {})
 EOF_ITEM_CREATOR
 
-# 1. 确保临时文件存在且为空，避免后续 JQ 报错
+# 1. 确保临时文件存在且为空
 > "$FILE_NEW_ITEMS_RAW"
 
 if [ -f "$FILE_REMAINING" ] && [ "$(jq 'length' "$FILE_REMAINING" 2>/dev/null)" -gt 0 ]; then
