@@ -221,7 +221,7 @@ rules:
 # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
 # 禁用Youtube QUIC
-  - AND,((RULE-SET,Youtube_domain),(NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
+#  - AND,((RULE-SET,Youtube_domain),(NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
 # NTP直连
   - DST-PORT,123,全球直连
 # 一般规则
