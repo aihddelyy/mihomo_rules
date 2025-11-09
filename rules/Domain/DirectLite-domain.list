@@ -4,7 +4,8 @@ DOMAIN-SUFFIX,msftcomecttest.com
 DOMAIN-SUFFIX,dns.msftncsi.com
 DOMAIN-SUFFIX,ipv6.msftconnecttest.com
 DOMAIN-SUFFIX,istoreos.com
-DOMAIN-SUFFIX,vpn.aihdde.com
+DOMAIN-SUFFIX,aihdde.com
+DOMAIN-SUFFIX,aihdde.eu.org
 DOMAIN-SUFFIX,openwrt.ai
 DOMAIN-SUFFIX,dl.openwrt.ai
 DOMAIN-SUFFIX,istore.istoreos.com
