@@ -23,12 +23,13 @@ DOMAIN-SUFFIX,5ddd.com
 DOMAIN-SUFFIX,mirrors.vsean.net
 DOMAIN-SUFFIX,noedgeai.com
 DOMAIN-SUFFIX,gh-proxy.com
-DOMAIN,ghproxy.aihdde.eu.org
-DOMAIN,icon.aihdde.eu.org
 DOMAIN-SUFFIX,doh.pub
 DOMAIN-SUFFIX,dot.pub
 DOMAIN-SUFFIX,dns.alidns.com
+DOMAIN-SUFFIX,cloud1.mikrotik.ltd
 DOMAIN-SUFFIX,cloud2.mikrotik.ltd
+DOMAIN-SUFFIX,cloud1.mikrotik.com
+DOMAIN-SUFFIX,cloud2.mikrotik.com
 DOMAIN-SUFFIX,dev.servers.nat-traversal.softether-network.net
 DOMAIN-SUFFIX,mxmy.net
 DOMAIN-SUFFIX,360.com
