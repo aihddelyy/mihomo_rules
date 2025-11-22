@@ -154,7 +154,7 @@ Select_type: &Select_type {type: select, interval: 300, max-failed-times: 3}
 
 # 策略组
 proxy-groups:
-  - {name: 默认代理, <<: *Select_type, proxies: [自动选择, 手动选择, IPV6节点, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://icon.aihdde.eu.org/web.png"}
+  - {name: 默认代理, <<: *Select_type, proxies: [自动选择, 手动选择, 故障转移, IPV6节点, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://icon.aihdde.eu.org/web.png"}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 1, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/sync.png"}
   - {name: 手动选择, <<: *Select_type, include-all: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: IPV6节点, type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 1, filter: "(?i)v6|ipv6", icon: "https://icon.aihdde.eu.org/ipv6.png"}
