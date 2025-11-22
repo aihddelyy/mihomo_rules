@@ -29,12 +29,13 @@ DOMAIN-SUFFIX,noedgeai.com
 DOMAIN-SUFFIX,gh-proxy.com
 IP-CIDR,180.163.146.102/32,no-resolve
 IP-CIDR,10.10.10.0/24
-DOMAIN,ghproxy.aihdde.eu.org
-DOMAIN,icon.aihdde.eu.org
 DOMAIN-SUFFIX,doh.pub
 DOMAIN-SUFFIX,dot.pub
 DOMAIN-SUFFIX,dns.alidns.com
+DOMAIN-SUFFIX,cloud1.mikrotik.ltd
 DOMAIN-SUFFIX,cloud2.mikrotik.ltd
+DOMAIN-SUFFIX,cloud1.mikrotik.com
+DOMAIN-SUFFIX,cloud2.mikrotik.com
 IP-CIDR,223.5.5.5/32
 IP-CIDR,223.6.6.6/32
 IP-CIDR,1.12.12.21/32
