@@ -30,6 +30,7 @@ payload:
   - '+.dot.pub'
   - '+.dns.alidns.com'
   - '+.cloud.mikrotik.com'
+  - '+.cloud2.mikrotik.ltd'
   - '+.dev.servers.nat-traversal.softether-network.net'
   - '+.mxmy.net'
   - '+.360.com'
