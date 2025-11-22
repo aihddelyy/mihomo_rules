@@ -35,6 +35,7 @@ DOMAIN-SUFFIX,doh.pub
 DOMAIN-SUFFIX,dot.pub
 DOMAIN-SUFFIX,dns.alidns.com
 DOMAIN-SUFFIX,cloud.mikrotik.com
+DOMAIN-SUFFIX,cloud2.mikrotik.ltd
 IP-CIDR,223.5.5.5/32
 IP-CIDR,223.6.6.6/32
 IP-CIDR,1.12.12.21/32
