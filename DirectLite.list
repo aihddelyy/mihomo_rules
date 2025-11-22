@@ -32,9 +32,9 @@ IP-CIDR,10.10.10.0/24
 DOMAIN-SUFFIX,doh.pub
 DOMAIN-SUFFIX,dot.pub
 DOMAIN-SUFFIX,dns.alidns.com
-DOMAIN-SUFFIX,cloud1.mikrotik.ltd
+DOMAIN-SUFFIX,cloud.mikrotik.ltd
 DOMAIN-SUFFIX,cloud2.mikrotik.ltd
-DOMAIN-SUFFIX,cloud1.mikrotik.com
+DOMAIN-SUFFIX,cloud.mikrotik.com
 DOMAIN-SUFFIX,cloud2.mikrotik.com
 IP-CIDR,223.5.5.5/32
 IP-CIDR,223.6.6.6/32
