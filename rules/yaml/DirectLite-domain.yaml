@@ -29,7 +29,6 @@ payload:
   - '+.doh.pub'
   - '+.dot.pub'
   - '+.dns.alidns.com'
-  - '+.cloud.mikrotik.com'
   - '+.cloud2.mikrotik.ltd'
   - '+.dev.servers.nat-traversal.softether-network.net'
   - '+.mxmy.net'
