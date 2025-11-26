@@ -166,7 +166,7 @@ Select_type: &Select_type {type: select, interval: 300, max-failed-times: 3}
 
 # 策略组
 proxy-groups:
-  - {name: 默认代理, <<: *Select_type, proxies: [自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://icon.aihdde.eu.org/web.png"}
+  - {name: 默认代理, <<: *Select_type, proxies: [自动选择, 手动选择, 故障转移, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://icon.aihdde.eu.org/web.png"}
   - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 1, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/sync.png"}
   - {name: 手动选择, <<: *Select_type, include-all: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: YouTube, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/youtube.png"}
@@ -187,7 +187,7 @@ proxy-groups:
   - {name: 全球直连, type: select, proxies: [🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/direct.png"}
   - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
   - {name: 漏网之鱼, <<: *Include_all, icon: "https://icon.aihdde.eu.org/fish.png"}
-  - {name: 自建/家宽节点, <<: *Select_type, include-all: true, filter: "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))", icon: "https://icon.aihdde.eu.org/home.png"}
+  - {name: 自建/家宽节点, <<: *Urltest_type, filter: "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))", icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 香港节点, <<: *Select_type, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾节点, <<: *Select_type, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
   - {name: 港台节点, <<: *Select_type, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
