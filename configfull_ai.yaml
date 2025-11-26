@@ -187,7 +187,7 @@ proxy-groups:
   - {name: 全球直连, type: select, proxies: [🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/direct.png"}
   - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
   - {name: 漏网之鱼, <<: *Include_all, icon: "https://icon.aihdde.eu.org/fish.png"}
-  - {name: 自建/家宽节点, <<: *Urltest_type, filter: "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))", icon: "https://icon.aihdde.eu.org/home.png"}
+  - {name: 自建/家宽节点, type: url-test, include-all: true, tolerance: 20, interval: 300, max-failed-times: 3, filter: "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))", icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 香港节点, <<: *Select_type, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)", icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾节点, <<: *Select_type, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/taiwan.png"}
   - {name: 港台节点, <<: *Select_type, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)", icon: "https://icon.aihdde.eu.org/gangtai.png"}
