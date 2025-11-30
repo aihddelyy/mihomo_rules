@@ -36,7 +36,6 @@ DOMAIN-SUFFIX,cloud.mikrotik.ltd
 DOMAIN-SUFFIX,cloud2.mikrotik.ltd
 DOMAIN-SUFFIX,cloud.mikrotik.com
 DOMAIN-SUFFIX,cloud2.mikrotik.com
-DOMAIN-SUFFIX,cloud3.mikrotik.com
 IP-CIDR,223.5.5.5/32
 IP-CIDR,223.6.6.6/32
 IP-CIDR,1.12.12.21/32
