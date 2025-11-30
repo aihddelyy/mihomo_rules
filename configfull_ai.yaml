@@ -15,7 +15,7 @@ proxy-providers:
     url: "机场订阅链接1"
   Airport_02:
     type: http
-    interval: 86400
+    interval: 864000
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
