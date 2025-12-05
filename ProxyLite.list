@@ -44,7 +44,7 @@ DOMAIN-SUFFIX,www.torrentdownload.info
 DOMAIN-SUFFIX,darkreader.org
 DOMAIN-SUFFIX,nipponsei.minglong.org
 DOMAIN-SUFFIX,wd-gold.com
-DOMAIN,linux.do
+DOMAIN-SUFFIX,linux.do
 
 # docker rules 
 DOMAIN-SUFFIX,compose-spec.io
