@@ -39,7 +39,7 @@ payload:
   - '+.darkreader.org'
   - '+.nipponsei.minglong.org'
   - '+.wd-gold.com'
-  - '+.linux.do'
+  - 'linux.do'
   - '+.compose-spec.io'
   - '+.docker.com'
   - '+.docker.io'
