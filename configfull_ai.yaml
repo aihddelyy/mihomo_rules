@@ -182,7 +182,7 @@ Urltest_type: &Urltest_type {type: url-test, include-all: true, tolerance: 20, i
 Load-balance_type: &Load-balance_type {type: load-balance, interval: 60, lazy: true, include-all: true, strategy: consistent-hashing, hidden: true}
 Smart_type: &Smart_type {type: smart, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, include-all: true, interval: 60, lazy: true, hidden: true}
 Streaming_media_group: &Streaming_media_group {type: select, interval: 60, lazy: true, proxies: [默认代理, 自动选择, 手动选择, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
-Select_type: &Select_type {type: select, interval: 60, max-failed-times: 3}
+Select_type: &Select_type {type: select, interval: 60, lazy: true}
 # 正则过滤锚点 (地区 Filter)
 Filter_Home: &Filter_Home "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))"
 Filter_HK: &Filter_HK "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)"
