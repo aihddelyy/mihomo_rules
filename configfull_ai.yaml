@@ -194,7 +194,7 @@ ModeSelect: &SL {type: select, interval: 60, lazy: true}
 ModeFallback: &FB {type: fallback, interval: 60, lazy: true, hidden: true}
 
 # 3. 地区正则过滤器 (Filter 前缀)
-FilterHome: &Home "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))"
+FilterHome: &Home "(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att)"
 FilterHK: &HK "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)"
 FilterTW: &TW "(?i)(台|🇹🇼|TW|Taiwan)"
 FilterHKTW: &HKTW "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)"
