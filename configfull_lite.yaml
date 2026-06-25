@@ -230,7 +230,7 @@ proxy-groups:
   - {name: 新加坡节点, <<: *SL, proxies: [新加坡自动, 新加坡均衡], include-all: true, filter: *SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
   - {name: 日本节点, <<: *SL, proxies: [日本自动, 日本均衡], include-all: true, filter: *JP, icon: "https://icon.aihdde.eu.org/japan.png"}
   - {name: 韩国节点, <<: *SL, proxies: [韩国自动, 韩国均衡], include-all: true, filter: *KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国节点, <<: *SL, proxies: [美国自动, 美国均衡], include-all: true, filter: *US, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 美国节点, <<: *SL, proxies: [美国自动, 美国均衡], include-all: true, filter: *US, exclude-filter: *Home, icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国节点, <<: *SL, proxies: [英国自动, 英国均衡], include-all: true, filter: *UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲节点, <<: *SL, proxies: [欧洲自动, 欧洲均衡], include-all: true, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 其他国家, <<: *SL, include-all: true, exclude-filter: *OT, icon: "https://icon.aihdde.eu.org/country.png"}
@@ -241,7 +241,7 @@ proxy-groups:
   - {name: 新加坡自动, <<: *UTH, filter: *SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
   - {name: 日本自动, <<: *UTH, filter: *JP, icon: "https://icon.aihdde.eu.org/japan.png"}
   - {name: 韩国自动, <<: *UTH, filter: *KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国自动, <<: *UTH, filter: *US, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 美国自动, <<: *UTH, filter: *US, exclude-filter: *Home, icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国自动, <<: *UTH, filter: *UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲自动, <<: *UTH, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 香港均衡, <<: *LB, filter: *HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
@@ -250,7 +250,7 @@ proxy-groups:
   - {name: 新加坡均衡, <<: *LB, filter: *SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
   - {name: 日本均衡, <<: *LB, filter: *JP, icon: "https://icon.aihdde.eu.org/japan.png"}
   - {name: 韩国均衡, <<: *LB, filter: *KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国均衡, <<: *LB, filter: *US, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 美国均衡, <<: *LB, filter: *US, exclude-filter: *Home, icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国均衡, <<: *LB, filter: *UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲均衡, <<: *LB, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
 # over
