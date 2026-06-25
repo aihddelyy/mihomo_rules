@@ -172,7 +172,7 @@ proxies:
 # ================= YAML 锚点 =================
 
 # 1. 策略组继承模板 (Tpl 代表 Template)
-TplDefault: &TplDefault {type: select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连]}
+TplDefault: &TplDefault {type: select, proxies: [自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连]}
 TplProxyFirst: &TplProxyFirst {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 TplDirectFirst: &TplDirectFirst {type: select, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 TplIncludeAll: &TplIncludeAll {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
