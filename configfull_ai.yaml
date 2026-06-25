@@ -176,101 +176,108 @@ proxies:
   type: direct
   udp: true
  
-# 锚点
-# 策略组锚点
-Proxy_first: &Proxy_first {type: select, interval: 60, lazy: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-Direct_first: &Direct_first {type: select, interval: 60, lazy: true, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-Include_all: &Include_all {type: select, interval: 60, lazy: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
-Streaming_media_group: &Streaming_media_group {type: select, interval: 60, lazy: true, proxies: [默认代理, 自动选择, 手动选择, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
-# 代理组模式锚点
-Urltest_type: &Urltest_type {type: url-test, include-all: true, tolerance: 20, interval: 60, lazy: true, hidden: true}
-Load-balance_type: &Load-balance_type {type: load-balance, interval: 60, lazy: true, include-all: true, strategy: consistent-hashing, hidden: true}
-Smart_type: &Smart_type {type: smart, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, include-all: true, interval: 60, lazy: true, hidden: true}
-Select_type: &Select_type {type: select, interval: 60, lazy: true}
-Fallback_type: &Fallback_type {type: fallback, interval: 60, lazy: true, include-all: true, hidden: true}
-# 正则过滤锚点 (地区 Filter)
-Filter_Home: &Filter_Home "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))"
-Filter_HK: &Filter_HK "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)"
-Filter_TW: &Filter_TW "(?i)(台|🇹🇼|TW|Taiwan)"
-Filter_HKTW: &Filter_HKTW "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)"
-Filter_SG: &Filter_SG "(?i)(新|🇸🇬|SG|singapore)"
-Filter_JP: &Filter_JP "(?i)(日本|🇯🇵|JP|Japan)"
-Filter_KR: &Filter_KR "(?i)(韩国|🇰🇷|KR|Korea)"
-Filter_US: &Filter_US "(?i)(美|🇺🇲|US|America|United States)"
-Filter_UK: &Filter_UK "(?i)(英|GB|UK|England|British)"
-Filter_EU: &Filter_EU "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)"
-Filter_Others: &Filter_Others "(?i)(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西班牙|波|卢|瑞|家宽|CF)"
+# ================= YAML 锚点 =================
+
+# 1. 策略组继承模板 (Tpl 代表 Template)
+TplProxyFirst: &TplProxyFirst {type: select, interval: 60, lazy: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+TplDirectFirst: &TplDirectFirst {type: select, interval: 60, lazy: true, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+TplIncludeAll: &TplIncludeAll {type: select, interval: 60, lazy: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
+TplStreamingMedia: &TplStreamingMedia {type: select, interval: 60, lazy: true, proxies: [默认代理, 自动选择, 手动选择, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
+
+# 2. 策略组模式配置 (Mode 前缀)
+ModeUrlTestHidden: &ModeUrlTestHidden {type: url-test, include-all: true, tolerance: 20, interval: 60, lazy: true, hidden: true}
+ModeUrlTest: &ModeUrlTest {type: url-test, include-all: true, tolerance: 20, interval: 60, lazy: true}
+ModeLoadBalance: &ModeLoadBalance {type: load-balance, interval: 60, lazy: true, include-all: true, strategy: consistent-hashing, hidden: true}
+ModeSmart: &ModeSmart {type: smart, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, include-all: true, interval: 60, lazy: true, hidden: true}
+ModeSelect: &ModeSelect {type: select, interval: 60, lazy: true}
+ModeFallback: &ModeFallback {type: fallback, interval: 60, lazy: true, include-all: true, hidden: true}
+
+# 3. 地区正则过滤器 (Filter 前缀)
+FilterHome: &FilterHome "(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))"
+FilterHK: &FilterHK "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)"
+FilterTW: &FilterTW "(?i)(台|🇹🇼|TW|Taiwan)"
+FilterHKTW: &FilterHKTW "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)"
+FilterSG: &FilterSG "(?i)(新|🇸🇬|SG|singapore)"
+FilterJP: &FilterJP "(?i)(日本|🇯🇵|JP|Japan)"
+FilterKR: &FilterKR "(?i)(韩国|🇰🇷|KR|Korea)"
+FilterUS: &FilterUS "(?i)(美|🇺🇲|US|America|United States)"
+FilterUK: &FilterUK "(?i)(英|GB|UK|England|British)"
+FilterEU: &FilterEU "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)"
+FilterOthers: &FilterOthers "(?i)(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西班牙|波|卢|瑞|家宽|CF)"
 
 # 策略组
 proxy-groups:
-  - {name: 默认代理, <<: *Select_type, proxies: [自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://icon.aihdde.eu.org/web.png"}
-  - {name: 自动选择, type: url-test, include-all: true, tolerance: 20, interval: 60, lazy: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/sync.png"}
-  - {name: 手动选择, <<: *Select_type, include-all: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/check.png"}
-  - {name: YouTube, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/youtube.png"}
-  - {name: Google, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/google.png"}
-  - {name: Cloudflare, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/cloudflare.png"}
-  - {name: GitHub, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/github.png"}
-  - {name: Apple, <<: *Direct_first, icon: "https://icon.aihdde.eu.org/apple.png"}
-  - {name: Microsoft, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/microsoft.png"}
-  - {name: OneDrive, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/onedrive.png"}
-  - {name: AI, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/ai.png"}
-  - {name: TikTok, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/tiktok.png"}
-  - {name: Netflix, <<: *Streaming_media_group, icon: "https://icon.aihdde.eu.org/netflix.png"}
-  - {name: Telegram, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/telegram.png"}
-  - {name: Porn, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/pornhub.png"}
-  - {name: Steam, <<: *Include_all, icon: "https://icon.aihdde.eu.org/steam.png"}
-  - {name: PayPal, <<: *Proxy_first, icon: "https://icon.aihdde.eu.org/paypal.png"}
-  - {name: Speedtest, <<: *Include_all, icon: "https://icon.aihdde.eu.org/speedtest.png"}
+# 默认组
+  - {name: 默认代理, <<: *ModeSelect, proxies: [自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连], icon: "https://icon.aihdde.eu.org/web.png"}
+  - {name: 自动选择, <<: *ModeUrlTest, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/sync.png"}
+  - {name: 手动选择, <<: *ModeSelect, include-all: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/check.png"}
+# 应用组
+  - {name: YouTube, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/youtube.png"}
+  - {name: Google, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/google.png"}
+  - {name: Cloudflare, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/cloudflare.png"}
+  - {name: GitHub, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/github.png"}
+  - {name: Apple, <<: *TplDirectFirst, icon: "https://icon.aihdde.eu.org/apple.png"}
+  - {name: Microsoft, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/microsoft.png"}
+  - {name: OneDrive, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/onedrive.png"}
+  - {name: AI, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/ai.png"}
+  - {name: TikTok, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/tiktok.png"}
+  - {name: Netflix, <<: *TplStreamingMedia, icon: "https://icon.aihdde.eu.org/netflix.png"}
+  - {name: Telegram, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/telegram.png"}
+  - {name: Porn, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/pornhub.png"}
+  - {name: Steam, <<: *TplIncludeAll, icon: "https://icon.aihdde.eu.org/steam.png"}
+  - {name: PayPal, <<: *TplProxyFirst, icon: "https://icon.aihdde.eu.org/paypal.png"}
+  - {name: Speedtest, <<: *TplIncludeAll, icon: "https://icon.aihdde.eu.org/speedtest.png"}
   - {name: 全球直连, type: select, proxies: [🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/direct.png"}
   - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
-  - {name: 漏网之鱼, <<: *Include_all, icon: "https://icon.aihdde.eu.org/fish.png"}
-  - {name: 自建/家宽节点, type: url-test, include-all: true, tolerance: 20, interval: 60, lazy: true, filter: *Filter_Home, icon: "https://icon.aihdde.eu.org/home.png"}
-  - {name: 香港节点, <<: *Select_type, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: *Filter_HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾节点, <<: *Select_type, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: *Filter_TW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台节点, <<: *Select_type, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: *Filter_HKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡节点, <<: *Select_type, proxies: [新加坡自动, 新加坡智能, 新加坡均衡], include-all: true, filter: *Filter_SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本节点, <<: *Select_type, proxies: [日本自动, 日本智能, 日本均衡], include-all: true, filter: *Filter_JP, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国节点, <<: *Select_type, proxies: [韩国自动, 韩国智能, 韩国均衡], include-all: true, filter: *Filter_KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国节点, <<: *Select_type, proxies: [美国自动, 美国智能, 美国均衡], include-all: true, filter: *Filter_US, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国节点, <<: *Select_type, proxies: [英国自动, 英国智能, 英国均衡], include-all: true, filter: *Filter_UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲节点, <<: *Select_type, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, filter: *Filter_EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 其他国家, <<: *Select_type, include-all: true, exclude-filter: *Filter_Others, icon: "https://icon.aihdde.eu.org/country.png"}
+  - {name: 漏网之鱼, <<: *TplIncludeAll, icon: "https://icon.aihdde.eu.org/fish.png"}
+# 地区线路组
+  - {name: 自建/家宽节点, type: url-test, include-all: true, tolerance: 20, interval: 60, lazy: true, filter: *FilterHome, icon: "https://icon.aihdde.eu.org/home.png"}
+  - {name: 香港节点, <<: *ModeSelect, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: *FilterHK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾节点, <<: *ModeSelect, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: *FilterTW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台节点, <<: *ModeSelect, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: *FilterHKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡节点, <<: *ModeSelect, proxies: [新加坡自动, 新加坡智能, 新加坡均衡], include-all: true, filter: *FilterSG, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本节点, <<: *ModeSelect, proxies: [日本自动, 日本智能, 日本均衡], include-all: true, filter: *FilterJP, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国节点, <<: *ModeSelect, proxies: [韩国自动, 韩国智能, 韩国均衡], include-all: true, filter: *FilterKR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国节点, <<: *ModeSelect, proxies: [美国自动, 美国智能, 美国均衡], include-all: true, filter: *FilterUS, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国节点, <<: *ModeSelect, proxies: [英国自动, 英国智能, 英国均衡], include-all: true, filter: *FilterUK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲节点, <<: *ModeSelect, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, filter: *FilterEU, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 其他国家, <<: *ModeSelect, include-all: true, exclude-filter: *FilterOthers, icon: "https://icon.aihdde.eu.org/country.png"}
 # 地区自动、均衡节点隐藏 start
-  - {name: 香港自动, <<: *Urltest_type, filter: *Filter_HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾自动, <<: *Urltest_type, filter: *Filter_TW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台自动, <<: *Urltest_type, filter: *Filter_HKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡自动, <<: *Urltest_type, filter: *Filter_SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本自动, <<: *Urltest_type, filter: *Filter_JP, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国自动, <<: *Urltest_type, filter: *Filter_KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国自动, <<: *Urltest_type, filter: *Filter_US, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国自动, <<: *Urltest_type, filter: *Filter_UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲自动, <<: *Urltest_type, filter: *Filter_EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 香港智能, <<: *Smart_type, filter: *Filter_HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾智能, <<: *Smart_type, filter: *Filter_TW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台智能, <<: *Smart_type, policy-priority: "香港:1.3;台湾:0.9", filter: *Filter_HKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡智能, <<: *Smart_type, filter: *Filter_SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本智能, <<: *Smart_type, filter: *Filter_JP, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国智能, <<: *Smart_type, filter: *Filter_KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国智能, <<: *Smart_type, filter: *Filter_US, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国智能, <<: *Smart_type, filter: *Filter_UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲智能, <<: *Smart_type, filter: *Filter_EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 香港均衡, <<: *Load-balance_type, filter: *Filter_HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾均衡, <<: *Load-balance_type, filter: *Filter_TW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台均衡, <<: *Load-balance_type, filter: *Filter_HKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡均衡, <<: *Load-balance_type, filter: *Filter_SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本均衡, <<: *Load-balance_type, filter: *Filter_JP, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国均衡, <<: *Load-balance_type, filter: *Filter_KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国均衡, <<: *Load-balance_type, filter: *Filter_US, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国均衡, <<: *Load-balance_type, filter: *Filter_UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲均衡, <<: *Load-balance_type, filter: *Filter_EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 香港自动, <<: *ModeUrlTestHidden, filter: *FilterHK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾自动, <<: *ModeUrlTestHidden, filter: *FilterTW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台自动, <<: *ModeUrlTestHidden, filter: *FilterHKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡自动, <<: *ModeUrlTestHidden, filter: *FilterSG, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本自动, <<: *ModeUrlTestHidden, filter: *FilterJP, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国自动, <<: *ModeUrlTestHidden, filter: *FilterKR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国自动, <<: *ModeUrlTestHidden, filter: *FilterUS, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国自动, <<: *ModeUrlTestHidden, filter: *FilterUK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲自动, <<: *ModeUrlTestHidden, filter: *FilterEU, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 香港智能, <<: *ModeSmart, filter: *FilterHK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾智能, <<: *ModeSmart, filter: *FilterTW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台智能, <<: *ModeSmart, policy-priority: "香港:1.3;台湾:0.9", filter: *FilterHKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡智能, <<: *ModeSmart, filter: *FilterSG, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本智能, <<: *ModeSmart, filter: *FilterJP, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国智能, <<: *ModeSmart, filter: *FilterKR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国智能, <<: *ModeSmart, filter: *FilterUS, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国智能, <<: *ModeSmart, filter: *FilterUK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲智能, <<: *ModeSmart, filter: *FilterEU, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 香港均衡, <<: *ModeLoadBalance, filter: *FilterHK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾均衡, <<: *ModeLoadBalance, filter: *FilterTW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台均衡, <<: *ModeLoadBalance, filter: *FilterHKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡均衡, <<: *ModeLoadBalance, filter: *FilterSG, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本均衡, <<: *ModeLoadBalance, filter: *FilterJP, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国均衡, <<: *ModeLoadBalance, filter: *FilterKR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国均衡, <<: *ModeLoadBalance, filter: *FilterUS, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国均衡, <<: *ModeLoadBalance, filter: *FilterUK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲均衡, <<: *ModeLoadBalance, filter: *FilterEU, icon: "https://icon.aihdde.eu.org/european-union.png"}
 # over
 # 功能型代理组默认隐藏 start
   - {name: 🔗 代理, type: select, hidden: true, proxies: [默认代理]}
   - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 # over
-  - {name: 故障转移, <<: *Fallback_type, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}  
-  - {name: GLOBAL, <<: *Select_type, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港智能, 台湾智能, 港台智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 英国智能, 欧洲智能, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
+  - {name: 故障转移, <<: *ModeFallback, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}  
+  - {name: GLOBAL, <<: *ModeSelect, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港智能, 台湾智能, 港台智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 英国智能, 欧洲智能, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
 rules:
 # 防止 Telegram 加载转圈
@@ -323,53 +330,54 @@ rules:
   - RULE-SET,CN_ip,全球直连
   - MATCH,漏网之鱼
 
+# 4. 规则集解析模板 (Rule 前缀)
 rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
-  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+  RuleIpMrs: &RuleIpMrs {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+  RuleDomainMrs: &RuleDomainMrs {type: http, interval: 86400, behavior: domain, format: mrs}
+  RuleClassText: &RuleClassText {type: http, interval: 86400, behavior: classical, format: text}
 
 rule-providers:
-  AWAvenue_Ads: { <<: *domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
-  Private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
-  DirectLite_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-domain.mrs" }
-  ProxyLite_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-domain.mrs" }
-  Youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
-  Google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs" }
-  Fcm_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs" }
-  Google_play_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-play.mrs" }
-  Gthub_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs" }
-  Gitbook_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gitbook.mrs" }
-  Cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cloudflare.mrs" }
-  Microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs" }
-  Apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs" }
-  Apple_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple%40cn.mrs" }
-  TikTok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs" }
-  Telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs" }
-  Netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs" }
-  Paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
-  Onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs" }
-  Ai!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
-  Steam_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
-  Steam_CDN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
-  Steam_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
-  Speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs" }
-  Porn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs" }
-  GFW_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
-  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
-  CN_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs" }
-  Fakeip_fitter_domain: { <<: *domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/fakeip-fitter.mrs" }
+  AWAvenue_Ads: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
+  Private_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
+  DirectLite_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-domain.mrs" }
+  ProxyLite_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-domain.mrs" }
+  Youtube_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
+  Google_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs" }
+  Fcm_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs" }
+  Google_play_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-play.mrs" }
+  Gthub_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs" }
+  Gitbook_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gitbook.mrs" }
+  Cloudflare_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cloudflare.mrs" }
+  Microsoft_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs" }
+  Apple_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs" }
+  Apple_cn_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple%40cn.mrs" }
+  TikTok_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs" }
+  Telegram_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs" }
+  Netflix_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs" }
+  Paypal_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
+  Onedrive_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs" }
+  Ai!cn_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
+  Steam_cn_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
+  Steam_CDN_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
+  Steam_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
+  Speedtest_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs" }
+  Porn_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs" }
+  GFW_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
+  geolocation-!cn: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
+  CN_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs" }
+  Fakeip_fitter_domain: { <<: *RuleDomainMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/fakeip-fitter.mrs" }
 
-  Ad_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
-  CN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
-  Google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs" }
-  Cloudflare_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs" }
-  Telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs" }
-  Netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs" }
-  Ai_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ai.mrs" }
-  ProxyLite_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-ip.mrs" }
-  DirectLite_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-ip.mrs" }
-  Steam_CDN_ip: { <<: *ip, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
-  Private_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs" }
-  Apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
+  Ad_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
+  CN_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
+  Google_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs" }
+  Cloudflare_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs" }
+  Telegram_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs" }
+  Netflix_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs" }
+  Ai_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ai.mrs" }
+  ProxyLite_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-ip.mrs" }
+  DirectLite_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-ip.mrs" }
+  Steam_CDN_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
+  Private_ip: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs" }
+  Apple_ip: {<<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
   
-  Google_asn_cn: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
+  Google_asn_cn: { <<: *RuleIpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
