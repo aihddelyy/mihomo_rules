@@ -225,15 +225,15 @@ proxy-groups:
   - {name: 漏网之鱼, <<: *TplIA, icon: "https://icon.aihdde.eu.org/fish.png"}
 # 地区线路组
   - {name: 自建/家宽节点, <<: *UT, include-all: true, filter: *Home, icon: "https://icon.aihdde.eu.org/home.png"}
-  - {name: 香港节点, type: select, proxies: [香港自动, 香港均衡, 香港故转], include-all: true, filter: *HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾节点, type: select, proxies: [台湾自动, 台湾均衡, 台湾故转], include-all: true, filter: *TW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台节点, type: select, proxies: [港台自动, 港台均衡, 港台故转], include-all: true, filter: *HKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡节点, type: select, proxies: [新加坡自动, 新加坡均衡, 新加坡故转], include-all: true, filter: *SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本节点, type: select, proxies: [日本自动, 日本均衡, 日本故转], include-all: true, filter: *JP, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国节点, type: select, proxies: [韩国自动, 韩国均衡, 韩国故转], include-all: true, filter: *KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国节点, type: select, proxies: [美国自动, 美国均衡, 美国故转], include-all: true, filter: *US, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国节点, type: select, proxies: [英国自动, 英国均衡, 英国故转], include-all: true, filter: *UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲节点, type: select, proxies: [欧洲自动, 欧洲均衡, 欧洲故转], include-all: true, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 香港节点, type: select, proxies: [香港自动, 香港均衡], include-all: true, filter: *HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾节点, type: select, proxies: [台湾自动, 台湾均衡], include-all: true, filter: *TW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 港台节点, type: select, proxies: [港台自动, 港台均衡], include-all: true, filter: *HKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 新加坡节点, type: select, proxies: [新加坡自动, 新加坡均衡], include-all: true, filter: *SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本节点, type: select, proxies: [日本自动, 日本均衡], include-all: true, filter: *JP, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国节点, type: select, proxies: [韩国自动, 韩国均衡], include-all: true, filter: *KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国节点, type: select, proxies: [美国自动, 美国均衡], include-all: true, filter: *US, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国节点, type: select, proxies: [英国自动, 英国均衡], include-all: true, filter: *UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲节点, type: select, proxies: [欧洲自动, 欧洲均衡], include-all: true, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 其他国家, type: select, include-all: true, exclude-filter: *OT, icon: "https://icon.aihdde.eu.org/country.png"}
 # 地区自动、均衡节点隐藏 start
   - {name: 香港自动, <<: *UTH, include-all: true, filter:  *HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
@@ -254,15 +254,7 @@ proxy-groups:
   - {name: 美国均衡, <<: *LB, include-all: true, filter: *US, icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国均衡, <<: *LB, include-all: true, filter: *UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲均衡, <<: *LB, include-all: true, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 香港故转, <<: *FB, include-all: true, filter: *HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾故转, <<: *FB, include-all: true, filter: *TW, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 港台故转, <<: *FB, include-all: true, filter: *HKTW, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 新加坡故转, <<: *FB, include-all: true, filter: *SG, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本故转, <<: *FB, include-all: true, filter: *JP, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国故转, <<: *FB, include-all: true, filter: *KR, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国故转, <<: *FB, include-all: true, filter: *US, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国故转, <<: *FB, include-all: true, filter: *UK, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲故转, <<: *FB, include-all: true, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
+
 # over
 # 功能型代理组默认隐藏 start
   - {name: 🔗 代理, type: select, hidden: true, proxies: [默认代理]}
@@ -270,7 +262,7 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 # over
   - {name: 故障转移, <<: *FB, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}  
-  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡, 香港故转, 台湾故转, 港台故转, 新加坡故转, 日本故转, 韩国故转, 美国故转, 英国故转, 欧洲故转], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 故障转移, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 全球直连, 广告拦截, 漏网之鱼, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 香港均衡, 台湾均衡, 港台均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
 rules:
 # 防止 Telegram 加载转圈
