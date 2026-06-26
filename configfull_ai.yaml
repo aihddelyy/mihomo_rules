@@ -152,7 +152,7 @@ dns:
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - 'rule-set:Fakeip_fitter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain,Gthub_domain'
+    - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain,Github_domain'
   nameserver-policy:
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
       - https://dns.quad9.net/dns-query
@@ -285,11 +285,11 @@ rules:
 # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
 # 禁用Youtube QUIC
-  - AND,((RULE-SET,Youtube_domain),(NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
+  - AND,((RULE-SET,YouTube_domain),(NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
 # NTP直连
   - DST-PORT,123,全球直连
 # 一般规则
-  - RULE-SET,AWAvenue_Ads,广告拦截
+  - RULE-SET,AWAvenue_Ads_domain,广告拦截
   - RULE-SET,Ad_ip,广告拦截,no-resolve
   - RULE-SET,Private_domain,全球直连
   - RULE-SET,Private_ip,全球直连,no-resolve
@@ -303,17 +303,17 @@ rules:
   - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
-  - RULE-SET,Ai!cn_domain,AI
-  - RULE-SET,Ai_ip,AI,no-resolve
-  - RULE-SET,Gthub_domain,GitHub
+  - RULE-SET,AI!cn_domain,AI
+  - RULE-SET,AI_ip,AI,no-resolve
+  - RULE-SET,Github_domain,GitHub
   - RULE-SET,Gitbook_domain,GitHub
-  - RULE-SET,Youtube_domain,YouTube
+  - RULE-SET,YouTube_domain,YouTube
   - RULE-SET,Google_play_domain,Google
-  - RULE-SET,Fcm_domain,Google
+  - RULE-SET,FCM_domain,Google
   - RULE-SET,Google_domain,Google
   - RULE-SET,Google_ip,Google,no-resolve
   - RULE-SET,Google_asn_cn,Google,no-resolve
-  - RULE-SET,Onedrive_domain,OneDrive
+  - RULE-SET,OneDrive_domain,OneDrive
   - RULE-SET,Microsoft_domain,Microsoft
   - RULE-SET,TikTok_domain,TikTok
   - RULE-SET,Speedtest_domain,Speedtest
@@ -321,7 +321,7 @@ rules:
   - RULE-SET,Telegram_ip,Telegram,no-resolve
   - RULE-SET,Netflix_domain,Netflix
   - RULE-SET,Netflix_ip,Netflix,no-resolve
-  - RULE-SET,Paypal_domain,PayPal
+  - RULE-SET,PayPal_domain,PayPal
   - RULE-SET,Porn_domain,Porn
   - RULE-SET,Steam_domain,Steam
   - RULE-SET,ProxyLite_domain,默认代理
@@ -339,15 +339,15 @@ rule-anchor:
   RuleClassText: &ClsText {type: http, interval: 86400, behavior: classical, format: text}
 
 rule-providers:
-  AWAvenue_Ads: { <<: *DomMrs, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
+  AWAvenue_Ads_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
   Private_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
   DirectLite_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-domain.mrs" }
   ProxyLite_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-domain.mrs" }
-  Youtube_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
+  YouTube_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
   Google_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs" }
-  Fcm_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs" }
+  FCM_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs" }
   Google_play_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google-play.mrs" }
-  Gthub_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs" }
+  Github_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs" }
   Gitbook_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gitbook.mrs" }
   Cloudflare_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cloudflare.mrs" }
   Microsoft_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs" }
@@ -356,9 +356,9 @@ rule-providers:
   TikTok_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs" }
   Telegram_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs" }
   Netflix_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs" }
-  Paypal_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
-  Onedrive_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs" }
-  Ai!cn_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
+  PayPal_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
+  OneDrive_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs" }
+  AI!cn_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
   Steam_cn_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
   Steam_CDN_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
   Steam_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
@@ -367,7 +367,7 @@ rule-providers:
   GFW_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
   geolocation-!cn: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
   CN_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs" }
-  Fakeip_fitter_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/fakeip-fitter.mrs" }
+  Fakeip_filter_domain: { <<: *DomMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/fakeip-filter.mrs" }
 
   Ad_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
   CN_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
@@ -375,7 +375,7 @@ rule-providers:
   Cloudflare_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs" }
   Telegram_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs" }
   Netflix_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs" }
-  Ai_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ai.mrs" }
+  AI_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ai.mrs" }
   ProxyLite_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-ip.mrs" }
   DirectLite_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-ip.mrs" }
   Steam_CDN_ip: { <<: *IpMrs, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
