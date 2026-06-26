@@ -222,7 +222,7 @@ proxy-groups:
   - {name: Speedtest, <<: *TplIA, icon: "https://icon.aihdde.eu.org/speedtest.png"}
   - {name: 全球直连, type: select, proxies: [🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/direct.png"}
   - {name: 广告拦截,  type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
-  - {name: 漏网之鱼, <<: *TplIA, icon: "https://icon.aihdde.eu.org/fish.png"}
+  - {name: 漏网之鱼, type: select, proxies: [默认代理, 🟢 直连], icon: "https://icon.aihdde.eu.org/fish.png"}
 # 地区线路组
   - {name: 自建/家宽节点, <<: *UT, include-all: true, filter: *Home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 香港节点, type: select, proxies: [香港自动, 香港均衡], include-all: true, filter: *HK, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
