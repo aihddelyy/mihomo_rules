@@ -224,7 +224,7 @@ proxy-groups:
 # 其他策略组
   - {name: 故障转移, <<: *FB, proxies: [港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 自建/家宽节点, 其他国家], icon: "https://icon.aihdde.eu.org/error.png"}
   - {name: 全球直连, type: select, hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
-  - {name: 漏网之鱼, type: select, proxies: [默认代理, 🟢 直连], icon: "https://icon.aihdde.eu.org/fish.png"}
+  - {name: 漏网之鱼, type: select, proxies: [默认代理, 国外流量, 国内流量], icon: "https://icon.aihdde.eu.org/fish.png"}
 
 # 应用策略组
   - {name: YouTube, <<: *TplPF, icon: "https://icon.aihdde.eu.org/youtube.png"}
