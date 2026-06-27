@@ -168,7 +168,7 @@ dns:
 # ================= YAML 锚点 =================
 
 # 1. 策略组继承模板 (Tpl 代表 Template)
-TplDefault: &TplDF {type: select, proxies: [自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连]}
+TplDefault: &TplDF {type: select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 TplProxyFirst: &TplPF {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 TplDirectFirst: &TplDR {type: select, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 TplIncludeAll: &TplIA {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
@@ -220,7 +220,7 @@ proxy-groups:
   - {name: Steam, <<: *TplIA, icon: "https://icon.aihdde.eu.org/steam.png"}
   - {name: PayPal, <<: *TplPF, icon: "https://icon.aihdde.eu.org/paypal.png"}
   - {name: Speedtest, <<: *TplIA, icon: "https://icon.aihdde.eu.org/speedtest.png"}
-  - {name: 全球直连, type: select, proxies: [🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/direct.png"}
+  - {name: 全球直连, type: select, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
   - {name: 广告拦截,  type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
   - {name: 漏网之鱼, type: select, proxies: [默认代理, 🟢 直连], icon: "https://icon.aihdde.eu.org/fish.png"}
 # 地区线路组
