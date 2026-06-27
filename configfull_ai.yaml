@@ -178,7 +178,7 @@ dns:
 TplDefault: &TplDF {type: select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 🟢 直连]}
 TplProxyFirst: &TplPF {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 TplDirectFirst: &TplDR {type: select, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-TplIncludeAll: &TplIA {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
+TplIncludeAll: &TplIA {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家], include-all: true}
 TplStreamingMedia: &TplSM {type: select, proxies: [默认代理, 自动选择, 手动选择, 香港自动, 台湾自动, 港台自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
 
 # 2. 策略组模式配置 (Mode 前缀)
@@ -198,27 +198,22 @@ FilterJP: &JP "(?i)(日本|🇯🇵|JP|Japan)"
 FilterKR: &KR "(?i)(韩国|🇰🇷|KR|Korea)"
 FilterUS: &US "(?i)(美|🇺🇲|US|America|United States)"
 FilterUK: &UK "(?i)(英|GB|UK|England|British)"
-FilterEU: &EU "(?i)(俄罗斯|德国|土耳其|荷兰|法国|意大利|瑞士|西班牙|波兰|卢森堡|罗马尼亚|葡萄牙|希腊|瑞典|乌克兰|挪威|格鲁吉亚|阿塞拜疆|摩尔多瓦|塞尔维亚|克罗地亚|冰岛|匈牙利|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)"
-FilterOthers: &OT "(?i)(直连|港|台|日|韩|新|深|美|英|德|俄|土|荷|法|意|西班牙|波|卢|瑞|家宽|CF)"
+FilterEU: &EU "(?i)(俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)"
+FilterOthers: &OT "(?i)(直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF)"
 
-# 内置代理组
-proxies:
-- name: "🟢 直连"
-  type: direct
-  udp: true
 
 # 策略组
 proxy-groups:
 
 # 基础策略组
   - {name: 默认代理, <<: *TplDF, icon: "https://icon.aihdde.eu.org/web.png"}
-  - {name: 自动选择, <<: *UT, include-all: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/sync.png"}
-  - {name: 手动选择, type: select, include-all: true, exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/check.png"}
+  - {name: 自动选择, <<: *UT, include-all: true, icon: "https://icon.aihdde.eu.org/sync.png"}
+  - {name: 手动选择, type: select, include-all: true, icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: 国外流量, <<: *TplPF, icon: "https://icon.aihdde.eu.org/earth.png"}
   - {name: 国内流量, <<: *TplDR, icon: "https://icon.aihdde.eu.org/china.png"}
 
 # 其他策略组
-  - {name: 故障转移, <<: *FB, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/error.png"}
+  - {name: 故障转移, <<: *FB, proxies: [香港节点, 台湾节点, 港台节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 自建/家宽节点, 其他国家], icon: "https://icon.aihdde.eu.org/error.png"}
   - {name: 全球直连, type: select, hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
   - {name: 漏网之鱼, type: select, proxies: [默认代理, 🟢 直连], icon: "https://icon.aihdde.eu.org/fish.png"}
 
@@ -283,6 +278,7 @@ proxy-groups:
   - {name: 欧洲均衡, <<: *LB, include-all: true, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
 
 # 功能型代理组默认隐藏
+  - {name: 🟢 直连, type: select, hidden: true, proxies: [DIRECT]}
   - {name: 🔗 代理, type: select, hidden: true, proxies: [默认代理]}
   - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
@@ -302,12 +298,12 @@ rules:
   - RULE-SET,Ad_ip,广告拦截,no-resolve
   - RULE-SET,Private_domain,全球直连
   - RULE-SET,Private_ip,全球直连,no-resolve
-  - RULE-SET,DirectLite_domain,全球直连
-  - RULE-SET,DirectLite_ip,全球直连,no-resolve
-  - RULE-SET,Apple_cn_domain,全球直连
-  - RULE-SET,Steam_cn_domain,全球直连
-  - RULE-SET,Steam_CDN_domain,全球直连
-  - RULE-SET,Steam_CDN_ip,全球直连,no-resolve
+  - RULE-SET,DirectLite_domain,国内流量
+  - RULE-SET,DirectLite_ip,国内流量,no-resolve
+  - RULE-SET,Apple_cn_domain,国内流量
+  - RULE-SET,Steam_cn_domain,国内流量
+  - RULE-SET,Steam_CDN_domain,国内流量
+  - RULE-SET,Steam_CDN_ip,国内流量,no-resolve
   - RULE-SET,Cloudflare_domain,Cloudflare
   - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
   - RULE-SET,Apple_domain,Apple
@@ -337,8 +333,8 @@ rules:
   - RULE-SET,ProxyLite_ip,默认代理,no-resolve
   - RULE-SET,GFW_domain,默认代理
   - RULE-SET,geolocation-!cn,国外流量
-  - RULE-SET,CN_domain,全球直连
-  - RULE-SET,CN_ip,全球直连
+  - RULE-SET,CN_domain,国内流量
+  - RULE-SET,CN_ip,国内流量
   - MATCH,漏网之鱼
 
 # 4. 规则集解析模板 (Rule 前缀)
