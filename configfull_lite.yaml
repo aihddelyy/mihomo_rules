@@ -259,7 +259,7 @@ proxy-groups:
   - {name: 欧洲均衡, <<: *LB, include-all: true, filter: *EU, icon: "https://icon.aihdde.eu.org/european-union.png"}
 
 # 功能型代理组，默认隐藏
-  - {name: 🟢 直连, type: select, hidden: true, proxies: [默认代理]}
+  - {name: 🟢 直连, type: select, hidden: true, proxies: [DIRECT]}
   - {name: 🔗 代理, type: select, hidden: true, proxies: [默认代理]}
   - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
