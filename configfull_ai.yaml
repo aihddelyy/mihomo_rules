@@ -208,7 +208,7 @@ FilterKR: &KR "(?i)(韩国|🇰🇷|KR|Korea)"
 FilterUS: &US "(?i)(美|🇺🇲|US|America|United States)"
 FilterUK: &UK "(?i)(英|GB|UK|England|British)"
 FilterEU: &EU "(?i)(俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)"
-FilterOthers: &OT "(?i)(直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF)"
+FilterOthers: &OT "(?i)(直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西班牙|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF)"
 
 
 # 策略组
