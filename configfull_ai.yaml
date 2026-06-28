@@ -202,7 +202,7 @@ proxy-groups:
 
 # 基础策略组
   - {name: 默认代理, <<: *default, icon: "https://icon.aihdde.eu.org/web.png"}
-  - {name: 自动选择, <<: *url-test, include-all: true, icon: "https://icon.aihdde.eu.org/sync.png"}
+  - {name: 自动选择, <<: *url-test, hidden: false, icon: "https://icon.aihdde.eu.org/sync.png"}
   - {name: 手动选择, type: select, include-all: true, icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: 国外流量, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/earth.png"}
   - {name: 国内流量, <<: *direct-first, icon: "https://icon.aihdde.eu.org/china.png"}
@@ -231,7 +231,7 @@ proxy-groups:
   - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
 
 # 地区线路策略组
-  - {name: 自建/家宽节点, <<: *url-test, include-all: true, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
+  - {name: 自建/家宽节点, <<: *url-test, hidden: false, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 港台节点, type: select, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港节点, type: select, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾节点, type: select, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -244,33 +244,33 @@ proxy-groups:
   - {name: 其他国家, type: select, include-all: true, exclude-filter: *filter-ot, icon: "https://icon.aihdde.eu.org/country.png"}
 
 # 地区自动、智能、均衡节点组默认隐藏
-  - {name: 港台自动, <<: *url-test, include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 香港自动, <<: *url-test, include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾自动, <<: *url-test, include-all: true, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 新加坡自动, <<: *url-test, include-all: true, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本自动, <<: *url-test, include-all: true, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国自动, <<: *url-test, include-all: true, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国自动, <<: *url-test, include-all: true, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国自动, <<: *url-test, include-all: true, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲自动, <<: *url-test, include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 港台智能, <<: *smart, include-all: true, policy-priority: "香港:1.3;台湾:0.9", filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 香港智能, <<: *smart, include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾智能, <<: *smart, include-all: true, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 新加坡智能, <<: *smart, include-all: true, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本智能, <<: *smart, include-all: true, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国智能, <<: *smart, include-all: true, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国智能, <<: *smart, include-all: true, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国智能, <<: *smart, include-all: true, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲智能, <<: *smart, include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 港台均衡, <<: *load-balance, include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 香港均衡, <<: *load-balance, include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾均衡, <<: *load-balance, include-all: true, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 新加坡均衡, <<: *load-balance, include-all: true, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本均衡, <<: *load-balance, include-all: true, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国均衡, <<: *load-balance, include-all: true, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国均衡, <<: *load-balance, include-all: true, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国均衡, <<: *load-balance, include-all: true, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲均衡, <<: *load-balance, include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 香港自动, <<: *url-test, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾自动, <<: *url-test, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 新加坡自动, <<: *url-test, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本自动, <<: *url-test, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国自动, <<: *url-test, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国自动, <<: *url-test, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国自动, <<: *url-test, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲自动, <<: *url-test, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 港台智能, <<: *smart, policy-priority: "香港:1.3;台湾:0.9", filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 香港智能, <<: *smart, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾智能, <<: *smart, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 新加坡智能, <<: *smart, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本智能, <<: *smart, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国智能, <<: *smart, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国智能, <<: *smart, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国智能, <<: *smart, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲智能, <<: *smart, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 港台均衡, <<: *load-balance, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 香港均衡, <<: *load-balance, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾均衡, <<: *load-balance, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 新加坡均衡, <<: *load-balance, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本均衡, <<: *load-balance, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国均衡, <<: *load-balance, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国均衡, <<: *load-balance, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国均衡, <<: *load-balance, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲均衡, <<: *load-balance, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
 
 # 功能型代理组默认隐藏
   - {name: 🟢 直连, type: select, hidden: true, proxies: [DIRECT]}
