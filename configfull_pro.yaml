@@ -16,20 +16,20 @@
 
 # ================= YAML 锚点 =================
 
-# 0. 机场订阅模板 (x- 前缀为锚点键)
+# 0. 机场订阅锚点
 x-base-provider: &base-provider {type: http, interval: 86400, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 300}, proxy: "🟢 直连"}
 
-# 1. 策略组继承模板 (x- 前缀为锚点键)
+# 1. 策略组模板锚点
 x-default:      &default      {type: select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-proxy-first:  &proxy-first  {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-direct-first: &direct-first {type: select, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 
-# 2. 策略组模式配置 (Mode 前缀)
+# 2. 策略组模式锚点
 x-url-test:     &url-test     {type: url-test, interval: 60, tolerance: 20, lazy: true, include-all: true, hidden: true}
 x-load-balance: &load-balance {type: load-balance, interval: 60, lazy: true, strategy: consistent-hashing, hidden: true, include-all: true}
 x-fallback:     &fallback     {type: fallback, interval: 60, lazy: true, hidden: true}
 
-# 3. 地区正则过滤器 (Filter 前缀)
+# 3. 地区正则过滤器锚点
 x-filter-home:  &filter-home  "(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att)"
 x-filter-hktw:  &filter-hktw  "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan)"
 x-filter-hk:    &filter-hk    "(?i)(香港|🇭🇰|hk|hongkong|Hong Kong)"
