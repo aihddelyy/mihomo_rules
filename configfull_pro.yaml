@@ -42,7 +42,7 @@ x-filter-uk:    &filter-uk    "(?i)(英|GB|UK|England|British)"
 x-filter-eu:    &filter-eu    "(?i)(俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish)"
 x-filter-ot:    &filter-ot    "(?i)(直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西班牙|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF)"
 
-# 4. 规则集解析模板 (Rule 前缀)
+# 4. 规则集模式锚点
 RuleIpMrs: &rule-set-ipcidr {type: http, interval: 86400, behavior: ipcidr, format: mrs}
 RuleDomainMrs: &rule-set-domain {type: http, interval: 86400, behavior: domain, format: mrs}
 RuleClassText: &rule-set-classical {type: http, interval: 86400, behavior: classical, format: text}
@@ -169,7 +169,11 @@ dns:
   fake-ip-filter:
     - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain,Github_domain'
   nameserver-policy:
+    'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
+      - https://dns.alidns.com/dns-query#h3=true
+      - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
+      - https://dns.quad9.net/dns-query
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
   default-nameserver:
@@ -186,8 +190,8 @@ dns:
     - https://doh.pub/dns-query
 
 
+# 策略组
 proxy-groups:
-
 # 基础策略组
   - {name: 默认代理, <<: *default, icon: "https://icon.aihdde.eu.org/web.png"}
   - {name: 自动选择, <<: *url-test, hidden: false, icon: "https://icon.aihdde.eu.org/sync.png"}
@@ -201,7 +205,7 @@ proxy-groups:
   - {name: 全球直连, type: select, hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
   - {name: 漏网之鱼, type: select, proxies: [默认代理, 国外流量, 国内流量], icon: "https://icon.aihdde.eu.org/fish.png"}
 
-# 应用组
+# 应用策略组
   - {name: YouTube, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/youtube.png"}
   - {name: Google, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/google.png"}
   - {name: Cloudflare, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/cloudflare.png"}
@@ -233,10 +237,10 @@ proxy-groups:
   - {name: 游戏平台, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/game.png"}
   - {name: 国外电商, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/shopping.png"}
   - {name: PayPal, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/paypal.png"}
-  - {name: Speedtest, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/speedtest.png"}
+  - {name: Speedtest, <<: *proxy-first, include-all: true, icon: "https://icon.aihdde.eu.org/speedtest.png"}
   - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
 
-# 地区线路组
+# 地区线路策略组
   - {name: 自建/家宽节点, <<: *url-test, hidden: false, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 港台节点, type: select, proxies: [港台自动, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港节点, type: select, proxies: [香港自动, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
@@ -249,7 +253,7 @@ proxy-groups:
   - {name: 欧洲节点, type: select, proxies: [欧洲自动, 欧洲均衡], include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 其他国家, type: select, include-all: true, exclude-filter: *filter-ot, icon: "https://icon.aihdde.eu.org/country.png"}
 
-# 地区自动、均衡节点，默认隐藏
+# 地区自动、均衡节点组，默认隐藏
   - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港自动, <<: *url-test, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾自动, <<: *url-test, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -278,6 +282,7 @@ proxy-groups:
 # 全局策略组，默认隐藏 
   - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 国外流量, 国内流量, IPV6节点, 故障转移, 全球直连, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, AppleTV, HBO, Disney, Prime, Hulu, Spotify, Telegram, X, Discord, Meta, 社交媒体, Global-TV, Porn, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, 国内媒体, Steam, 游戏平台, 国外电商, PayPal, Speedtest, 广告拦截, 漏网之鱼, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 港台均衡, 香港均衡, 台湾均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
+# 规则路由
 rules:
 # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
@@ -313,6 +318,7 @@ rules:
   - RULE-SET,PrivateTracker_domain,国内流量
   - RULE-SET,PrivateTracker_ip,国内流量,no-resolve
   - RULE-SET,Cloudflare_domain,Cloudflare
+  - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
   - RULE-SET,AppleTV_domain,AppleTV
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
@@ -378,7 +384,7 @@ rules:
   - RULE-SET,CN_ip,国内流量
   - MATCH,漏网之鱼
 
-# 5. 规则集定义 (Rule-Set 前缀)
+# 规则集定义
 rule-providers:
 #  Ad_domain: { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-domain.mrs" }
 #  Adblockmihomo: { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/adblockmihomo.mrs" }
@@ -468,6 +474,7 @@ rule-providers:
   PrivateTracker_ip: { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/PrivateTracker-ip.mrs" }
   Steam_CDN_ip: { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
   Private_ip: { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs" }
+  Cloudflare_ip: { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cloudflare.mrs" }
   Apple_ip: {<<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
   
   Google_asn_cn: { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }

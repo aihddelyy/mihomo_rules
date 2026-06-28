@@ -172,9 +172,9 @@ dns:
       - https://dns.alidns.com/dns-query#h3=true
       - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
-      - https://dns.quad9.net/dns-query
-      - https://dns.cloudflare.com/dns-query
-      - https://dns.google/dns-query
+      - https://dns.quad9.net/dns-query#h3=true
+      - https://dns.cloudflare.com/dns-query#h3=true
+      - https://dns.google/dns-query#h3=true
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -216,7 +216,7 @@ proxy-groups:
   - {name: Netflix, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/netflix.png"}
   - {name: Telegram, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/telegram.png"}
   - {name: Porn, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/pornhub.png"}
-  - {name: Steam, <<: *proxy-first, include-all: true, icon: "https://icon.aihdde.eu.org/steam.png"}
+  - {name: Steam, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/steam.png"}
   - {name: PayPal, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/paypal.png"}
   - {name: Speedtest, <<: *proxy-first, include-all: true, icon: "https://icon.aihdde.eu.org/speedtest.png"}
   - {name: 广告拦截,  type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
@@ -260,9 +260,10 @@ proxy-groups:
   - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 
-# 全局策略组默认隐藏  
+# 全局策略组，默认隐藏  
   - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 国外流量, 国内流量, 故障转移, 全球直连, 漏网之鱼, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 广告拦截, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 港台均衡, 香港均衡, 台湾均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
+# 规则路由
 rules:
 # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
@@ -314,7 +315,7 @@ rules:
   - RULE-SET,CN_ip,国内流量
   - MATCH,漏网之鱼
 
-# 5. 规则集定义 (Rule-Set 前缀)
+# 规则集定义
 rule-providers:
   AWAvenue_Ads_domain: { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
   Private_domain: { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
