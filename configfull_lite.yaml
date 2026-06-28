@@ -156,7 +156,7 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: true
   # 是否开启 DoH 支持 HTTP/3，将并发尝试
-  prefer-h3: false
+  prefer-h3: true
   respect-rules: true
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
@@ -172,9 +172,9 @@ dns:
       - https://dns.alidns.com/dns-query#h3=true
       - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
-      - https://dns.quad9.net/dns-query#h3=true
-      - https://dns.cloudflare.com/dns-query#h3=true
-      - https://dns.google/dns-query#h3=true
+      - https://dns.quad9.net/dns-query
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
