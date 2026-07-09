@@ -27,10 +27,10 @@ x-fallback:     &fallback     {type: fallback, interval: 300, lazy: true, hidden
 x-smart:        &smart        {type: smart, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, interval: 300, lazy: true, include-all: true, hidden: true}
 
 # 2. 策略组模板锚点
-x-default:      &default      {<<: *select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-proxy-first:  &proxy-first  {<<: *select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-direct-first: &direct-first {<<: *select, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-stream-media: &stream-media {<<: *select, proxies: [默认代理, 自动选择, 手动选择, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
+x-default:      &default      {type: select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-proxy-first:  &proxy-first  {type: select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-direct-first: &direct-first {type: select, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-stream-media: &stream-media {type: select, proxies: [默认代理, 自动选择, 手动选择, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
 
 # 3. 地区正则过滤器锚点
 x-filter-home:  &filter-home  "(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att)"
@@ -197,14 +197,14 @@ proxy-groups:
 # 基础策略组
   - {name: 默认代理, <<: *default, icon: "https://icon.aihdde.eu.org/web.png"}
   - {name: 自动选择, <<: *url-test, hidden: false, icon: "https://icon.aihdde.eu.org/sync.png"}
-  - {name: 手动选择, <<: *select, include-all: true, icon: "https://icon.aihdde.eu.org/check.png"}
+  - {name: 手动选择, type: select, include-all: true, icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: 国外流量, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/earth.png"}
   - {name: 国内流量, <<: *direct-first, icon: "https://icon.aihdde.eu.org/china.png"}
 
 # 其他策略组
   - {name: 故障转移, <<: *fallback, proxies: [香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 自建/家宽节点, 其他国家], icon: "https://icon.aihdde.eu.org/error.png"}
-  - {name: 全球直连, <<: *select , hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
-  - {name: 漏网之鱼, <<: *select , proxies: [默认代理, 国外流量, 国内流量], icon: "https://icon.aihdde.eu.org/fish.png"}
+  - {name: 全球直连, type: select , hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
+  - {name: 漏网之鱼, type: select , proxies: [默认代理, 国外流量, 国内流量], icon: "https://icon.aihdde.eu.org/fish.png"}
 
 # 应用策略组
   - {name: YouTube, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/youtube.png"}
@@ -258,13 +258,13 @@ proxy-groups:
   - {name: 欧洲均衡, <<: *load-balance, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
 
 # 功能型代理组，默认隐藏
-  - {name: 🟢 直连, <<: *select, hidden: true, proxies: [DIRECT]}
-  - {name: 🔗 代理, <<: *select, hidden: true, proxies: [默认代理]}
-  - {name: 🚫 拒绝, <<: *select, hidden: true, proxies: [REJECT]}
-  - {name: ⚪ 丢弃, <<: *select, hidden: true, proxies: [REJECT-DROP]}
+  - {name: 🟢 直连, type: select, hidden: true, proxies: [DIRECT]}
+  - {name: 🔗 代理, type: select, hidden: true, proxies: [默认代理]}
+  - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
+  - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 
 # 全局策略组，默认隐藏  
-  - {name: GLOBAL, <<: *select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 国外流量, 国内流量, 故障转移, 全球直连, 漏网之鱼, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 广告拦截, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 港台均衡, 香港均衡, 台湾均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [默认代理, 自动选择, 手动选择, 国外流量, 国内流量, 故障转移, 全球直连, 漏网之鱼, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 广告拦截, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 港台均衡, 香港均衡, 台湾均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icon.aihdde.eu.org/earth.png"}
 
 # 规则路由
 rules:
