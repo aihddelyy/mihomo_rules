@@ -236,16 +236,16 @@ proxy-groups:
 
 # 地区线路策略组
   - {name: 自建/家宽节点, <<: *url-test, hidden: false, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
-  - {name: 港台节点, type: select, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
-  - {name: 香港节点, type: select, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾节点, type: select, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
-  - {name: 新加坡节点, type: select, proxies: [新加坡自动, 新加坡智能, 新加坡均衡], include-all: true, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
-  - {name: 日本节点, type: select, proxies: [日本自动, 日本智能, 日本均衡], include-all: true, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
-  - {name: 韩国节点, type: select, proxies: [韩国自动, 韩国智能, 韩国均衡], include-all: true, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
-  - {name: 美国节点, type: select, proxies: [美国自动, 美国智能, 美国均衡], include-all: true, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
-  - {name: 英国节点, type: select, proxies: [英国自动, 英国智能, 英国均衡], include-all: true, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲节点, type: select, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
-  - {name: 其他国家, type: select, include-all: true, exclude-filter: *filter-ot, icon: "https://icon.aihdde.eu.org/country.png"}
+  - {name: 港台节点, <<: *select, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 香港节点, <<: *select, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾节点, <<: *select, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
+  - {name: 新加坡节点, <<: *select, proxies: [新加坡自动, 新加坡智能, 新加坡均衡], include-all: true, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
+  - {name: 日本节点, <<: *select, proxies: [日本自动, 日本智能, 日本均衡], include-all: true, filter: *filter-jp, icon: "https://icon.aihdde.eu.org/japan.png"}
+  - {name: 韩国节点, <<: *select, proxies: [韩国自动, 韩国智能, 韩国均衡], include-all: true, filter: *filter-kr, icon: "https://icon.aihdde.eu.org/south-korea.png"}
+  - {name: 美国节点, <<: *select, proxies: [美国自动, 美国智能, 美国均衡], include-all: true, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
+  - {name: 英国节点, <<: *select, proxies: [英国自动, 英国智能, 英国均衡], include-all: true, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲节点, <<: *select, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
+  - {name: 其他国家, <<: *select, include-all: true, exclude-filter: *filter-ot, icon: "https://icon.aihdde.eu.org/country.png"}
 
 # 地区自动、智能、均衡节点组，默认隐藏
   - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
