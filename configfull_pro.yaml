@@ -53,7 +53,6 @@ x-rule-set-classical: &rule-set-classical {type: http, interval: 86400, behavior
 # ================= YAML 锚点结束 =================
 
 # 机场订阅，名称不能重复，使用时将"订阅链接"替换为实际的订阅链接
-
 proxy-providers:
   Airport_01: {<<: *base-provider, url: "机场订阅链接1"}
   Airport_02: {<<: *base-provider, url: "机场订阅链接2"}
