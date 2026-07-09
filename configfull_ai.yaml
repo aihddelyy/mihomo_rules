@@ -27,7 +27,7 @@ x-fallback:     &fallback     {type: fallback, interval: 300, lazy: true, hidden
 x-smart:        &smart        {type: smart, uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, interval: 300, lazy: false, include-all: true, hidden: true}
 
 # 2. 策略组模板锚点
-x-default:      &default      {*select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-default:      &default      {<<: *select, proxies: [自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-proxy-first:  &proxy-first  {<<: *select, proxies: [默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-direct-first: &direct-first {<<: *select, proxies: [全球直连, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-stream-media: &stream-media {<<: *select, proxies: [默认代理, 自动选择, 手动选择, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
