@@ -222,7 +222,7 @@ proxy-groups:
   - {name: Steam, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/steam.png"}
   - {name: PayPal, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/paypal.png"}
   - {name: Speedtest, <<: *proxy-first, include-all: true, icon: "https://icon.aihdde.eu.org/speedtest.png"}
-  - {name: 广告拦截,  <<: *select , proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
+  - {name: 广告拦截,  type: select , proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
 
 # 地区线路策略组
   - {name: 自建/家宽节点, <<: *url-test, hidden: false, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
