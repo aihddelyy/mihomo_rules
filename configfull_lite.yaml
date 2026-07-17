@@ -196,15 +196,15 @@ dns:
 proxy-groups:
 # 基础策略组
   - {name: 默认代理, <<: *default, icon: "https://icon.aihdde.eu.org/web.png"}
-  - {name: 自动选择, <<: *url-test, hidden: false, icon: "https://icon.aihdde.eu.org/sync.png"}
-  - {name: 手动选择, type: select, include-all: true, icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: 国外流量, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/earth.png"}
   - {name: 国内流量, <<: *direct-first, icon: "https://icon.aihdde.eu.org/china.png"}
+  - {name: 漏网之鱼, type: select, proxies: [默认代理, 国外流量, 国内流量, 全球直连], icon: "https://icon.aihdde.eu.org/fish.png"}
 
 # 其他策略组
-  - {name: 故障转移, <<: *fallback, proxies: [香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 自建/家宽节点, 其他国家], icon: "https://icon.aihdde.eu.org/error.png"}
-  - {name: 全球直连, type: select , hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
-  - {name: 漏网之鱼, type: select , proxies: [默认代理, 国外流量, 国内流量, 全球直连], icon: "https://icon.aihdde.eu.org/fish.png"}
+  - {name: 自动选择, <<: *url-test, hidden: false, icon: "https://icon.aihdde.eu.org/sync.png"}
+  - {name: 手动选择, type: select, include-all: true, icon: "https://icon.aihdde.eu.org/check.png"}
+  - {name: 故障转移, <<: *fallback, proxies: [港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 自建/家宽节点, 其他国家], icon: "https://icon.aihdde.eu.org/error.png"}
+  - {name: 全球直连, type: select,  hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
 
 # 应用策略组
   - {name: YouTube, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/youtube.png"}
