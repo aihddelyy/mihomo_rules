@@ -378,10 +378,10 @@ rules:
   - RULE-SET,UBI_domain,游戏平台
   - RULE-SET,Snoy_domain,游戏平台
   - RULE-SET,Nintendo_domain,游戏平台
-  - RULE-SET,ProxyLite_domain,默认代理
-  - RULE-SET,ProxyLite_ip,默认代理,no-resolve
-  - RULE-SET,GFW_domain,默认代理
-  - RULE-SET,geolocation-!cn,默认代理
+  - RULE-SET,ProxyLite_domain,国外流量
+  - RULE-SET,ProxyLite_ip,国外流量,no-resolve
+  - RULE-SET,GFW_domain,国外流量
+  - RULE-SET,geolocation-!cn,国外流量
   - RULE-SET,CN_domain,国内流量
   - RULE-SET,CN_ip,国内流量
   - MATCH,漏网之鱼

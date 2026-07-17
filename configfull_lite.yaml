@@ -310,10 +310,10 @@ rules:
   - RULE-SET,PayPal_domain,PayPal
   - RULE-SET,Porn_domain,Porn
   - RULE-SET,Steam_domain,Steam
-  - RULE-SET,ProxyLite_domain,默认代理
-  - RULE-SET,ProxyLite_ip,默认代理,no-resolve
-  - RULE-SET,GFW_domain,默认代理
-  - RULE-SET,geolocation-!cn,默认代理
+  - RULE-SET,ProxyLite_domain,国外流量
+  - RULE-SET,ProxyLite_ip,国外流量,no-resolve
+  - RULE-SET,GFW_domain,国外流量
+  - RULE-SET,geolocation-!cn,国外流量
   - RULE-SET,CN_domain,国内流量
   - RULE-SET,CN_ip,国内流量
   - MATCH,漏网之鱼
