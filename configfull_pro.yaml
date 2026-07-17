@@ -200,7 +200,7 @@ proxy-groups:
   - {name: 默认代理, <<: *default, icon: "https://icon.aihdde.eu.org/web.png"}
   - {name: 国外流量, <<: *overseas, icon: "https://icon.aihdde.eu.org/earth.png"}
   - {name: 国内流量, <<: *direct, icon: "https://icon.aihdde.eu.org/china.png"}
-  - {name: 漏网之鱼, type: select, proxies: [默认代理, 国外流量, 国内流量, 全球直连], icon: "https://icon.aihdde.eu.org/fish.png"}
+  - {name: 漏网之鱼, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/fish.png"}
 
 # 其他策略组,默认隐藏
   - {name: 自动选择, <<: *url-test, icon: "https://icon.aihdde.eu.org/sync.png"}
