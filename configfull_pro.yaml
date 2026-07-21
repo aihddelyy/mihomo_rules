@@ -9,7 +9,7 @@
 # || █   █  ███  █   █ ████  ████  █████ ||
 # ||                                     ||
 # >>=====================================<<
-# Aihdde mihomo 配置 - pro版 （2026-07-09 更新）
+# Aihdde mihomo 配置 - pro版 （2026-07-18 更新）
 # 项目: https://github.com/aihddelyy/mihomo_rules
 # 请在 proxy-providers 中添加您的订阅链接
 
@@ -256,7 +256,7 @@ proxy-groups:
   - {name: 欧洲节点, <<: *select, proxies: [欧洲自动, 欧洲均衡], include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 其他国家, <<: *select, include-all: true, exclude-filter: *filter-ot, icon: "https://icon.aihdde.eu.org/country.png"}
 
-# 地区自动、均衡节点组，默认隐藏
+# 地区自动测速组，默认隐藏
   - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港自动, <<: *url-test, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾自动, <<: *url-test, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -266,6 +266,8 @@ proxy-groups:
   - {name: 美国自动, <<: *url-test, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国自动, <<: *url-test, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲自动, <<: *url-test, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
+
+# 地区负载均衡策略组，默认隐藏
   - {name: 港台均衡, <<: *load-balance, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港均衡, <<: *load-balance, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾均衡, <<: *load-balance, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -444,7 +446,7 @@ rule-providers:
   UBI_domain:            { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/UBI-domain.mrs" }
   Snoy_domain:           { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/sony.mrs" }
   Nintendo_domain:       { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/nintendo.mrs" }
-  Speedtest_domain:      { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ookla-speedtest.mrs" }
+  Speedtest_domain:      { <<: *rule-set-domain, url: "https://raw.githubusercontent.com//666OS/rules/release/mihomo/domain/Speedtest.mrs" }
   Porn_domain:           { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs" }
   Media!cn_domain:       { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-social-media-!cn.mrs" }
   TVB_domain:            { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/tvb.mrs" }

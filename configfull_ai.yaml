@@ -9,7 +9,7 @@
 # || █   █  ███  █   █ ████  ████  █████ ||
 # ||                                     ||
 # >>=====================================<<
-# Aihdde mihomo 配置 - ai版 （2026-07-09 更新）
+# Aihdde mihomo 配置 - ai版 （2026-07-18 更新）
 # 项目: https://github.com/aihddelyy/mihomo_rules
 # 请在 proxy-providers 中添加您的订阅链接
 
@@ -249,7 +249,7 @@ proxy-groups:
   - {name: 欧洲节点, <<: *select, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
   - {name: 其他国家, <<: *select, include-all: true, exclude-filter: *filter-ot, icon: "https://icon.aihdde.eu.org/country.png"}
 
-# 地区自动、智能、均衡节点组，默认隐藏
+# 地区自动测速组，默认隐藏
   - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港自动, <<: *url-test, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾自动, <<: *url-test, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -259,6 +259,8 @@ proxy-groups:
   - {name: 美国自动, <<: *url-test, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国自动, <<: *url-test, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲自动, <<: *url-test, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
+
+# 地区智能策略组，默认隐藏
   - {name: 港台智能, <<: *smart, policy-priority: "香港:1.3;台湾:0.9", filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港智能, <<: *smart, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾智能, <<: *smart, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -268,6 +270,8 @@ proxy-groups:
   - {name: 美国智能, <<: *smart, filter: *filter-us, icon: "https://icon.aihdde.eu.org/usa.png"}
   - {name: 英国智能, <<: *smart, filter: *filter-uk, icon: "https://icon.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲智能, <<: *smart, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
+
+# 地区负载均衡策略组，默认隐藏
   - {name: 港台均衡, <<: *load-balance, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港均衡, <<: *load-balance, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾均衡, <<: *load-balance, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -365,7 +369,7 @@ rule-providers:
   Steam_cn_domain:      { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
   Steam_CDN_domain:     { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
   Steam_domain:         { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
-  Speedtest_domain:     { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ookla-speedtest.mrs" }
+  Speedtest_domain:     { <<: *rule-set-domain, url: "https://raw.githubusercontent.com//666OS/rules/release/mihomo/domain/Speedtest.mrs" }
   Porn_domain:          { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs" }
   GFW_domain:           { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gfw.mrs" }
   geolocation-!cn:      { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.mrs" }
