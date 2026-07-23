@@ -237,7 +237,7 @@ proxy-groups:
   - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
 
 # 地区线路策略组
-  - {name: 自建/家宽节点, <<: *url-test, hidden: false, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
+  - {name: 自建/家宽节点, <<: *select, proxies: [自建/家宽自动, 自建/家宽智能, 自建/家宽均衡], include-all: true, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 港台节点, <<: *select, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港节点, <<: *select, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾节点, <<: *select, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -250,6 +250,7 @@ proxy-groups:
   - {name: 其他国家, <<: *select, include-all: true, exclude-filter: *filter-ot, icon: "https://icon.aihdde.eu.org/country.png"}
 
 # 地区自动测速组，默认隐藏
+  - {name: 自建/家宽自动, <<: *url-test, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港自动, <<: *url-test, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾自动, <<: *url-test, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
@@ -261,7 +262,8 @@ proxy-groups:
   - {name: 欧洲自动, <<: *url-test, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
 
 # 地区智能策略组，默认隐藏
-  - {name: 港台智能, <<: *smart, policy-priority: "香港:1.3;台湾:0.9", filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
+  - {name: 自建/家宽智能, <<: *smart, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
+  - {name: 港台智能, <<: *smart, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港智能, <<: *smart, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾智能, <<: *smart, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
   - {name: 新加坡智能, <<: *smart, filter: *filter-sg, icon: "https://icon.aihdde.eu.org/singapore.png"}
@@ -272,6 +274,7 @@ proxy-groups:
   - {name: 欧洲智能, <<: *smart, filter: *filter-eu, icon: "https://icon.aihdde.eu.org/european-union.png"}
 
 # 地区负载均衡策略组，默认隐藏
+  - {name: 自建/家宽均衡, <<: *load-balance, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 港台均衡, <<: *load-balance, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港均衡, <<: *load-balance, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾均衡, <<: *load-balance, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
