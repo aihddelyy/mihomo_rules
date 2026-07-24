@@ -35,17 +35,17 @@ x-direct-first: &direct-first {type: select, proxies: [全球直连, 默认代�
 x-stream-media: &stream-media {type: select, proxies: [默认代理, 自动选择, 手动选择, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
 
 # 3. 地区正则过滤器锚点
-x-filter-home:  &filter-home  "^(?=.*(?i)(自建|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))(?!.*(?i)(CF)).*$"
-x-filter-hktw:  &filter-hktw  "^(?=.*(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan))(?!.*(?i)(CF)).*$"
-x-filter-hk:    &filter-hk    "^(?=.*(?i)(香港|🇭🇰|hk|hongkong|Hong Kong))(?!.*(?i)(CF)).*$"
-x-filter-tw:    &filter-tw    "^(?=.*(?i)(台|🇹🇼|TW|Taiwan))(?!.*(?i)(CF)).*$"
-x-filter-sg:    &filter-sg    "^(?=.*(?i)(新|🇸🇬|SG|singapore))(?!.*(?i)(CF)).*$"
-x-filter-jp:    &filter-jp    "^(?=.*(?i)(日本|🇯🇵|JP|Japan))(?!.*(?i)(CF)).*$"
-x-filter-kr:    &filter-kr    "^(?=.*(?i)(韩国|🇰🇷|KR|Korea))(?!.*(?i)(CF)).*$"
-x-filter-us:    &filter-us    "^(?=.*(?i)(美|🇺🇲|US|America|United States))(?!.*(?i)(CF)).*$"
-x-filter-uk:    &filter-uk    "^(?=.*(?i)(英|GB|UK|England|British))(?!.*(?i)(CF)).*$"
-x-filter-eu:    &filter-eu    "^(?=.*(?i)(俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish))(?!.*(?i)(CF)).*$"
-x-filter-ot:    &filter-ot    "^(?=.*(?i)(直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西班牙|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF)).*$"
+x-filter-home:  &filter-home  "^(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))(?!.*(?i)(排除1|排除2)).*$"
+x-filter-hktw:  &filter-hktw  "^(?=.*(?i)(香港|🇭🇰|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-hk:    &filter-hk    "^(?=.*(?i)(香港|🇭🇰|hk|hongkong|Hong Kong))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-tw:    &filter-tw    "^(?=.*(?i)(台|🇹🇼|TW|Taiwan))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-sg:    &filter-sg    "^(?=.*(?i)(新|🇸🇬|SG|singapore))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-jp:    &filter-jp    "^(?=.*(?i)(日本|🇯🇵|JP|Japan))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-kr:    &filter-kr    "^(?=.*(?i)(韩国|🇰🇷|KR|Korea))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-us:    &filter-us    "^(?=.*(?i)(美|🇺🇲|US|America|United States))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-uk:    &filter-uk    "^(?=.*(?i)(英|GB|UK|England|British))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-eu:    &filter-eu    "^(?=.*(?i)(俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish))(?!.*(?i)(排除1|排除2|CF)).*$"
+x-filter-ot:    &filter-ot    "^(?=.*(?i)(直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西班牙|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF))(?!.*(?i)(排除1|排除2)).*$"
 
 # 4. 规则集模式锚点
 x-rule-set-ipcidr: &rule-set-ipcidr {type: http, interval: 86400, behavior: ipcidr, format: mrs}
