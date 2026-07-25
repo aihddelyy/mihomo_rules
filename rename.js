@@ -161,35 +161,52 @@ function operator(pro) {
     });
   });
 
-  if (clear || nx || blnx || key || EX) {
+  if (clear || nx || blnx || key) {
     pro = pro.filter((res) => {
       const resname = res.name;
-      let exMatch = false;
-      if (EX) {
-        const exKeys = EX.split("+")
-          .map((k) => k.trim())
-          .filter((k) => k);
-        if (exKeys.length > 0) {
-          const exRegex = new RegExp(
-            exKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"),
-            "i"
-          );
-          exMatch = exRegex.test(resname);
-        }
-      }
       const shouldKeep =
         !(clear && nameclear.test(resname)) &&
         !(nx && namenx.test(resname)) &&
         !(blnx && !nameblnx.test(resname)) &&
-        !(key && !(keya.test(resname) && /2|4|6|7/i.test(resname))) &&
-        !(EX && exMatch);
+        !(key && !(keya.test(resname) && /2|4|6|7/i.test(resname)));
       return shouldKeep;
     });
+  }
+
+  // 预编译 ex 排除关键词正则
+  let exRegex = null;
+  if (EX) {
+    const exKeys = EX.split("+")
+      .map((k) => k.trim())
+      .filter((k) => k);
+    if (exKeys.length > 0) {
+      exRegex = new RegExp(
+        exKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"),
+        "i"
+      );
+    }
   }
 
   const BLKEYS = BLKEY ? BLKEY.split("+") : "";
 
   pro.forEach((e) => {
+    // ex 检查：命中排除关键词则跳过地区匹配，交由 nm 或置 null 处理
+    if (exRegex && exRegex.test(e.name)) {
+      if (blockquic == "on") {
+        e["block-quic"] = "on";
+      } else if (blockquic == "off") {
+        e["block-quic"] = "off";
+      } else {
+        delete e["block-quic"];
+      }
+      if (nm) {
+        e.name = FNAME + FGF + e.name;
+      } else {
+        e.name = null;
+      }
+      return;
+    }
+
     let bktf = false, ens = e.name
     // 预处理 防止预判或遗漏
     Object.keys(rurekey).forEach((ikey) => {
