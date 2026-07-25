@@ -1,5 +1,8 @@
 /**
- * 更新日期：2024-04-05 15:30:15
+ * 更新日期：2026-07-26 01:48:00
+ * 更新内容：
+ *   1. 新增 ex 参数：按关键词跳过地区匹配；命中排除关键词的节点不再走地区识别流程，配合 nm 保留原名或不保留
+ *   2. 优化 blkey 关键词拼接：按关键词在原节点名中的出现顺序拼接（而非 BLKEYS 数组声明顺序），保留原节点名中关键词的「原貌」
  * 用法：Sub-Store 脚本操作添加
  * rename.js 以下是此脚本支持的参数，必须以 # 为开头多个参数使用"&"连接，参考上述地址为例使用参数。 禁用缓存url#noCache
  *
@@ -28,6 +31,7 @@
  * [nf]     把 name= 的前缀值放在最前面
  *** 保留参数
  * [blkey=iplc+gpt+NF+IPLC] 用+号添加多个关键词 保留节点名的自定义字段 需要区分大小写!
+ * 命中关键词会按其在原节点名中的出现顺序拼接，保留原节点名中关键词的「原貌」（如「JP 电信优选」+「电信+优选」=>「日本 电信优选」）
  * 如果需要修改 保留的关键词 替换成别的 可以用 > 分割 例如 [#blkey=GPT>新名字+其他关键词] 这将把【GPT】替换成【新名字】
  * 例如      https://raw.githubusercontent.com/Keywos/rule/main/rename.js#flag&blkey=GPT>新名字+NF
  * [blgd]   保留: 家宽 IPLC ˣ² 等
@@ -39,8 +43,10 @@
  * [blockquic] blockquic=on 阻止; blockquic=off 不阻止
  *
  *** 排除参数
- * [ex=关键词1+关键词2]   排除匹配关键词的节点；支持国家中文名（如 香港）、英文全称（如 Hong Kong）、英文简称（如 HK）或任意自定义关键词，多个用 + 连接；大小写不敏感
+ * [ex=关键词1+关键词2]   命中关键词的节点跳过地区匹配；支持国家中文名（如 香港）、英文全称（如 Hong Kong）、英文简称（如 HK）或任意自定义关键词，多个用 + 连接；大小写不敏感
+ *                     配合 nm 时保留原节点名（加 name= 前缀），不配合 nm 时按未匹配处理（被过滤掉）
  * 例如     https://raw.githubusercontent.com/Keywos/rule/main/rename.js#ex=香港+HK+Hong Kong+美国
+ * 例如     https://raw.githubusercontent.com/Keywos/rule/main/rename.js#ex=香港+HK&nm
  */
 
 // const inArg = {'blkey':'iplc+GPT>GPTnewName+NF+IPLC', 'flag':true };
