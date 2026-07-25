@@ -232,7 +232,14 @@ function operator(pro) {
         }
         retainKey = re
         ? BLKEY_REPLACE
-        : BLKEYS.filter((items) => e.name.includes(items));
+        : (() => {
+            const name = e.name;
+            const hits = BLKEYS.filter((items) => name.includes(items))
+              .map((kw) => ({ kw, pos: name.indexOf(kw) }))
+              .filter((h) => h.pos >= 0)
+              .sort((a, b) => a.pos - b.pos);
+            return hits.map((h) => h.kw).join("");
+          })();
       });}
       }
     });
@@ -258,7 +265,14 @@ function operator(pro) {
       });
       retainKey = re
         ? BLKEY_REPLACE
-        : BLKEYS.filter((items) => e.name.includes(items));
+        : (() => {
+            const name = e.name;
+            const hits = BLKEYS.filter((items) => name.includes(items))
+              .map((kw) => ({ kw, pos: name.indexOf(kw) }))
+              .filter((h) => h.pos >= 0)
+              .sort((a, b) => a.pos - b.pos);
+            return hits.map((h) => h.kw).join("");
+          })();
     }
 
     let ikey = "",
@@ -311,6 +325,7 @@ function operator(pro) {
           usflag = usflag === "🇹🇼" ? "🇨🇳" : usflag;
         }
       }
+      // retainKey 现在始终是字符串（按原节点名出现顺序拼接）
       keyover = keyover
         .concat(firstName, usflag, nNames, findKeyValue, retainKey, ikey, ikeys)
         .filter((k) => k !== "");
