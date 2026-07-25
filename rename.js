@@ -37,6 +37,10 @@
  * [clear]  清理乱名
  * [blpx]   如果用了上面的bl参数,对保留标识后的名称分组排序,如果没用上面的bl参数单独使用blpx则不起任何作用
  * [blockquic] blockquic=on 阻止; blockquic=off 不阻止
+ *
+ *** 排除参数
+ * [ex=关键词1+关键词2]   排除匹配关键词的节点；支持国家中文名（如 香港）、英文全称（如 Hong Kong）、英文简称（如 HK）或任意自定义关键词，多个用 + 连接；大小写不敏感
+ * 例如     https://raw.githubusercontent.com/Keywos/rule/main/rename.js#ex=香港+HK+Hong Kong+美国
  */
 
 // const inArg = {'blkey':'iplc+GPT>GPTnewName+NF+IPLC', 'flag':true };
@@ -52,7 +56,8 @@ const nx = inArg.nx || false,
   debug = inArg.debug || false,
   clear = inArg.clear || false,
   addflag = inArg.flag || false,
-  nm = inArg.nm || false;
+  nm = inArg.nm || false,
+  EX = inArg.ex == undefined ? "" : decodeURI(inArg.ex);
 
 const FGF = inArg.fgf == undefined ? " " : decodeURI(inArg.fgf),
   XHFGF = inArg.sn == undefined ? " " : decodeURI(inArg.sn),
@@ -156,14 +161,28 @@ function operator(pro) {
     });
   });
 
-  if (clear || nx || blnx || key) {
+  if (clear || nx || blnx || key || EX) {
     pro = pro.filter((res) => {
       const resname = res.name;
+      let exMatch = false;
+      if (EX) {
+        const exKeys = EX.split("+")
+          .map((k) => k.trim())
+          .filter((k) => k);
+        if (exKeys.length > 0) {
+          const exRegex = new RegExp(
+            exKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"),
+            "i"
+          );
+          exMatch = exRegex.test(resname);
+        }
+      }
       const shouldKeep =
         !(clear && nameclear.test(resname)) &&
         !(nx && namenx.test(resname)) &&
         !(blnx && !nameblnx.test(resname)) &&
-        !(key && !(keya.test(resname) && /2|4|6|7/i.test(resname)));
+        !(key && !(keya.test(resname) && /2|4|6|7/i.test(resname))) &&
+        !(EX && exMatch);
       return shouldKeep;
     });
   }
