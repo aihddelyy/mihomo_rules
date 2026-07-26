@@ -328,7 +328,7 @@ function operator(pro) {
         const index = outList.indexOf(findKeyValue);
         if (index !== -1) {
           usflag = FG[index];
-          usflag = usflag === "🇹🇼" ? "🇨🇳" : usflag;
+          // usflag = usflag === "🇹🇼" ? "🇨🇳" : usflag;
         }
       }
       // retainKey 现在始终是字符串（按原节点名出现顺序拼接）
