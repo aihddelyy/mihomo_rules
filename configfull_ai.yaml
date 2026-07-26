@@ -219,7 +219,7 @@ proxy-groups:
   - {name: 手动选择, type: select, include-all: true, hidden: true, icon: "https://icon.aihdde.eu.org/check.png"}
   - {name: 故障转移, <<: *fallback, hidden: true, proxies: [港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 自建/家宽节点, 其他国家], icon: "https://icon.aihdde.eu.org/error.png"}
   - {name: 全球直连, type: select,  hidden: true, proxies: [🟢 直连], icon: "https://icon.aihdde.eu.org/direct.png"}
-  - {name: 一键智能, <<: *fallback, hidden: true, proxies: [港台智能, 香港智能, 台湾智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 英国智能, 欧洲智能, 自建/家宽智能], icon: "https://icon.aihdde.eu.org/smart.png"}
+  - {name: 一键智能, <<: *fallback, hidden: true, proxies: [港台智能, 香港智能, 台湾智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 英国智能, 欧洲智能, 自建/家宽智能], icon: "https://icon.aihdde.eu.org/onesmart.png"}
 
 # 应用策略组
   - {name: YouTube, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/youtube.png"}
