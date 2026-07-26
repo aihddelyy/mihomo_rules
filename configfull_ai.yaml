@@ -27,7 +27,7 @@ x-fallback:      &fallback     {type: fallback, interval: 300, lazy: true, hidde
 x-smart:         &smart        {type: smart, policy-priority: "优1:3;优2:2;备1:1;备2:0.9", uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, interval: 300, lazy: true, include-all: true, hidden: true}
 
 # 2. 策略组模板锚点
-x-onesmart:      &onesmart     {type: select, proxies: [一键智能, 自建/家宽智能, 港台智能, 香港智能, 台湾智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 英国智能, 欧洲智能]}
+x-smart-tap:     &smart-tap    {type: select, proxies: [一键智能, 自建/家宽智能, 港台智能, 香港智能, 台湾智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 英国智能, 欧洲智能]}
 x-default:       &default      {type: select, proxies: [智能选择, 一键智能, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-overseas:      &overseas     {type: select, proxies: [智能选择, 一键智能, 默认代理, 自动选择, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-direct:        &direct       {type: select, proxies: [全球直连, 智能选择, 一键智能, 默认代理, 自动选择, 手动选择, 故障转移, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
@@ -208,7 +208,7 @@ dns:
 # 策略组
 proxy-groups:
 # 基础策略组
-  - {name: 智能选择, <<: *onesmart, icon: "https://icon.aihdde.eu.org/smart-tap.png"}
+  - {name: 智能选择, <<: *smart-tap, icon: "https://icon.aihdde.eu.org/smart-tap.png"}
   - {name: 默认代理, <<: *default, icon: "https://icon.aihdde.eu.org/web.png"}
   - {name: 国外流量, <<: *overseas, icon: "https://icon.aihdde.eu.org/earth.png"}
   - {name: 国内流量, <<: *direct, icon: "https://icon.aihdde.eu.org/china.png"}
