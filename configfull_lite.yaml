@@ -33,7 +33,6 @@ x-overseas:      &overseas     {type: select, proxies: [默认代理, 自动选�
 x-direct:        &direct       {type: select, proxies: [全球直连, 默认代理, 自动选择, 一键自动, 手动选择, 故障转移, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-proxy-first:   &proxy-first  {type: select, proxies: [默认代理, 国外流量, 国内流量, 自动选择, 一键自动, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 x-direct-first:  &direct-first {type: select, proxies: [全球直连, 默认代理, 国外流量, 国内流量, 自动选择, 一键自动, 手动选择, 故障转移, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-stream-media:  &stream-media {type: select, proxies: [默认代理, 自动选择, 一键自动, 手动选择, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 其他国家]}
 
 # 3. 地区正则过滤器锚点
 x-filter-home:   &filter-home  "^(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))(?!.*(?i)(排除1|排除2)).*$"
