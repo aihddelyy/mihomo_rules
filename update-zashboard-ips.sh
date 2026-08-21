@@ -7,6 +7,13 @@
 # 确保脚本使用 LF 换行符
 sed -i 's/\r//g' "$0" 2>/dev/null
 
+# 自检 UTF-8 BOM (EF BB BF)，如有则自动去除并提示重跑
+if head -c 3 "$0" | grep -q $'\xef\xbb\xbf'; then
+    sed -i '1s/^\xEF\xBB\xBF//' "$0"
+    echo "⚠️  检测到 UTF-8 BOM，已自动去除。请重新执行脚本。"
+    exit 0
+fi
+
 # --- 配置 ---
 CONFIG_FILE="/etc/nikki/run/ui/zashboard-settings-bak.json"
 ORIGIN_FILE="/etc/nikki/run/ui/zashboard-settings-origin.json"
@@ -272,7 +279,7 @@ echo "  -> 正在生成 通用版本 ($OUTPUT_FILE_GENERAL)..."
 sed "s#  \"config\/source-ip-label-list\": \".*\",#  \"config\/source-ip-label-list\": \"$ESCAPED_CONTENT\",#" "$CONFIG_FILE" > "$OUTPUT_FILE_GENERAL.tmp"
 
 # 2. 替换导入 URL 为通用版自身 (使用 # 分隔符)
-GENERAL_URL_TARGET="/ui/zashboard-settings.json"
+GENERAL_URL_TARGET="http://10.10.10.1:9090/ui/zashboard-settings.json"
 sed -i "s#\"config\/import-settings-url\": \".*\",#\"config\/import-settings-url\": \"$GENERAL_URL_TARGET\",#" "$OUTPUT_FILE_GENERAL.tmp"
 mv "$OUTPUT_FILE_GENERAL.tmp" "$OUTPUT_FILE_GENERAL"
 
@@ -280,7 +287,7 @@ echo "  ✅ 通用版本生成完毕。"
 
 
 # 5.2 生成 Mobile 版本 (zashboard-settings-mobile.json)
-MOBILE_URL_TARGET="/ui/zashboard-settings-mobile.json"
+MOBILE_URL_TARGET="http://10.10.10.1:9090/ui/zashboard-settings-mobile.json"
 echo "  -> 正在生成 Mobile 版本 ($OUTPUT_FILE_MOBILE)..."
 cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_MOBILE.tmp" # 从通用版本复制
 # 替换导入 URL 为 Mobile 版自身 (使用 # 分隔符)
@@ -298,7 +305,7 @@ echo "  ✅ Mobile 版本生成完毕。"
 
 
 # 5.3 生成 PC 版本 (zashboard-settings-pc.json)
-PC_URL_TARGET="/ui/zashboard-settings-pc.json"
+PC_URL_TARGET="http://10.10.10.1:9090/ui/zashboard-settings-pc.json"
 echo "  -> 正在生成 PC 版本 ($OUTPUT_FILE_PC)..."
 cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_PC.tmp" # 从通用版本复制
 # 替换导入 URL 为 PC 版自身 (使用 # 分隔符)
