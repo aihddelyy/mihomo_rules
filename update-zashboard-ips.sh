@@ -287,6 +287,12 @@ cp "$OUTPUT_FILE_GENERAL" "$OUTPUT_FILE_MOBILE.tmp" # 从通用版本复制
 sed -i "s#\"config\/import-settings-url\": \".*\",#\"config\/import-settings-url\": \"$MOBILE_URL_TARGET\",#" "$OUTPUT_FILE_MOBILE.tmp"
 # 替换 Mobile 专用配置 (使用 # 分隔符)
 sed -i 's#\"config\/use-connecticon-card\": \".*\",#\"config\/use-connecticon-card\": \"true\",#' "$OUTPUT_FILE_MOBILE.tmp"
+# 替换 Mobile 连接显示样式为 card (使用 # 分隔符)
+sed -i 's#\"config\/connection-display-style\": \".*\",#\"config\/connection-display-style\": \"card\",#' "$OUTPUT_FILE_MOBILE.tmp"
+# 替换 Mobile 连接排序方式为 connectTime (使用 # 分隔符)
+sed -i 's#\"config\/connection-sort-type\": \".*\",#\"config\/connection-sort-type\": \"connectTime\",#' "$OUTPUT_FILE_MOBILE.tmp"
+# 替换 Mobile 连接排序方向为 desc (使用 # 分隔符)
+sed -i 's#\"config\/connection-sort-direction\": \".*\",#\"config\/connection-sort-direction\": \"desc\",#' "$OUTPUT_FILE_MOBILE.tmp"
 mv "$OUTPUT_FILE_MOBILE.tmp" "$OUTPUT_FILE_MOBILE"
 echo "  ✅ Mobile 版本生成完毕。"
 
