@@ -229,9 +229,9 @@ function operator(pro) {
     }
 
     let bktf = false, ens = e.name
-    // 预处理 防止预判或遗漏（out=off 时不处理 blkey，原节点名已保留）
+    // 预处理 防止预判或遗漏（out=off 时不处理 blkey、不跑 rurekey，原节点名完整保留）
     Object.keys(rurekey).forEach((ikey) => {
-      if (rurekey[ikey].test(e.name)) {
+      if (!outputOff && rurekey[ikey].test(e.name)) {
         e.name = e.name.replace(rurekey[ikey], ikey);
       if (BLKEY && !outputOff) {
         bktf = true
@@ -362,11 +362,16 @@ function operator(pro) {
         .filter((k) => k !== "");
       e.name = keyover.join(FGF);
     } else if (outputOff) {
-      // out=off：不替换地区名、不拼接 blkey；仅 name/nf/flag/bl/blgd 生效
+      // out=off：不替换地区名、不拼接 blkey、不跑 rurekey；仅 name/nf/flag/bl/blgd 生效
       let keyover = [],
         usflag = "";
+      // 如果原节点名里已经有国旗，去掉以避免与 flag 新加的国旗重复
+      const trimmed = e.name.trim();
       if (addflag && flagIdx !== -1) {
         usflag = FG[flagIdx];
+        if (FG.some((f) => trimmed.startsWith(f))) {
+          e.name = trimmed.replace(/^\S+\s*/, "");
+        }
       }
       keyover = keyover
         .concat(firstName, usflag, nNames, e.name, ikey, ikeys)
