@@ -1,4 +1,12 @@
 /**
+ * 更新日期：2026-08-21
+ * 更新内容：
+ *   1. 新增 out 参数取值 off：控制是否修改节点名称，但不影响 name、nf、flag 参数
+ *      - out=off 时不替换地区名（保留原节点名），且跳过 blkey 处理（原节点名已保留关键词，无须再拼接）
+ *      - flag 仍按识别出的国家自动加国旗
+ *      - name、nf、bl、blgd、blpx、nm、ex 等参数照常生效
+ *   2. flag 参数适配 out=off：原节点名不含国旗时，也能根据识别出的国家自动添加对应国旗，与默认行为一致
+ *
  * 更新日期：2026-07-26 01:48:00
  * 更新内容：
  *   1. 新增 ex 参数：按关键词跳过地区匹配；命中排除关键词的节点不再走地区识别流程，配合 nm 保留原名或不保留
@@ -17,7 +25,8 @@
  * [in=quan] 识别英文全称
 
  *
- * [out=]   输出节点名可选参数: (cn或zh ，us或en ，gq或flag ，quan) 对应：(中文，英文缩写 ，国旗 ，英文全称) 默认中文 例如 [out=en] 或 out=us 输出英文缩写
+ * [out=]   输出节点名可选参数: (cn或zh ，us或en ，gq或flag ，quan，off) 对应：(中文，英文缩写 ，国旗 ，英文全称，不修改) 默认中文 例如 [out=en] 或 out=us 输出英文缩写
+ *                      out=off 时：不替换地区名称（保留原节点名中的地区关键词），但 name、nf、flag、blkey 等其他参数依然生效
  *** 分隔符参数
  *
  * [fgf=]   节点名前缀或国旗分隔符，默认为空格；
@@ -78,6 +87,7 @@ const FGF = inArg.fgf == undefined ? " " : decodeURI(inArg.fgf),
     quan: "quan",
     gq: "gq",
     flag: "gq",
+    off: "off",
   },
   inname = nameMap[inArg.in] || "",
   outputName = nameMap[inArg.out] || "";
@@ -152,7 +162,9 @@ function ObjKA(i) {
 
 function operator(pro) {
   const Allmap = {};
-  const outList = getList(outputName);
+  const outputOff = outputName === "off";
+  // out=off 时，地区名不替换，但 flag 仍需按识别出的国家加国旗，故 outList 仍用国旗列表
+  const outList = outputOff ? FG : getList(outputName);
   let inputList,
     retainKey = "";
   if (inname !== "") {
@@ -161,11 +173,14 @@ function operator(pro) {
     inputList = [ZH, FG, QC, EN];
   }
 
-  inputList.forEach((arr) => {
-    arr.forEach((value, valueIndex) => {
-      Allmap[value] = outList[valueIndex];
+  // out=off 时：不在 Allmap 中放地区映射，findKey 找不到地区名；但 FG 列表仍用于 flag 加国旗
+  if (!outputOff) {
+    inputList.forEach((arr) => {
+      arr.forEach((value, valueIndex) => {
+        Allmap[value] = outList[valueIndex];
+      });
     });
-  });
+  }
 
   if (clear || nx || blnx || key) {
     pro = pro.filter((res) => {
@@ -214,11 +229,11 @@ function operator(pro) {
     }
 
     let bktf = false, ens = e.name
-    // 预处理 防止预判或遗漏
+    // 预处理 防止预判或遗漏（out=off 时不处理 blkey、不跑 rurekey，原节点名完整保留）
     Object.keys(rurekey).forEach((ikey) => {
-      if (rurekey[ikey].test(e.name)) {
+      if (!outputOff && rurekey[ikey].test(e.name)) {
         e.name = e.name.replace(rurekey[ikey], ikey);
-      if (BLKEY) {
+      if (BLKEY && !outputOff) {
         bktf = true
         let BLKEY_REPLACE = "",
         re = false;
@@ -257,8 +272,8 @@ function operator(pro) {
       delete e["block-quic"];
     }
 
-    // 自定义
-    if (!bktf && BLKEY) {
+    // 自定义（out=off 时跳过 blkey 处理，原节点名已保留）
+    if (!bktf && BLKEY && !outputOff) {
       let BLKEY_REPLACE = "",
         re = false;
       BLKEYS.forEach((i) => {
@@ -307,11 +322,11 @@ function operator(pro) {
     }
 
     !GetK && ObjKA(Allmap)
-    // 匹配 Allkey 地区
-    const findKey = AMK.find(([key]) =>
-      e.name.includes(key)
-    )
-    
+    // 匹配 Allkey 地区（out=off 时跳过，避免替换地区名）
+    const findKey = outputOff
+      ? undefined
+      : AMK.find(([key]) => e.name.includes(key));
+
     let firstName = "",
       nNames = "";
 
@@ -320,6 +335,16 @@ function operator(pro) {
     } else {
       nNames = FNAME;
     }
+    // out=off 时单独走一遍识别，仅用于 flag 加国旗，不替换地区名
+    const flagFindKey = outputOff && addflag
+      ? [ZH, FG, QC, EN].find((arr) =>
+          arr.some((k) => e.name.includes(k))
+        )
+      : null;
+    const flagIdx = flagFindKey
+      ? flagFindKey.findIndex((k) => e.name.includes(k))
+      : -1;
+
     if (findKey?.[1]) {
       const findKeyValue = findKey[1];
       let keyover = [],
@@ -334,6 +359,22 @@ function operator(pro) {
       // retainKey 现在始终是字符串（按原节点名出现顺序拼接）
       keyover = keyover
         .concat(firstName, usflag, nNames, findKeyValue, retainKey, ikey, ikeys)
+        .filter((k) => k !== "");
+      e.name = keyover.join(FGF);
+    } else if (outputOff) {
+      // out=off：不替换地区名、不拼接 blkey、不跑 rurekey；仅 name/nf/flag/bl/blgd 生效
+      let keyover = [],
+        usflag = "";
+      // 如果原节点名里已经有国旗，去掉以避免与 flag 新加的国旗重复
+      const trimmed = e.name.trim();
+      if (addflag && flagIdx !== -1) {
+        usflag = FG[flagIdx];
+        if (FG.some((f) => trimmed.startsWith(f))) {
+          e.name = trimmed.replace(/^\S+\s*/, "");
+        }
+      }
+      keyover = keyover
+        .concat(firstName, usflag, nNames, e.name, ikey, ikeys)
         .filter((k) => k !== "");
       e.name = keyover.join(FGF);
     } else {
