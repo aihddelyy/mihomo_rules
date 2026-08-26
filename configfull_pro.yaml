@@ -328,6 +328,7 @@ rules:
   - RULE-SET,PrivateTracker_ip,国内流量,no-resolve
   - RULE-SET,Cloudflare_domain,Cloudflare
   - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
+  - RULE-SET,Cloudflare_asn,Cloudflare,no-resolve
   - RULE-SET,AppleTV_domain,AppleTV
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
@@ -490,3 +491,4 @@ rule-providers:
   Google_asn_cn:         { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
   Discord_asn:           { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS49544.mrs" }
   WeChat_asn:            { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS132203.mrs" }
+  Cloudflare_asn:        { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS13335.mrs" }

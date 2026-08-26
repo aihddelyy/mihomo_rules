@@ -294,6 +294,7 @@ rules:
   - RULE-SET,Steam_CDN_ip,国内流量,no-resolve
   - RULE-SET,Cloudflare_domain,Cloudflare
   - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
+  - RULE-SET,Cloudflare_asn,Cloudflare,no-resolve
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
   - RULE-SET,AI!cn_domain,AI
@@ -372,4 +373,5 @@ rule-providers:
   Apple_ip:             { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.mrs" }
   # ASN规则
   Google_asn_cn:        { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
+  Cloudflare_asn:       { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS13335.mrs" }
 
