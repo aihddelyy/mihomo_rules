@@ -224,8 +224,8 @@ proxy-groups:
   - {name: 一键自动, <<: *fallback, hidden: true, proxies: [港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 自建/家宽自动], icon: "https://icon.aihdde.eu.org/auto.png"}
 
 # 应用策略组
-  - {name: YouTube, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/youtube.png"}
-  - {name: Google, <<: *stream, icon: "https://icon.aihdde.eu.org/google.png"}
+  - {name: YouTube, <<: *stream, icon: "https://icon.aihdde.eu.org/youtube.png"}
+  - {name: Google, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/google.png"}
   - {name: Cloudflare, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/cloudflare.png"}
   - {name: GitHub, <<: *proxy-first, icon: "https://icon.aihdde.eu.org/github.png"}
   - {name: Apple, <<: *direct-first, icon: "https://icon.aihdde.eu.org/apple.png"}
