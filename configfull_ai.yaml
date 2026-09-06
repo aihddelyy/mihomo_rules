@@ -59,7 +59,7 @@ x-rule-set-classical: &rule-set-classical {type: http, interval: 86400, behavior
 proxy-providers:
   Airport_01: {<<: *base-provider, url: "机场订阅链接1", override: {additional-prefix: '[优1] '}}
   Airport_02: {<<: *base-provider, url: "机场订阅链接2", override: {additional-prefix: '[优2] '}}
-  Airport_03: {<<: *base-provider, url: "机场订阅链接3", override: {additional-prefix: '[备1] '}}
+  Airport_03: {<<: *base-provider, url: "机场订阅链接3", interval: 7200, override: {additional-prefix: '[备1] '}}
   Airport_04: {<<: *base-provider, url: "机场订阅链接4", override: {additional-prefix: '[备2] '}}
 
 # 用于下载订阅时指定UA
