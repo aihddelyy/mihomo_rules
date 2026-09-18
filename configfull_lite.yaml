@@ -229,7 +229,7 @@ proxy-groups:
   - {name: 广告拦截,  type: select , proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icon.aihdde.eu.org/prohibition.png"}
 
 # 地区线路策略组
-  - {name: 精选节点, <<: *select, proxies: [精选自动, 精选智能, 精选均衡], include-all: true, filter: *filter-featured, icon: "https://icon.aihdde.eu.org/star.png"}
+  - {name: 精选节点, <<: *select, proxies: [精选自动, 精选均衡], include-all: true, filter: *filter-featured, icon: "https://icon.aihdde.eu.org/star.png"}
   - {name: 自建/家宽节点, <<: *select, proxies: [自建/家宽自动, 自建/家宽均衡], include-all: true, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 港台节点, <<: *select , proxies: [港台自动, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港节点, <<: *select , proxies: [香港自动, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
