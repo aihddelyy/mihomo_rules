@@ -262,6 +262,7 @@ proxy-groups:
 
 # 地区自动测速组，默认隐藏
   - {name: 精选自动, <<: *url-test, filter: *filter-featured, icon: "https://icon.aihdde.eu.org/star.png"}
+  - {name: 自建/家宽自动, <<: *url-test, filter: *filter-home, icon: "https://icon.aihdde.eu.org/home.png"}
   - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icon.aihdde.eu.org/gangtai.png"}
   - {name: 香港自动, <<: *url-test, filter: *filter-hk, icon: "https://icon.aihdde.eu.org/hong-kong.png"}
   - {name: 台湾自动, <<: *url-test, filter: *filter-tw, icon: "https://icon.aihdde.eu.org/taiwan.png"}
