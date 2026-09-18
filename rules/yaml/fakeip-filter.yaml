@@ -28,6 +28,7 @@ payload:
   - '*.xiami.com'
   - '*.y.qq.com'
   - '+.aihdde.com'
+  - '+.aihdde.dpdns.org'
   - '+.aihdde.eu.org'
   - '+.battlenet.com.cn'
   - '+.cdn.nintendo.net'
