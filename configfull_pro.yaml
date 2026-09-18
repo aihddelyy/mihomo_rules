@@ -120,6 +120,9 @@ profile:
 # 流量嗅探
 sniffer:
   enable: true
+  override-destination: false
+  force-dns-mapping: false
+  parse-pure-ip: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -159,6 +162,8 @@ tun:
 # DNS模块
 dns:
   enable: true
+  cache-algorithm: arc
+  fake-ip-ttl: 1
   listen: 0.0.0.0:1053
   ipv6: true
   # 是否开启 DoH 支持 HTTP/3，将并发尝试
@@ -300,7 +305,7 @@ rules:
 # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
 # 禁用Youtube QUIC
-  - AND,((RULE-SET,YouTube_domain),(NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
+  - AND,((RULE-SET,geolocation-!cn),(NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
 # NTP直连
   - DST-PORT,123,全球直连
 # 一般规则
