@@ -180,7 +180,7 @@ dns:
   ipv6: true
   # 是否开启 DoH 支持 HTTP/3，将并发尝试
   prefer-h3: false
-  respect-rules: true
+  respect-rules: false
   # 模式切换 redir-host / fake-ip
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/16
@@ -192,8 +192,8 @@ dns:
     - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain,Github_domain,Cloudflare_domain'
   nameserver-policy:
     'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
-      - https://dns.alidns.com/dns-query#h3=true
-      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query#h3=true&DIRECT
+      - https://doh.pub/dns-query#DIRECT
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
       - https://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
@@ -202,14 +202,14 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
   proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query#h3=true
-    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query#h3=true&DIRECT
+    - https://doh.pub/dns-query#DIRECT
   direct-nameserver:
-    - https://dns.alidns.com/dns-query#h3=true
-    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query#h3=true&DIRECT
+    - https://doh.pub/dns-query#DIRECT
   nameserver:
-    - https://dns.alidns.com/dns-query#h3=true
-    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query#h3=true&DIRECT
+    - https://doh.pub/dns-query#DIRECT
   fallback:
     - https://dns.google/dns-query#默认代理
     - https://cloudflare-dns.com/dns-query#默认代理
