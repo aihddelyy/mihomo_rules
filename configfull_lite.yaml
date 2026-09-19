@@ -177,15 +177,15 @@ dns:
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain,Github_domain'
+    - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain,Github_domain,Cloudflare_domain'
   nameserver-policy:
     'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
       - https://dns.alidns.com/dns-query#h3=true
       - https://doh.pub/dns-query
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
-      - https://dns.quad9.net/dns-query
-      - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.quad9.net/dns-query
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -198,7 +198,13 @@ dns:
   nameserver:
     - https://dns.alidns.com/dns-query#h3=true
     - https://doh.pub/dns-query
-
+  fallback:
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.quad9.net/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
  
 # 策略组
 proxy-groups:
