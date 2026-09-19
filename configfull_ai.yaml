@@ -195,9 +195,9 @@ dns:
       - https://dns.alidns.com/dns-query#disable-qtype-65=true
       - https://doh.pub/dns-query#disable-qtype-65=true
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
-      - https://dns.quad9.net/dns-query
-      - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.quad9.net/dns-query
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -208,9 +208,9 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.quad9.net/dns-query
 
 # 策略组
 proxy-groups:
