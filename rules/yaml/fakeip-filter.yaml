@@ -27,6 +27,8 @@ payload:
   - '*.time.edu.cn'
   - '*.xiami.com'
   - '*.y.qq.com'
+  - '+,aihdce.eu.cc'
+  - '+,aihdde.eu.cc'
   - '+.aihdde.com'
   - '+.aihdde.dpdns.org'
   - '+.aihdde.eu.org'
