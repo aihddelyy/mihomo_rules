@@ -121,6 +121,6 @@ ps.res.netease.com
 5ddd.com
 *.pool.ntp.org
 +.aihdde.eu.org
-+,aihdde.eu.cc
-+,aihdce.eu.cc
++.aihdde.eu.cc
++.aihdce.eu.cc
 +.aihdde.dpdns.org
