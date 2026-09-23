@@ -162,6 +162,8 @@ tun:
 # DNS模块
 dns:
   enable: true
+  cache-algorithm: arc
+  fake-ip-ttl: 1
   listen: 0.0.0.0:1053
   ipv6: true
   # 是否开启 DoH 支持 HTTP/3，将并发尝试
