@@ -56,3 +56,4 @@ payload:
   - '+.doh.opendns.com'
   - '+.dns.quad9.net'
   - '+.hk-hkg.doh.sb'
+  - '+.freedns.controld.com'
