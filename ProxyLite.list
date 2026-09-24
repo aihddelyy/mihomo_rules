@@ -65,6 +65,7 @@ DOMAIN-SUFFIX,doh.dns.sb
 DOMAIN-SUFFIX,doh.opendns.com
 DOMAIN-SUFFIX,dns.quad9.net
 DOMAIN-SUFFIX,hk-hkg.doh.sb
+DOMAIN-SUFFIX,freedns.controld.com
 IP-CIDR,1.1.1.1/32
 IP-CIDR,1.0.0.1/32
 IP-CIDR,8.8.8.8/32
