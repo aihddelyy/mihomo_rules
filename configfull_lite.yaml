@@ -177,7 +177,7 @@ dns:
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain,Github_domain,Cloudflare_domain'
+    - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
   nameserver-policy:
     'rule-set:Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain':
       - https://dns.alidns.com/dns-query#h3=true
@@ -186,6 +186,7 @@ dns:
       - https://dns.google/dns-query
       - https://cloudflare-dns.com/dns-query
       - https://dns.quad9.net/dns-query
+      - https://freedns.controld.com/p0
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -202,6 +203,7 @@ dns:
     - https://dns.google/dns-query
     - https://cloudflare-dns.com/dns-query
     - https://dns.quad9.net/dns-query
+    - https://freedns.controld.com/p0
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -367,7 +369,7 @@ rule-providers:
   Steam_cn_domain:      { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
   Steam_CDN_domain:     { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-domain.mrs" }
   Steam_domain:         { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
-  Speedtest_domain:     { <<: *rule-set-domain, url: "https://raw.githubusercontent.com//666OS/rules/release/mihomo/domain/Speedtest.mrs" }
+  Speedtest_domain:     { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/666OS/rules/release/mihomo/domain/Speedtest.mrs" }
   Porn_domain:          { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs" }
   GFW_domain:           { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gfw.mrs" }
   geolocation-!cn:      { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.mrs" }
