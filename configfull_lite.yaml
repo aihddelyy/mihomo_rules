@@ -9,7 +9,7 @@
 # || █   █  ███  █   █ ████  ████  █████ ||
 # ||                                     ||
 # >>=====================================<<
-# Aihdde mihomo 配置 - lite版 （2026-07-26 更新）
+# Aihdde mihomo 配置 - lite版 （2026-09-26 更新）
 # 项目: https://github.com/aihddelyy/mihomo_rules
 # 请在 proxy-providers 中添加您的订阅链接
 
@@ -27,12 +27,12 @@ x-fallback:      &fallback     {type: fallback, interval: 300, lazy: true, hidde
 x-smart:         &smart        {type: smart, policy-priority: "优1:3;优2:2.5;备1:2;备2:2", uselightgbm: true, collectdata: false, sample-rate: 1, prefer-asn: true, interval: 300, lazy: true, include-all: true, hidden: true}
 
 # 2. 策略组模板锚点
-x-auto-tap:      &auto-tap     {type: select, proxies: [一键自动, 精选自动, 自建/家宽自动, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动]}
-x-default:       &default      {type: select, proxies: [自动选择, 一键自动, 手动选择, 故障转移, 全球直连, 精选节点, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-overseas:      &overseas     {type: select, proxies: [默认代理, 自动选择, 一键自动, 手动选择, 故障转移, 全球直连, 精选节点, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-direct:        &direct       {type: select, proxies: [全球直连, 默认代理, 自动选择, 一键自动, 手动选择, 故障转移, 精选节点, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-proxy-first:   &proxy-first  {type: select, proxies: [默认代理, 国外流量, 国内流量, 自动选择, 一键自动, 手动选择, 故障转移, 全球直连, 精选节点, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
-x-direct-first:  &direct-first {type: select, proxies: [全球直连, 默认代理, 国外流量, 国内流量, 自动选择, 一键自动, 手动选择, 故障转移, 精选节点, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-auto-tap:      &auto-tap     {type: select, proxies: [一键自动, 自建/家宽自动, 精选自动, 港台自动, 香港精选自动, 香港自动, 台湾自动, 新加坡精选自动, 新加坡自动, 日本精选自动, 日本自动, 韩国精选自动, 韩国自动, 美国精选自动, 美国自动, 英国自动, 欧洲自动]}
+x-default:       &default      {type: select, proxies: [自动选择, 一键自动, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-overseas:      &overseas     {type: select, proxies: [默认代理, 自动选择, 一键自动, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-direct:        &direct       {type: select, proxies: [全球直连, 默认代理, 自动选择, 一键自动, 手动选择, 故障转移, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-proxy-first:   &proxy-first  {type: select, proxies: [默认代理, 国外流量, 国内流量, 自动选择, 一键自动, 手动选择, 故障转移, 全球直连, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家]}
+x-direct-first:  &direct-first {type: select, proxies: [全球直连, 默认代理, 国外流量, 国内流量, 自动选择, 一键自动, 手动选择, 故障转移, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家]}
 
 # 3. 地区正则过滤器锚点
 x-filter-home:   &filter-home  "^(?=.*(?i)(自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att))(?!.*(?i)(排除1|排除2)).*$"
@@ -47,6 +47,11 @@ x-filter-uk:     &filter-uk    "^(?=.*(?i)(英|GB|UK|England|British))(?!.*(?i)(
 x-filter-eu:     &filter-eu    "^(?=.*(?i)(俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish))(?!.*(?i)(排除1|排除2|CF)).*$"
 x-filter-ot:     &filter-ot    "^(?=.*(?i)(直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西班牙|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF))(?!.*(?i)(排除1|排除2)).*$"
 x-filter-featured:   &filter-featured  "^(?=.*(?i)(精选))(?!.*(?i)(排除1|排除2)).*$"
+x-filter-featured-hk:   &filter-featured-hk  "^(?=.*(?i)(香港|🇭🇰|hk|hongkong|Hong Kong))(?=.*(?i)(精选))(?!.*(?i)(排除1|排除2)).*$"
+x-filter-featured-sg:   &filter-featured-sg  "^(?=.*(?i)(新|🇸🇬|SG|singapore))(?=.*(?i)(精选))(?!.*(?i)(排除1|排除2)).*$"
+x-filter-featured-jp:   &filter-featured-jp  "^(?=.*(?i)(日本|🇯🇵|JP|Japan))(?=.*(?i)(精选))(?!.*(?i)(排除1|排除2)).*$"
+x-filter-featured-us:   &filter-featured-us  "^(?=.*(?i)(美|🇺🇲|US|America|United States))(?=.*(?i)(精选))(?!.*(?i)(排除1|排除2)).*$"
+x-filter-featured-kr:   &filter-featured-kr  "^(?=.*(?i)(韩国|🇰🇷|KR|Korea))(?=.*(?i)(精选))(?!.*(?i)(排除1|排除2)).*$"
 
 # 4. 规则集模式锚点
 x-rule-set-ipcidr: &rule-set-ipcidr {type: http, interval: 86400, behavior: ipcidr, format: mrs}
@@ -108,7 +113,7 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-p
 # 非代理访问可加镜像"https://gh-proxy.com"
 
 # 匹配进程 always/strict/off
-find-process-mode: strict
+find-process-mode: off
 keep-alive-idle: 600
 keep-alive-interval: 15
 
@@ -185,8 +190,8 @@ dns:
     'rule-set:ProxyLite_domain,GFW_domain,geolocation-!cn':
       - https://dns.google/dns-query#默认代理&disable-qtype-65=true
       - https://cloudflare-dns.com/dns-query#默认代理&disable-qtype-65=true
-      - https://dns.quad9.net/dns-query#默认代理&disable-qtype-65=true
       - https://freedns.controld.com/p0#默认代理&disable-qtype-65=true
+      - https://dns.nextdns.io/dns-query#默认代理&disable-qtype-65=true
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -199,8 +204,8 @@ dns:
   nameserver:
     - https://dns.google/dns-query#默认代理
     - https://cloudflare-dns.com/dns-query#默认代理
-    - https://dns.quad9.net/dns-query#默认代理
     - https://freedns.controld.com/p0#默认代理
+    - https://dns.nextdns.io/dns-query#默认代理
 
 
 # 策略组
@@ -237,7 +242,12 @@ proxy-groups:
   - {name: 广告拦截,  type: select , proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icons.aihdde.eu.org/prohibition.png"}
 
 # 地区线路策略组
-  - {name: 精选节点, <<: *select, proxies: [精选自动, 精选均衡], include-all: true, filter: *filter-featured, icon: "https://icons.aihdde.eu.org/star.png"}
+  - {name: 精选节点, <<: *select, proxies: [精选自动, 精选均衡, 香港精选, 新加坡精选, 日本精选, 美国精选, 韩国精选], include-all: true, filter: *filter-featured, icon: "https://icons.aihdde.eu.org/star.png"}
+  - {name: 香港精选, <<: *select, proxies: [香港精选自动, 香港精选均衡], include-all: true, filter: *filter-featured-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
+  - {name: 新加坡精选, <<: *select, proxies: [新加坡精选自动, 新加坡精选均衡], include-all: true, filter: *filter-featured-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
+  - {name: 日本精选, <<: *select, proxies: [日本精选自动, 日本精选均衡], include-all: true, filter: *filter-featured-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
+  - {name: 美国精选, <<: *select, proxies: [美国精选自动, 美国精选均衡], include-all: true, filter: *filter-featured-us, icon: "https://icons.aihdde.eu.org/usa.png"}
+  - {name: 韩国精选, <<: *select, proxies: [韩国精选自动, 韩国精选均衡], include-all: true, filter: *filter-featured-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
   - {name: 自建/家宽节点, <<: *select, proxies: [自建/家宽自动, 自建/家宽均衡], include-all: true, filter: *filter-home, icon: "https://icons.aihdde.eu.org/home.png"}
   - {name: 港台节点, <<: *select , proxies: [港台自动, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icons.aihdde.eu.org/gangtai.png"}
   - {name: 香港节点, <<: *select , proxies: [香港自动, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
@@ -252,6 +262,11 @@ proxy-groups:
 
 # 地区自动测速组，默认隐藏
   - {name: 精选自动, <<: *url-test, filter: *filter-featured, icon: "https://icons.aihdde.eu.org/star.png"}
+  - {name: 香港精选自动, <<: *url-test, filter: *filter-featured-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
+  - {name: 新加坡精选自动, <<: *url-test, filter: *filter-featured-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
+  - {name: 日本精选自动, <<: *url-test, filter: *filter-featured-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
+  - {name: 美国精选自动, <<: *url-test, filter: *filter-featured-us, icon: "https://icons.aihdde.eu.org/usa.png"}
+  - {name: 韩国精选自动, <<: *url-test, filter: *filter-featured-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
   - {name: 自建/家宽自动, <<: *url-test, filter: *filter-home, icon: "https://icons.aihdde.eu.org/home.png"}
   - {name: 港台自动, <<: *url-test, filter: *filter-hktw, icon: "https://icons.aihdde.eu.org/gangtai.png"}
   - {name: 香港自动, <<: *url-test, filter:  *filter-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
@@ -265,6 +280,11 @@ proxy-groups:
 
 # 地区负载均衡策略组，默认隐藏
   - {name: 精选均衡, <<: *load-balance, filter: *filter-featured, icon: "https://icons.aihdde.eu.org/star.png"}
+  - {name: 香港精选均衡, <<: *load-balance, filter: *filter-featured-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
+  - {name: 新加坡精选均衡, <<: *load-balance, filter: *filter-featured-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
+  - {name: 日本精选均衡, <<: *load-balance, filter: *filter-featured-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
+  - {name: 美国精选均衡, <<: *load-balance, filter: *filter-featured-us, icon: "https://icons.aihdde.eu.org/usa.png"}
+  - {name: 韩国精选均衡, <<: *load-balance, filter: *filter-featured-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
   - {name: 自建/家宽均衡, <<: *load-balance, filter: *filter-home, icon: "https://icons.aihdde.eu.org/home.png"}
   - {name: 港台均衡, <<: *load-balance, filter: *filter-hktw, icon: "https://icons.aihdde.eu.org/gangtai.png"}
   - {name: 香港均衡, <<: *load-balance, filter: *filter-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
@@ -283,13 +303,13 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 
 # 全局策略组，默认隐藏  
-  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [自动选择, 一键自动, 默认代理, 国外流量, 国内流量, 漏网之鱼, 手动选择, 故障转移, 全球直连, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 广告拦截, 精选节点, 自建/家宽节点, 港台节点, 香港节点, 台湾节点, 新加坡节点, 日本节点, 韩国节点, 美国节点, 英国节点, 欧洲节点, 其他国家, 精选自动, 自建/家宽自动, 港台自动, 香港自动, 台湾自动, 新加坡自动, 日本自动, 韩国自动, 美国自动, 英国自动, 欧洲自动, 精选均衡, 自建/家宽均衡, 港台均衡, 香港均衡, 台湾均衡, 新加坡均衡, 日本均衡, 韩国均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icons.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [自动选择, 一键自动, 默认代理, 国外流量, 国内流量, 漏网之鱼, 手动选择, 故障转移, 全球直连, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 广告拦截, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家, 自建/家宽自动, 精选自动, 港台自动, 香港精选自动, 香港自动, 台湾自动, 新加坡精选自动, 新加坡自动, 日本精选自动, 日本自动, 韩国精选自动, 韩国自动, 美国精选自动, 美国自动, 英国自动, 欧洲自动, 自建/家宽均衡, 精选均衡, 港台均衡, 香港精选均衡, 香港均衡, 台湾均衡, 新加坡精选均衡, 新加坡均衡, 日本精选均衡, 日本均衡, 韩国精选均衡, 韩国均衡, 美国精选均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icons.aihdde.eu.org/earth.png"}
 
 # 规则路由
 rules:
 # 防止 Telegram 加载转圈
   - IP-CIDR,95.161.76.100/31,⚪ 丢弃,no-resolve
-# 禁用Youtube QUIC
+# 禁用海外QUIC
   - AND,((RULE-SET,geolocation-!cn),(NETWORK,UDP),(DST-PORT,443)),🚫 拒绝
 # NTP直连
   - DST-PORT,123,全球直连
