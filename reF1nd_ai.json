@@ -1,0 +1,194 @@
+{
+  "$schema": "https://raw.githubusercontent.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
+  "providers": [
+    {"tag": "JC1", "type": "remote", "url": "https://edge.aihdde.eu.org/sub?token=7f0cea332ac1998826e049f09627fc23", "health_check": {"enabled": true, "url": "https://www.gstatic.com/generate_204", "interval": "10m", "timeout": "3s"}, "exclude": "官网|剩余|流量|套餐|免费|订阅|全球直连|到期时间|GB|Expire Date|Traffic|ExpireDate", "http_client": "直连下载", "update_interval": "12h"}
+  ],
+  "dns": {
+    "servers": [
+      {"tag": "local", "type": "local", "prefer_go": true},
+      {"tag": "ali", "type": "https", "server": "223.5.5.5"},
+      {"tag": "tx", "type": "https", "server": "doh.pub", "domain_resolver": "hosts"},
+      {"tag": "google", "type": "https", "server": "8.8.8.8", "detour": "默认代理"},
+      {"tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/16", "inet6_range": "fdfe:dcba:9876::/64"},
+      {"type": "hosts", "tag": "hosts", "predefined": {"doh.pub": ["1.12.12.21", "120.53.53.53"]}}
+    ],
+    "rules": [
+      {"query_type": ["HTTPS", "SVCB"], "action": "reject"},
+      {"clash_mode": "Direct", "server": "ali"},
+      {"clash_mode": "Global", "server": "fakeip"},
+      {"rule_set": ["fakeipfilter-cn", "geosite-private", "geosite-cn", "geosite-microsoft@cn", "geosite-apple@cn", "geosite-steam@cn"], "server": "ali"},
+      {"rule_set": "fakeipfilter-!cn", "server": "google"},
+      {"rule_set": ["geosite-geolocation-!cn", "geosite-gfw"], "server": "google"},
+      {"match_response": true, "rule_set": "geoip-cn", "server": "ali"},
+      {"query_type": ["A", "AAAA"], "server": "fakeip", "rewrite_ttl": 1}
+    ],
+    "final": "google",
+    "strategy": "ipv4_only",
+    "cache_capacity": 8192,
+    "optimistic": {"enabled": true},
+    "reverse_mapping": true
+  },
+  "outbounds": [
+    {"tag": "默认代理", "type": "selector", "outbounds": ["自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点", "其他国家"]},
+    {"tag": "国外流量", "type": "selector", "outbounds": ["默认代理", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点", "其他国家"]},
+    {"tag": "国内流量", "type": "selector", "outbounds": ["全球直连", "默认代理", "国外流量", "自动选择", "一键自动", "手动选择", "故障转移", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点", "其他国家"]},
+    {"tag": "漏网之鱼", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点", "其他国家"]},
+    {"tag": "手动选择", "type": "selector", "outbounds": [], "use_all_providers": true, "exclude": "网站|流量|地址|剩余|过期|免费|时间|有效|Traffic|ExpireDate|GB|Expire Date"},
+    {"tag": "故障转移", "type": "urltest", "outbounds": ["香港自动", "台湾自动", "新加坡自动", "日本自动", "美国自动", "韩国自动", "英国自动", "欧洲自动", "自建/家宽自动", "精选自动"], "url": "https://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50},
+    {"tag": "全球直连", "type": "selector", "outbounds": ["直连"]},
+    {"tag": "自动选择", "type": "urltest", "outbounds": [], "use_all_providers": true, "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "一键自动", "type": "urltest", "outbounds": ["精选自动", "香港精选自动", "新加坡精选自动", "日本精选自动", "美国精选自动", "韩国精选自动", "自建/家宽自动", "港台自动", "香港自动", "台湾自动", "新加坡自动", "日本自动", "韩国自动", "美国自动", "英国自动", "欧洲自动"], "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "YouTube", "type": "selector", "outbounds": ["默认代理", "自动选择", "一键自动", "手动选择", "故障转移", "精选自动", "香港精选自动", "新加坡精选自动", "日本精选自动", "美国精选自动", "韩国精选自动", "自建/家宽自动", "港台自动", "香港自动", "台湾自动", "新加坡自动", "日本自动", "韩国自动", "美国自动", "英国自动", "欧洲自动"]},
+    {"tag": "Google", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "Cloudflare", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "GitHub", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "Apple", "type": "selector", "outbounds": ["全球直连", "默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "Microsoft", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "OneDrive", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "AI", "type": "selector", "outbounds": ["默认代理", "自动选择", "一键自动", "手动选择", "日本节点", "新加坡节点", "美国节点", "香港节点", "台湾节点", "韩国节点", "全球直连"]},
+    {"tag": "TikTok", "type": "selector", "outbounds": ["默认代理", "自动选择", "一键自动", "手动选择", "日本节点", "新加坡节点", "美国节点", "韩国节点", "全球直连"]},
+    {"tag": "Netflix", "type": "selector", "outbounds": ["默认代理", "自动选择", "一键自动", "手动选择", "故障转移", "精选自动", "香港精选自动", "新加坡精选自动", "日本精选自动", "美国精选自动", "韩国精选自动", "自建/家宽自动", "港台自动", "香港自动", "台湾自动", "新加坡自动", "日本自动", "韩国自动", "美国自动", "英国自动", "欧洲自动"]},
+    {"tag": "Telegram", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "新加坡节点", "香港节点", "日本节点", "美国节点"]},
+    {"tag": "Porn", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "Steam", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "PayPal", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "自动选择", "一键自动", "手动选择", "故障转移", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "Speedtest", "type": "selector", "outbounds": ["默认代理", "自动选择", "手动选择", "全球直连", "精选", "香港精选", "新加坡精选", "日本精选", "美国精选", "韩国精选", "自建/家宽节点", "港台节点", "香港节点", "台湾节点", "新加坡节点", "日本节点", "韩国节点", "美国节点", "英国节点", "欧洲节点"]},
+    {"tag": "广告拦截", "type": "selector", "outbounds": ["拒绝", "丢弃", "直连", "默认代理"]},
+    {"tag": "精选", "type": "selector", "outbounds": ["精选自动"], "use_all_providers": true, "include": "(?i)精选", "exclude": "(?i)排除1|排除2"},
+    {"tag": "精选自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)精选", "exclude": "(?i)排除1|排除2", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "香港精选", "type": "selector", "outbounds": ["香港精选自动"], "use_all_providers": true, "include": "(?i)((香港|🇭🇰|hk|hongkong).*精选|精选.*(香港|🇭🇰|hk|hongkong))", "exclude": "(?i)排除1|排除2"},
+    {"tag": "香港精选自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)((香港|🇭🇰|hk|hongkong).*精选|精选.*(香港|🇭🇰|hk|hongkong))", "exclude": "(?i)排除1|排除2", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "新加坡精选", "type": "selector", "outbounds": ["新加坡精选自动"], "use_all_providers": true, "include": "(?i)(?=.*(新|🇸🇬|SG|singapore))(?=.*(精选))", "exclude": "(?i)排除1|排除2"},
+    {"tag": "新加坡精选自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)(?=.*(新|🇸🇬|SG|singapore))(?=.*(精选))", "exclude": "(?i)排除1|排除2", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "日本精选", "type": "selector", "outbounds": ["日本精选自动"], "use_all_providers": true, "include": "(?i)((日本|🇯🇵|JP|Japan).*精选|精选.*(日本|🇯🇵|JP|Japan))", "exclude": "(?i)排除1|排除2"},
+    {"tag": "日本精选自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)((日本|🇯🇵|JP|Japan).*精选|精选.*(日本|🇯🇵|JP|Japan))", "exclude": "(?i)排除1|排除2", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "美国精选", "type": "selector", "outbounds": ["美国精选自动"], "use_all_providers": true, "include": "(?i)(?=.*(美|🇺🇲|US|America|United States))(?=.*(精选))", "exclude": "(?i)排除1|排除2"},
+    {"tag": "美国精选自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)(?=.*(美|🇺🇲|US|America|United States))(?=.*(精选))", "exclude": "(?i)排除1|排除2", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "韩国精选", "type": "selector", "outbounds": ["韩国精选自动"], "use_all_providers": true, "include": "(?i)((韩国|🇰🇷|KR|Korea).*精选|精选.*(韩国|🇰🇷|KR|Korea))", "exclude": "(?i)排除1|排除2"},
+    {"tag": "韩国精选自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)((韩国|🇰🇷|KR|Korea).*精选|精选.*(韩国|🇰🇷|KR|Korea))", "exclude": "(?i)排除1|排除2", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "自建/家宽节点", "type": "selector", "outbounds": ["自建/家宽自动"], "use_all_providers": true, "include": "(?i)自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att", "exclude": "(?i)排除1|排除2"},
+    {"tag": "自建/家宽自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)自建|CF|The_house|private|home|家宽|hgc|HKT|HKBN|icable|Hinet|att", "exclude": "(?i)排除1|排除2", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "港台节点", "type": "selector", "outbounds": ["港台自动"], "use_all_providers": true, "include": "(?i)香港|🇭🇰|hk|hongkong|台|🇹🇼|TW|Taiwan", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "港台自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)香港|🇭🇰|hk|hongkong|台|🇹🇼|TW|Taiwan", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "香港节点", "type": "selector", "outbounds": ["香港自动"], "use_all_providers": true, "include": "(?i)香港|🇭🇰|hk|hongkong|Hong Kong", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "香港自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)香港|🇭🇰|hk|hongkong|Hong Kong", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "台湾节点", "type": "selector", "outbounds": ["台湾自动"], "use_all_providers": true, "include": "(?i)台|🇹🇼|TW|Taiwan", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "台湾自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)台|🇹🇼|TW|Taiwan", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "新加坡节点", "type": "selector", "outbounds": ["新加坡自动"], "use_all_providers": true, "include": "(?i)新|🇸🇬|SG|singapore", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "新加坡自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)新|🇸🇬|SG|singapore", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "日本节点", "type": "selector", "outbounds": ["日本自动"], "use_all_providers": true, "include": "(?i)日本|🇯🇵|JP|Japan", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "日本自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)日本|🇯🇵|JP|Japan", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "韩国节点", "type": "selector", "outbounds": ["韩国自动"], "use_all_providers": true, "include": "(?i)韩国|🇰🇷|KR|Korea", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "韩国自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)韩国|🇰🇷|KR|Korea", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "美国节点", "type": "selector", "outbounds": ["美国自动"], "use_all_providers": true, "include": "(?i)美|🇺🇲|US|America|United States", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "美国自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)美|🇺🇲|US|America|United States", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "英国节点", "type": "selector", "outbounds": ["英国自动"], "use_all_providers": true, "include": "(?i)英|GB|UK|England|British", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "英国自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)英|GB|UK|England|British", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "欧洲节点", "type": "selector", "outbounds": ["欧洲自动"], "use_all_providers": true, "include": "(?i)俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish", "exclude": "(?i)排除1|排除2|CF"},
+    {"tag": "欧洲自动", "type": "urltest", "outbounds": [], "use_all_providers": true, "include": "(?i)俄|德|土|荷|法|意|西班牙|波兰|卢|罗|葡|希|瑞|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|DE|FR|Türkiye|Netherlands|Switzerland|Sweden|Portugal|Poland|España|Romania|Iceland|SaltyFish", "exclude": "(?i)排除1|排除2|CF", "url": "https://clients1.google.com/generate_204", "interval": "30m", "tolerance": 50},
+    {"tag": "其他国家", "type": "selector", "outbounds": [], "use_all_providers": true, "exclude": "(?i)直连|港|台|日|韩|新|美|英|德|俄|土|荷|法|意|瑞|西班牙|波|卢|罗|葡|希|乌|挪|格|阿塞拜疆|摩|塞|克|冰|匈|波黑|家宽|CF"},
+    {"tag": "直连", "type": "direct", "domain_resolver": "ali"},
+    {"tag": "拒绝", "type": "block"},
+    {"tag": "丢弃", "type": "block"},
+    {"tag": "GLOBAL", "type": "selector", "outbounds": ["默认代理", "国外流量", "国内流量", "漏网之鱼", "手动选择", "故障转移", "全球直连", "自动选择", "一键自动", "YouTube", "Google", "Cloudflare", "GitHub", "Apple", "Microsoft", "OneDrive", "AI", "TikTok", "Netflix", "Telegram", "Porn", "Steam", "PayPal", "Speedtest", "广告拦截", "精选", "精选自动", "香港精选", "香港精选自动", "新加坡精选", "新加坡精选自动", "日本精选", "日本精选自动", "美国精选", "美国精选自动", "韩国精选", "韩国精选自动", "自建/家宽节点", "自建/家宽自动", "港台节点", "港台自动", "香港节点", "香港自动", "台湾节点", "台湾自动", "新加坡节点", "新加坡自动", "日本节点", "日本自动", "韩国节点", "韩国自动", "美国节点", "美国自动", "英国节点", "英国自动", "欧洲节点", "欧洲自动", "其他国家", "直连"]}
+  ],
+  "http_clients": [
+    {"tag": "直连下载", "detour": "直连"}
+  ],
+  "route": {
+    "rules": [
+      {"type": "logical", "mode": "and", "rules": [{"port": [53, 853], "invert": true}, {"clash_mode": "Global", "invert": true}, {"type": "logical", "mode": "or", "rules": [{"ip_is_private": true}, {"rule_set": "geoip-cn"}]}], "action": "bypass"},
+      {"type": "logical", "mode": "or", "rules": [{"domain_suffix": ["push.apple.com", "apple.com", "wechat.com", "qpic.cn", "qq.com", "sunlogin.net", "oray.com"]}, {"rule_set": "geoip-telegram"}], "invert": true, "action": "sniff", "sniffer": ["http", "tls", "stun", "quic", "dns"], "timeout": "100ms"},
+      {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
+      {"ip_is_private": true, "outbound": "直连"},
+      {"port": 123, "outbound": "直连"},
+      {"ip_cidr": ["95.161.76.100/31"], "outbound": "丢弃"},
+      {"type": "logical", "mode": "and", "rules": [{"rule_set": "geosite-geolocation-!cn"}, {"network": "udp"}, {"port": 443}], "outbound": "拒绝"},
+      {"type": "logical", "mode": "or", "rules": [{"port": 853}, {"protocol": ["stun", "quic"]}], "action": "reject", "no_drop": true},
+      {"network": "icmp", "action": "resolve"},
+      {"network": "icmp", "outbound": "直连"},
+      {"clash_mode": "Direct", "outbound": "直连"},
+      {"clash_mode": "Global", "outbound": "GLOBAL"},
+      {"rule_set": ["geosite-category-ads-all", "ad-ip"], "outbound": "广告拦截"},
+      {"rule_set": "geosite-private", "outbound": "直连"},
+      {"rule_set": "geosite-steam@cn", "outbound": "国内流量"},
+      {"rule_set": "geosite-apple@cn", "outbound": "国内流量"},
+      {"rule_set": "geosite-microsoft@cn", "outbound": "国内流量"},
+      {"rule_set": "geosite-category-ai-!cn", "outbound": "AI"},
+      {"rule_set": "geosite-youtube", "outbound": "YouTube"},
+      {"rule_set": ["geosite-google", "geosite-google-play", "geosite-googlefcm"], "outbound": "Google"},
+      {"rule_set": "geosite-github", "outbound": "GitHub"},
+      {"rule_set": "geosite-cloudflare", "outbound": "Cloudflare"},
+      {"rule_set": "geosite-onedrive", "outbound": "OneDrive"},
+      {"rule_set": "geosite-microsoft", "outbound": "Microsoft"},
+      {"rule_set": "geosite-apple", "outbound": "Apple"},
+      {"rule_set": "geosite-telegram", "outbound": "Telegram"},
+      {"rule_set": "geosite-tiktok", "outbound": "TikTok"},
+      {"rule_set": "geosite-netflix", "outbound": "Netflix"},
+      {"rule_set": "geosite-paypal", "outbound": "PayPal"},
+      {"rule_set": "geosite-speedtest", "outbound": "Speedtest"},
+      {"rule_set": "geosite-category-porn", "outbound": "Porn"},
+      {"rule_set": "geosite-steam", "outbound": "Steam"},
+      {"rule_set": ["geosite-gfw", "geosite-geolocation-!cn"], "outbound": "国外流量"},
+      {"rule_set": "geosite-cn", "outbound": "国内流量"},
+      {"inbound": "mixed-in", "action": "resolve", "match_only": true},
+      {"rule_set": "geoip-telegram", "outbound": "Telegram"},
+      {"rule_set": "geoip-cn", "outbound": "国内流量"}
+    ],
+    "rule_set": [
+      {"tag": ["fakeipfilter-cn", "fakeipfilter-!cn"], "type": "remote", "format": "source", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/{tag}.json"},
+      {"tag": ["geosite-category-ads-all", "geosite-category-ai-!cn", "geosite-youtube", "geosite-google", "geosite-google-play", "geosite-googlefcm", "geosite-github", "geosite-cloudflare", "geosite-onedrive", "geosite-microsoft", "geosite-microsoft@cn", "geosite-apple", "geosite-apple@cn", "geosite-telegram", "geosite-tiktok", "geosite-netflix", "geosite-paypal", "geosite-speedtest", "geosite-category-porn", "geosite-steam@cn", "geosite-steam", "geosite-gfw", "geosite-geolocation-!cn", "geosite-cn", "geosite-private"], "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/{tag}.srs"},
+      {"tag": "geoip-telegram", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs"},
+      {"tag": "ad-ip", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-ad.srs"},
+      {"tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"}
+    ],
+    "final": "漏网之鱼",
+    "default_http_client": "直连下载",
+    "auto_detect_interface": true,
+    "default_domain_resolver": {"server": "ali"}
+  },
+  "inbounds": [
+    {"type": "redirect", "tag": "redirect-in", "listen": "::", "listen_port": 7892, "sniff": true, "sniff_override_destination": true},
+    {"type": "tproxy", "tag": "tproxy-in", "listen": "::", "listen_port": 7895, "sniff": true, "sniff_override_destination": true},
+    {"type": "mixed", "tag": "mixed-in", "listen": "::", "listen_port": 7890, "sniff": true, "sniff_override_destination": true},
+    {"type": "direct", "tag": "dns-in", "listen": "::", "listen_port": 1053},
+    {"type": "tun", "tag": "tun-in", "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"], "auto_route": false, "strict_route": false}
+  ],
+  "services": [
+    {
+      "type": "api",
+      "listen": "0.0.0.0",
+      "listen_port": 9090,
+      "secret": "passwd",
+      "dashboard": {
+        "enabled": true,
+        "path": "/etc/sing-box/dashboard"
+      }
+    }
+  ],
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "/etc/sing-box/cache.db",
+      "store_dns": true
+    },
+    "clash_api": {
+      "external_controller": "0.0.0.0:9095",
+      "external_ui": "/etc/sing-box/ui",
+      "secret": "passwd",
+      "default_mode": "Rule"
+    }
+  },
+  "certificate": {
+    "store": "chrome"
+  },
+  "ntp": {
+    "enabled": true,
+    "server": "time.apple.com"
+  },
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  }
+}
