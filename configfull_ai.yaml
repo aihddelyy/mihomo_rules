@@ -212,7 +212,7 @@ dns:
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query#h3=true
     - https://doh.pub/dns-query
-  proxy-server-nameserver-pplicy:
+  proxy-server-nameserver-policy:
     'rule-set:Ech_domain':
       - https://dns.cloudflare.com/dns-query
   direct-nameserver:
