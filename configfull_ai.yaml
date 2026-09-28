@@ -196,8 +196,6 @@ dns:
   fake-ip-filter:
     - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
   nameserver-policy:
-    'rule-set:Ech_domain':
-      - https://dns.alidns.com/dns-query#h3
     'rule-set:Private_domain,DirectLite_domain,Steam_cn_domain,Steam_CDN_domain,Apple_cn_domain,CN_domain':
       - https://dns.alidns.com/dns-query#h3=true&disable-qtype-65=true
       - https://doh.pub/dns-query#disable-qtype-65=true
@@ -424,7 +422,6 @@ rule-providers:
   geolocation-!cn:      { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.mrs" }
   CN_domain:            { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.mrs" }
   Fakeip_filter_domain: { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/fakeip-filter.mrs" }
-  Ech_domain:           { <<: *rule-set-classical, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/ech.list" }
   # IP规则
   Ad_ip:                { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
   CN_ip:                { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.mrs" }
