@@ -196,6 +196,8 @@ dns:
   fake-ip-filter:
     - 'rule-set:Fakeip_filter_domain,Steam_cn_domain,Steam_CDN_domain,Private_domain,DirectLite_domain,Apple_cn_domain,CN_domain'
   nameserver-policy:
+    'cloudflare-ech.com':
+      - https://dns.cloudflare.com/dns-query#默认代理
     'rule-set:Ech_domain':
       - https://dns.cloudflare.com/dns-query#默认代理
     'rule-set:Private_domain,DirectLite_domain,Steam_cn_domain,Steam_CDN_domain,Apple_cn_domain,CN_domain':
