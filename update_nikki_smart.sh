@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# 一键下载并运行：
+# wget -O /tmp/update_nikki_smart.sh https://gh-proxy.com/raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/update_nikki_smart.sh
+# chmod 755 /tmp/update_nikki_smart.sh
+# bash /tmp/update_nikki_smart.sh
+
 # 设置路径
 TMP_DIR="/tmp/nikki_update"
 LOG_DIR="/var/log/nikki_update"
@@ -70,6 +75,7 @@ if [ $? -ne 0 ]; then
         exit 1
     fi
 fi
+
 # 替换旧模型文件
 log "替换旧模型文件..."
 mv -f "$TMP_DIR/Model.bin" /etc/nikki/run/Model.bin

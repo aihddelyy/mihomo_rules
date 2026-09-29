@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# 一键下载并运行：
+# wget -O /tmp/update_nikki_oix.sh https://gh-proxy.com/raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/update_nikki_oix.sh
+# chmod 755 /tmp/update_nikki_oix.sh
+# bash /tmp/update_nikki_oix.sh
+
 # 设置路径
 TMP_DIR="/tmp/nikki_oix_update"
 LOG_DIR="/var/log/nikki_update"
