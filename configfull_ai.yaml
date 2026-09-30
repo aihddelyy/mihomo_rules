@@ -132,7 +132,7 @@ profile:
   store-selected: true
   store-fake-ip: true
   #smart-collector-size: data collection file size, the default is 100 (MB)
-  smart-collector-size: 200
+  smart-collector-size: 100
 
 # 流量嗅探
 sniffer:
@@ -256,22 +256,22 @@ proxy-groups:
   - {name: 广告拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃, 🟢 直连, 🔗 代理], icon: "https://icons.aihdde.eu.org/prohibition.png"}
 
 # 地区线路策略组
-  - {name: 精选节点, <<: *select, proxies: [精选智能, 精选自动, 精选均衡, 香港精选, 新加坡精选, 日本精选, 美国精选, 韩国精选], include-all: true, filter: *filter-featured, icon: "https://icons.aihdde.eu.org/star.png"}
-  - {name: 香港精选, <<: *select, proxies: [香港精选智能, 香港精选自动, 香港精选均衡], include-all: true, filter: *filter-featured-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
-  - {name: 新加坡精选, <<: *select, proxies: [新加坡精选智能, 新加坡精选自动, 新加坡精选均衡], include-all: true, filter: *filter-featured-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
-  - {name: 日本精选, <<: *select, proxies: [日本精选智能, 日本精选自动, 日本精选均衡], include-all: true, filter: *filter-featured-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
-  - {name: 美国精选, <<: *select, proxies: [美国精选智能, 美国精选自动, 美国精选均衡], include-all: true, filter: *filter-featured-us, icon: "https://icons.aihdde.eu.org/usa.png"}
-  - {name: 韩国精选, <<: *select, proxies: [韩国精选智能, 韩国精选自动, 韩国精选均衡], include-all: true, filter: *filter-featured-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
-  - {name: 自建/家宽节点, <<: *select, proxies: [自建/家宽自动, 自建/家宽智能, 自建/家宽均衡], include-all: true, filter: *filter-home, icon: "https://icons.aihdde.eu.org/home.png"}
-  - {name: 港台节点, <<: *select, proxies: [港台自动, 港台智能, 港台均衡], include-all: true, filter: *filter-hktw, icon: "https://icons.aihdde.eu.org/gangtai.png"}
-  - {name: 香港节点, <<: *select, proxies: [香港自动, 香港智能, 香港均衡], include-all: true, filter: *filter-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾节点, <<: *select, proxies: [台湾自动, 台湾智能, 台湾均衡], include-all: true, filter: *filter-tw, icon: "https://icons.aihdde.eu.org/taiwan.png"}
-  - {name: 新加坡节点, <<: *select, proxies: [新加坡自动, 新加坡智能, 新加坡均衡], include-all: true, filter: *filter-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
-  - {name: 日本节点, <<: *select, proxies: [日本自动, 日本智能, 日本均衡], include-all: true, filter: *filter-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
-  - {name: 韩国节点, <<: *select, proxies: [韩国自动, 韩国智能, 韩国均衡], include-all: true, filter: *filter-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
-  - {name: 美国节点, <<: *select, proxies: [美国自动, 美国智能, 美国均衡], include-all: true, filter: *filter-us, icon: "https://icons.aihdde.eu.org/usa.png"}
-  - {name: 英国节点, <<: *select, proxies: [英国自动, 英国智能, 英国均衡], include-all: true, filter: *filter-uk, icon: "https://icons.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲节点, <<: *select, proxies: [欧洲自动, 欧洲智能, 欧洲均衡], include-all: true, filter: *filter-eu, icon: "https://icons.aihdde.eu.org/european-union.png"}
+  - {name: 精选节点, <<: *select, proxies: [精选智能, 精选自动, 香港精选, 新加坡精选, 日本精选, 美国精选, 韩国精选], include-all: true, filter: *filter-featured, icon: "https://icons.aihdde.eu.org/star.png"}
+  - {name: 香港精选, <<: *select, proxies: [香港精选智能, 香港精选自动], include-all: true, filter: *filter-featured-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
+  - {name: 新加坡精选, <<: *select, proxies: [新加坡精选智能, 新加坡精选自动], include-all: true, filter: *filter-featured-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
+  - {name: 日本精选, <<: *select, proxies: [日本精选智能, 日本精选自动], include-all: true, filter: *filter-featured-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
+  - {name: 美国精选, <<: *select, proxies: [美国精选智能, 美国精选自动], include-all: true, filter: *filter-featured-us, icon: "https://icons.aihdde.eu.org/usa.png"}
+  - {name: 韩国精选, <<: *select, proxies: [韩国精选智能, 韩国精选自动], include-all: true, filter: *filter-featured-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
+  - {name: 自建/家宽节点, <<: *select, proxies: [自建/家宽自动, 自建/家宽智能], include-all: true, filter: *filter-home, icon: "https://icons.aihdde.eu.org/home.png"}
+  - {name: 港台节点, <<: *select, proxies: [港台自动, 港台智能], include-all: true, filter: *filter-hktw, icon: "https://icons.aihdde.eu.org/gangtai.png"}
+  - {name: 香港节点, <<: *select, proxies: [香港自动, 香港智能], include-all: true, filter: *filter-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
+  - {name: 台湾节点, <<: *select, proxies: [台湾自动, 台湾智能], include-all: true, filter: *filter-tw, icon: "https://icons.aihdde.eu.org/taiwan.png"}
+  - {name: 新加坡节点, <<: *select, proxies: [新加坡自动, 新加坡智能], include-all: true, filter: *filter-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
+  - {name: 日本节点, <<: *select, proxies: [日本自动, 日本智能], include-all: true, filter: *filter-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
+  - {name: 韩国节点, <<: *select, proxies: [韩国自动, 韩国智能], include-all: true, filter: *filter-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
+  - {name: 美国节点, <<: *select, proxies: [美国自动, 美国智能], include-all: true, filter: *filter-us, icon: "https://icons.aihdde.eu.org/usa.png"}
+  - {name: 英国节点, <<: *select, proxies: [英国自动, 英国智能], include-all: true, filter: *filter-uk, icon: "https://icons.aihdde.eu.org/united-kingdom.png"}
+  - {name: 欧洲节点, <<: *select, proxies: [欧洲自动, 欧洲智能], include-all: true, filter: *filter-eu, icon: "https://icons.aihdde.eu.org/european-union.png"}
   - {name: 其他国家, <<: *select, include-all: true, exclude-filter: *filter-ot, icon: "https://icons.aihdde.eu.org/country.png"}
 
 # 地区自动测速组，默认隐藏
@@ -310,23 +310,6 @@ proxy-groups:
   - {name: 英国智能, <<: *smart, filter: *filter-uk, icon: "https://icons.aihdde.eu.org/united-kingdom.png"}
   - {name: 欧洲智能, <<: *smart, filter: *filter-eu, icon: "https://icons.aihdde.eu.org/european-union.png"}
 
-# 地区负载均衡策略组，默认隐藏
-  - {name: 精选均衡, <<: *load-balance, filter: *filter-featured, icon: "https://icons.aihdde.eu.org/star.png"}
-  - {name: 香港精选均衡, <<: *load-balance, filter: *filter-featured-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
-  - {name: 新加坡精选均衡, <<: *load-balance, filter: *filter-featured-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
-  - {name: 日本精选均衡, <<: *load-balance, filter: *filter-featured-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
-  - {name: 美国精选均衡, <<: *load-balance, filter: *filter-featured-us, icon: "https://icons.aihdde.eu.org/usa.png"}
-  - {name: 韩国精选均衡, <<: *load-balance, filter: *filter-featured-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
-  - {name: 自建/家宽均衡, <<: *load-balance, filter: *filter-home, icon: "https://icons.aihdde.eu.org/home.png"}
-  - {name: 港台均衡, <<: *load-balance, filter: *filter-hktw, icon: "https://icons.aihdde.eu.org/gangtai.png"}
-  - {name: 香港均衡, <<: *load-balance, filter: *filter-hk, icon: "https://icons.aihdde.eu.org/hong-kong.png"}
-  - {name: 台湾均衡, <<: *load-balance, filter: *filter-tw, icon: "https://icons.aihdde.eu.org/taiwan.png"}
-  - {name: 新加坡均衡, <<: *load-balance, filter: *filter-sg, icon: "https://icons.aihdde.eu.org/singapore.png"}
-  - {name: 日本均衡, <<: *load-balance, filter: *filter-jp, icon: "https://icons.aihdde.eu.org/japan.png"}
-  - {name: 韩国均衡, <<: *load-balance, filter: *filter-kr, icon: "https://icons.aihdde.eu.org/south-korea.png"}
-  - {name: 美国均衡, <<: *load-balance, filter: *filter-us, icon: "https://icons.aihdde.eu.org/usa.png"}
-  - {name: 英国均衡, <<: *load-balance, filter: *filter-uk, icon: "https://icons.aihdde.eu.org/united-kingdom.png"}
-  - {name: 欧洲均衡, <<: *load-balance, filter: *filter-eu, icon: "https://icons.aihdde.eu.org/european-union.png"}
 
 # 功能型代理组，默认隐藏
   - {name: 🟢 直连, <<: *select, hidden: true, proxies: [DIRECT]}
@@ -335,7 +318,7 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 
 # 全局策略组，默认隐藏
-  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [智能选择, 一键智能, 自动选择, 一键自动, 默认代理, 国外流量, 国内流量, 漏网之鱼, 手动选择, 故障转移, 全球直连, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 广告拦截, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家, 自建/家宽自动, 精选自动, 港台自动, 香港精选自动, 香港自动, 台湾自动, 新加坡精选自动, 新加坡自动, 日本精选自动, 日本自动, 韩国精选自动, 韩国自动, 美国精选自动, 美国自动, 英国自动, 欧洲自动, 自建/家宽智能, 精选智能, 港台智能, 香港精选智能, 香港智能, 台湾智能, 新加坡精选智能, 新加坡智能, 日本精选智能, 日本智能, 韩国精选智能, 韩国智能, 美国精选智能, 美国智能, 英国智能, 欧洲智能, 自建/家宽均衡, 精选均衡, 港台均衡, 香港精选均衡, 香港均衡, 台湾均衡, 新加坡精选均衡, 新加坡均衡, 日本精选均衡, 日本均衡, 韩国精选均衡, 韩国均衡, 美国精选均衡, 美国均衡, 英国均衡, 欧洲均衡], exclude-filter: "(?i)(🟢 直连)", icon: "https://icons.aihdde.eu.org/earth.png"}
+  - {name: GLOBAL, type: select, include-all: true, hidden: true, proxies: [智能选择, 一键智能, 自动选择, 一键自动, 默认代理, 国外流量, 国内流量, 漏网之鱼, 手动选择, 故障转移, 全球直连, YouTube, Google, Cloudflare, GitHub, Apple, Microsoft, OneDrive, AI, TikTok, Netflix, Telegram, Porn, Steam, PayPal, Speedtest, 广告拦截, 自建/家宽节点, 精选节点, 港台节点, 香港精选, 香港节点, 台湾节点, 新加坡精选, 新加坡节点, 日本精选, 日本节点, 韩国精选, 韩国节点, 美国精选, 美国节点, 英国节点, 欧洲节点, 其他国家, 自建/家宽自动, 精选自动, 港台自动, 香港精选自动, 香港自动, 台湾自动, 新加坡精选自动, 新加坡自动, 日本精选自动, 日本自动, 韩国精选自动, 韩国自动, 美国精选自动, 美国自动, 英国自动, 欧洲自动, 自建/家宽智能, 精选智能, 港台智能, 香港精选智能, 香港智能, 台湾智能, 新加坡精选智能, 新加坡智能, 日本精选智能, 日本智能, 韩国精选智能, 韩国智能, 美国精选智能, 美国智能, 英国智能, 欧洲智能], exclude-filter: "(?i)(🟢 直连)", icon: "https://icons.aihdde.eu.org/earth.png"}
 
 # 规则路由
 rules:
@@ -346,8 +329,6 @@ rules:
 # NTP直连
   - DST-PORT,123,全球直连
 # 一般规则
-  - RULE-SET,AWAvenue_Ads_domain,广告拦截
-  - RULE-SET,Ad_ip,广告拦截,no-resolve
   - RULE-SET,Private_domain,全球直连
   - RULE-SET,Private_ip,全球直连,no-resolve
   - RULE-SET,DirectLite_domain,国内流量
@@ -358,7 +339,6 @@ rules:
   - RULE-SET,Steam_CDN_ip,国内流量,no-resolve
   - RULE-SET,Cloudflare_domain,Cloudflare
   - RULE-SET,Cloudflare_ip,Cloudflare,no-resolve
-  - RULE-SET,Cloudflare_asn,Cloudflare,no-resolve
   - RULE-SET,Apple_domain,Apple
   - RULE-SET,Apple_ip,Apple,no-resolve
   - RULE-SET,AI!cn_domain,AI
@@ -370,7 +350,6 @@ rules:
   - RULE-SET,FCM_domain,Google
   - RULE-SET,Google_domain,Google
   - RULE-SET,Google_ip,Google,no-resolve
-  - RULE-SET,Google_asn_cn,Google,no-resolve
   - RULE-SET,OneDrive_domain,OneDrive
   - RULE-SET,Microsoft_domain,Microsoft
   - RULE-SET,TikTok_domain,TikTok
@@ -393,7 +372,6 @@ rules:
 # 规则集定义
 rule-providers:
   # 域名规则
-  AWAvenue_Ads_domain:  { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/refs/heads/main/Filters/AWAvenue-Ads-Rule-Clash.mrs" }
   Private_domain:       { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/private.mrs" }
   DirectLite_domain:    { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/DirectLite-domain.mrs" }
   ProxyLite_domain:     { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/ProxyLite-domain.mrs" }
@@ -423,7 +401,6 @@ rule-providers:
   CN_domain:            { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.mrs" }
   Fakeip_filter_domain: { <<: *rule-set-domain, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/fakeip-filter.mrs" }
   # IP规则
-  Ad_ip:                { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Ad-ip.mrs" }
   CN_ip:                { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.mrs" }
   Google_ip:            { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/google.mrs" }
   Cloudflare_ip:        { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cloudflare.mrs" }
@@ -435,6 +412,3 @@ rule-providers:
   Steam_CDN_ip:         { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/aihddelyy/mihomo_rules/refs/heads/main/rules/mrs/Steam_CDN-ip.mrs" }
   Private_ip:           { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/private.mrs" }
   Apple_ip:             { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.mrs" }
-  # ASN规则
-  Google_asn_cn:        { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS24424.mrs" }
-  Cloudflare_asn:       { <<: *rule-set-ipcidr, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/asn/AS13335.mrs" }
