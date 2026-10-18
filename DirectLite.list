@@ -31,8 +31,8 @@ DOMAIN-SUFFIX,noedgeai.com
 DOMAIN-SUFFIX,gh-proxy.com
 DOMAIN-SUFFIX,ns.psb.kdns.fr
 DOMAIN-SUFFIX,bestcf.cmliussss.hidns.vip
-DOMAIN-SUFFIX,check.proxyip.cmliussss.net
-DOMAIN-SUFFIX,cf.090227.xyz
+#DOMAIN-SUFFIX,check.proxyip.cmliussss.net
+#DOMAIN-SUFFIX,cf.090227.xyz
 IP-CIDR,180.163.146.102/32,no-resolve
 IP-CIDR,10.10.10.0/24
 DOMAIN-SUFFIX,doh.pub
